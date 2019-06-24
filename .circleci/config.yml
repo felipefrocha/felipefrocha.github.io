@@ -45,7 +45,7 @@ jobs:
     branches:
       ignore:
         - master
-        - /featur.*/
+        - /feature-.*/
     steps:
       - checkout
       - attach_workspace:
