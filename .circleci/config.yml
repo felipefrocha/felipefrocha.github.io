@@ -94,8 +94,7 @@ workflows:
             - lint
       - deploy-github:
           requires:
-            - tu
-            - e2e
+          - build
       - deploy-prod:
           type: approval
           requires:
