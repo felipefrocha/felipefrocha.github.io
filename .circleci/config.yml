@@ -43,9 +43,8 @@ jobs:
   deploy-github:
     <<: *defaults
     branches:
-      ignore:
-        - master
-        - /feature-.*/
+      only:
+        - dev
     steps:
       - checkout
       - attach_workspace:
