@@ -43,6 +43,9 @@ jobs:
   deploy-github:
     <<: *defaults
     steps:
+      - add_ssh_keys:
+        fingerprints:
+          -$GH_TOKEN
       - checkout
       - attach_workspace:
           at: .
