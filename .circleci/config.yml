@@ -58,8 +58,12 @@ jobs:
               fi
               git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
               git config --global user.name "$GH_NAME" > /dev/null 2>&1
-              git init
+              ig [ ! -d ".git"]
+              then
+                git init
+              fi
               git remote add --fetch origin "$remote"
+
               if [! -d "node_modules"]
               then 
                 echo "not installed yet"
