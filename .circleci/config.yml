@@ -51,20 +51,24 @@ jobs:
           command: |
               set -e
               remote=$(git config remote.origin.url)
+              
               if [ ! -d "build" ]
               then
                   echo "build folder not found"
                   exit 1
               fi
+              
               git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
               git config --global user.name "$GH_NAME" > /dev/null 2>&1
-              if [ ! -d ".git"]
+              
+              if [ ! -d ".git" ]
               then
                 git init
+                git remote add --fetch origin "$remote"
               fi
-              git remote add --fetch origin "$remote"
+              
 
-              if [! -d "node_modules"]
+              if [ ! -d "node_modules" ]
               then 
                 echo "not installed yet"
                 npm install
