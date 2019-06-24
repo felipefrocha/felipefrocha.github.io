@@ -19,6 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "tslint --project '.'",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build && node ./src/deployModifier.js"
   },
