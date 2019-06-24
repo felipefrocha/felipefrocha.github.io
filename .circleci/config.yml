@@ -33,13 +33,13 @@ jobs:
           root: .
           paths:
             - build
-  lint:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run: npm run lint
+  # lint:
+  #   <<: *defaults
+  #   steps:
+  #     - checkout
+  #     - attach_workspace:
+  #         at: .
+  #     - run: npm run lint
   deploy-github:
     <<: *defaults
     steps:
@@ -85,15 +85,15 @@ workflows:
           filters:
             branches:
               only: dev
-      - lint:
-          requires:
-            - prepare
-          filters:
-            branches:
-              only: dev
+      # - lint:
+      #     requires:
+      #       - prepare
+      #     filters:
+      #       branches:
+      #         only: dev
       - build:
           requires:
-            - lint
+            - prepare
           filters:
             branches:
               only: dev
