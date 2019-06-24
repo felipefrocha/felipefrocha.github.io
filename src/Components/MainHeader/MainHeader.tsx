@@ -7,6 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import mainHeaderStyles from './MainHeaderStyle'
+import SideBar from '../SideBar';
 
 
 
@@ -23,7 +24,10 @@ export default function MainHeader() {
             color="inherit"
             aria-label="Open drawer"
           >
-            <MenuIcon />
+            <SideBar typeMenu='left' textMenu=''>
+              <MenuIcon />
+            </SideBar>
+            
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
