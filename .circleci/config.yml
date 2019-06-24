@@ -42,9 +42,6 @@ jobs:
       - run: npm run lint
   deploy-github:
     <<: *defaults
-    branches:
-      only:
-        - dev
     steps:
       - checkout
       - attach_workspace:
