@@ -1,0 +1,16 @@
+.header{
+ padding: 1rem 0 0;
+ width: 90%;
+ height: 10%;
+ flex-direction: row;
+ display: flex;
+ justify-content: space-around;
+
+}
+.title {
+ color: #000000;
+ font-size : 3rem;
+ text-decoration: none;
+ flex-grow: 5;
+}
+
