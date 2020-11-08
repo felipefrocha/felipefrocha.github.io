@@ -11,3 +11,11 @@
 .img{
     flex-grow: 1;
 }
+
+.img-profile {
+  flex-grow: .5;
+  max-height: 7rem;
+  max-width: 7rem;
+  align-self: auto;
+  border-radius: 50%;
+}

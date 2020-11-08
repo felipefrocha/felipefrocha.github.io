@@ -1,7 +1,7 @@
 import { Link, useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import headerStyles from "./header.module.scss"
-import Image from "./image"
+import ImagePerfil from "./image-perfil"
 
 interface Props {
   siteTitle: string
@@ -10,7 +10,7 @@ interface Props {
 const Header = ({ siteTitle }: Props) => (
 
   <header className={headerStyles.header}>
-    <Image pathImage={"perfil.jpeg"} />
+    <ImagePerfil pathImage={"perfil.jpeg"} />
     <h1>
       <Link
         className={headerStyles.title}
