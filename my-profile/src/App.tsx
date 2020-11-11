@@ -1,17 +1,15 @@
 import React from 'react';
-import './App.css';
-import Game from "./pokedex/Game";
-import Layout from './pokedex/Layout';
-import Rando from "./pokedex/Rando";
-import Button from "./pokedex/Button";
+import Flipper from "./pocs/FlipperCoin/Flipper";
 
 function App() {
-  return (
-      <Layout>
-          <Rando maxNum={10}/>
-          <Button/>
-      </Layout>
-  );
+    return (
+        <Flipper/>
+
+        // <Layout>
+        //     <Lotto maxNum={10} numBalls={10}/>
+        //     <Lotto maxNum={15} numBalls={4} title={'Testes'}/>
+        // </Layout>
+    );
 }
 
 export default App;

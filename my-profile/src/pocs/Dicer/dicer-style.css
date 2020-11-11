@@ -1,0 +1,32 @@
+.Dicer {
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
+    align-content: center;
+}
+.Dicer button {
+    width: 15em;
+    padding: 1.5em;
+    border: none;
+    border-radius: 10px;
+    color : white;
+    background-color: black;
+    margin-top: 3em;
+    align-self: center;
+    outline: none;
+}
+
+.Dicer button:hover{
+    background-color: darkslateblue;
+    cursor: pointer;
+}
+.Dicer button:active{
+    background-color: mediumslateblue;
+    cursor: pointer;
+}
+
+.Dicer-container {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}

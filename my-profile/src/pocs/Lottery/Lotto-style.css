@@ -1,0 +1,32 @@
+.Lotto{
+    margin: auto auto .5em;
+    align-content: center;
+    padding: 1em 0 1.5em 0;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5em;
+    border: solid .1em gray;
+    border-radius: 10px;
+}
+.Lotto h1{
+    font-size: 1em;
+    font-family: "Open Sans", sans-serif;
+    margin: .5em;
+}
+.Lotto button{
+    background-color: darkgray;
+    border-radius: 5%;
+    border: none;
+    height:2em;
+    outline: none;
+    margin-top: 1em;
+}
+.Lotto button:active{
+    background-color: gray !important;
+    cursor: pointer;
+}
+.Lotto button:hover{
+    background-color: lightgray ;
+    cursor: pointer;
+}

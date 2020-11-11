@@ -1,0 +1,5 @@
+.Box button {
+    display: grid;
+    max-height: 10vh;
+    max-width: 10vw;
+}
