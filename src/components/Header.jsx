@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
   },
   leftmenu: {
     marginLeft: "auto"
+  },
+  appbar: {
+    height: "40px"
   }
 }));
 
@@ -62,7 +65,7 @@ const ResponsiveAppBar = () => {
 
 
   return (
-    <AppBar position="static" >
+    <AppBar position="static" className={styles.appbar}>
       <Container maxWidth="md">
         <Toolbar disableGutters>
           <Typography

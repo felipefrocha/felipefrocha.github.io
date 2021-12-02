@@ -71,12 +71,12 @@ const HeroSection = () => {
                       sx={{ width: size, height: size }}
                     />
                   }
-                  title={<><Typography component="h1" variant="h3" className={styles.title} >Felipe F. Rocha</Typography>
+                  title={<><Typography  variant="h1" className={styles.title} >Felipe F. Rocha</Typography>
                     <Typography variant="h5">Engenheiro de sistemas, DevOps e artesão.</Typography></>}
                 />
               </Hidden>
               <Hidden mdUp={true}>
-                <Typography component="h1" variant="h3" className={styles.title} >Felipe F. Rocha</Typography>
+                <Typography variant="h1" className={styles.title} >Felipe F. Rocha</Typography>
                 <Typography variant="h5">Engenheiro de sistemas, DevOps e artesão.</Typography>
               </Hidden>
               <Box className={styles.containerbox}>

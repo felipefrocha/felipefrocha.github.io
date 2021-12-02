@@ -16,7 +16,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/prefil.jpg",
+        icon: "src/images/perfil.jpg",
       },
     },
     "gatsby-transformer-remark",
