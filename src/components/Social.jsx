@@ -15,7 +15,7 @@ const socialItems = [
 
 const useStyles = makeStyles(theme => ({
   icon: {
-    fontSize: "5em",
+    fontSize: "large",
   },
   bar: {
     backgroundColor: "#AAAAAAAA",
