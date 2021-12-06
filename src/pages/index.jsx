@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import HeroSection from "../components/HeroSection";
+import LanePage from "../components/LanePage";
 import Header from "../components/Header"
 import Projects from "../components/Projects"
 
@@ -27,7 +27,7 @@ const IndexPage = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       {/* <Header/> */}
-      <HeroSection/>
+      <LanePage/>
       {/* <Projects/> */}
     </ThemeProvider>
   );
