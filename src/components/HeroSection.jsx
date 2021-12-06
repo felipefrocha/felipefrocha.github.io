@@ -20,9 +20,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 5,
     position: 'relative'
   },
-  title: {
-    fontSize: "1em",
-  },
+
   containerbox: {
     padding: '5%',
   },
@@ -62,7 +60,7 @@ const HeroSection = () => {
         >
           <Zoom in={shouldShow}>
             <Grid item sm={8}>
-              <Hidden mdDown={true}>
+              <Hidden smDown={true}>
                 <CardHeader
                   avatar={
                     <Avatar
@@ -71,12 +69,12 @@ const HeroSection = () => {
                       sx={{ width: size, height: size }}
                     />
                   }
-                  title={<><Typography  variant="h1" className={styles.title} >Felipe F. Rocha</Typography>
+                  title={<><Typography  variant="h3" className={styles.title} >Felipe F. Rocha</Typography>
                     <Typography variant="h5">Engenheiro de sistemas, DevOps e artesão.</Typography></>}
                 />
               </Hidden>
-              <Hidden mdUp={true}>
-                <Typography variant="h1" className={styles.title} >Felipe F. Rocha</Typography>
+              <Hidden smUp={true}>
+                <Typography variant="h3" className={styles.title} >Felipe F. Rocha</Typography>
                 <Typography variant="h5">Engenheiro de sistemas, DevOps e artesão.</Typography>
               </Hidden>
               <Box className={styles.containerbox}>
