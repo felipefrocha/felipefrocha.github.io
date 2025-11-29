@@ -1,15 +1,44 @@
+import { useQuery } from '@tanstack/react-query';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { SkillTag } from '@/components/atoms/SkillTag';
 import { SocialIcon } from '@/components/atoms/SocialIcon';
 import { MapPin, Mail } from 'lucide-react';
-import { mockProfile, mockSkills, mockSocialLinks } from '@/lib/mockData';
+import type { ProfileInfo, SocialLink } from '@/types/blog';
 
 export default function About() {
-  // todo: remove mock functionality - fetch profile from API
-  const profile = mockProfile;
-  const skills = mockSkills;
-  const socialLinks = mockSocialLinks;
+  const { data: profile, isLoading: profileLoading } = useQuery<ProfileInfo>({
+    queryKey: ['/api/profile'],
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const { data: skills } = useQuery<string[]>({
+    queryKey: ['/api/skills'],
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const { data: socialLinks } = useQuery<SocialLink[]>({
+    queryKey: ['/api/socials'],
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (profileLoading || !profile) {
+    return (
+      <article className="py-8 md:py-12 px-6 md:px-8">
+        <div className="max-w-4xl mx-auto">
+          <Skeleton className="h-10 w-40 mb-12" />
+          <div className="grid gap-12 lg:grid-cols-3">
+            <Skeleton className="h-64" />
+            <div className="lg:col-span-2 space-y-8">
+              <Skeleton className="h-32" />
+              <Skeleton className="h-24" />
+            </div>
+          </div>
+        </div>
+      </article>
+    );
+  }
 
   const initials = profile.name
     .split(' ')
@@ -57,16 +86,18 @@ export default function About() {
                     </p>
                   )}
 
-                  <div className="flex items-center gap-1">
-                    {socialLinks.map((link) => (
-                      <SocialIcon
-                        key={link.platform}
-                        platform={link.platform}
-                        url={link.url}
-                        size="sm"
-                      />
-                    ))}
-                  </div>
+                  {socialLinks && (
+                    <div className="flex items-center gap-1">
+                      {socialLinks.map((link) => (
+                        <SocialIcon
+                          key={link.platform}
+                          platform={link.platform}
+                          url={link.url}
+                          size="sm"
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -87,14 +118,16 @@ export default function About() {
               </div>
             </section>
 
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Skills & Technologies</h2>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <SkillTag key={skill} skill={skill} />
-                ))}
-              </div>
-            </section>
+            {skills && skills.length > 0 && (
+              <section>
+                <h2 className="text-2xl font-semibold mb-4">Skills & Technologies</h2>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <SkillTag key={skill} skill={skill} />
+                  ))}
+                </div>
+              </section>
+            )}
 
             <section>
               <h2 className="text-2xl font-semibold mb-4">Experience</h2>

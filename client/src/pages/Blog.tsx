@@ -1,16 +1,44 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { BlogPostCard } from '@/components/molecules/BlogPostCard';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Search } from 'lucide-react';
-import { mockBlogPosts } from '@/lib/mockData';
+import type { BlogPost } from '@/types/blog';
 
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // todo: remove mock functionality - fetch posts from API
-  const posts = mockBlogPosts;
+  const { data: posts, isLoading, error } = useQuery<BlogPost[]>({
+    queryKey: ['/api/posts'],
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (isLoading) {
+    return (
+      <article className="py-8 md:py-12 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <Skeleton className="h-10 w-32 mb-4" />
+          <Skeleton className="h-6 w-64 mb-8" />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-48" />
+            <Skeleton className="h-48" />
+            <Skeleton className="h-48" />
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  if (error || !posts) {
+    return (
+      <article className="py-16 text-center">
+        <p className="text-muted-foreground">Failed to load blog posts.</p>
+      </article>
+    );
+  }
 
   const categories = Array.from(new Set(posts.map(post => post.category)));
 

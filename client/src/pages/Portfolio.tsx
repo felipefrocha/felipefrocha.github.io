@@ -1,9 +1,37 @@
+import { useQuery } from '@tanstack/react-query';
 import { ProjectCard } from '@/components/molecules/ProjectCard';
-import { mockProjects } from '@/lib/mockData';
+import { Skeleton } from '@/components/ui/skeleton';
+import type { Project } from '@/types/blog';
 
 export default function Portfolio() {
-  // todo: remove mock functionality - fetch projects from API
-  const projects = mockProjects;
+  const { data: projects, isLoading, error } = useQuery<Project[]>({
+    queryKey: ['/api/projects'],
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (isLoading) {
+    return (
+      <article className="py-8 md:py-12 px-6 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <Skeleton className="h-10 w-40 mb-4" />
+          <Skeleton className="h-6 w-96 mb-8" />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-64" />
+            <Skeleton className="h-64" />
+            <Skeleton className="h-64" />
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  if (error || !projects) {
+    return (
+      <article className="py-16 text-center">
+        <p className="text-muted-foreground">Failed to load projects.</p>
+      </article>
+    );
+  }
 
   return (
     <article className="py-8 md:py-12 px-6 md:px-8">
