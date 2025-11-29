@@ -4,7 +4,7 @@ import { SiGithub, SiLinkedin, SiInstagram, SiX } from 'react-icons/si';
 import { ExternalLink } from 'lucide-react';
 
 interface SocialCardProps {
-  platform: 'github' | 'linkedin' | 'instagram' | 'twitter';
+  platform: 'github' | 'linkedin' | 'instagram' ;
   handle: string;
   url: string;
   followers?: string;
@@ -14,7 +14,6 @@ const config = {
   github: { icon: SiGithub, label: 'GitHub', color: 'hover:border-[#333] dark:hover:border-[#fff]' },
   linkedin: { icon: SiLinkedin, label: 'LinkedIn', color: 'hover:border-[#0A66C2]' },
   instagram: { icon: SiInstagram, label: 'Instagram', color: 'hover:border-[#E4405F]' },
-  twitter: { icon: SiX, label: 'X (Twitter)', color: 'hover:border-[#000] dark:hover:border-[#fff]' },
 };
 
 export function SocialCard({ platform, handle, url, followers }: SocialCardProps) {

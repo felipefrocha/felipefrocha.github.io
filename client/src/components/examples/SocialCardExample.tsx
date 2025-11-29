@@ -5,13 +5,13 @@ export default function SocialCardExample() {
     <div className="grid gap-4 max-w-md">
       <SocialCard
         platform="github"
-        handle="alexdev"
+        handle="felipefrocha"
         url="https://github.com"
         followers="1.2K"
       />
       <SocialCard
         platform="linkedin"
-        handle="alexdev"
+        handle="felipefonsecarocha"
         url="https://linkedin.com"
       />
     </div>

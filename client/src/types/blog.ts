@@ -21,7 +21,7 @@ export interface Project {
 }
 
 export interface SocialLink {
-  platform: 'github' | 'linkedin' | 'instagram' | 'twitter';
+  platform: 'github' | 'linkedin' | 'instagram' ;
   url: string;
   handle: string;
 }

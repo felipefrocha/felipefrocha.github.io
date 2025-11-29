@@ -31,15 +31,20 @@ function Router() {
   );
 }
 
+// Auto-refresh in development mode
+const isDevelopment = import.meta.env.DEV;
+
 function AppContent() {
   const { data: profile, isLoading: profileLoading } = useQuery<ProfileInfo>({
     queryKey: ['/api/profile'],
-    staleTime: 5 * 60 * 1000,
+    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
+    refetchInterval: isDevelopment ? 2000 : false,
   });
 
   const { data: socialLinks, isLoading: socialsLoading } = useQuery<SocialLink[]>({
     queryKey: ['/api/socials'],
-    staleTime: 5 * 60 * 1000,
+    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
+    refetchInterval: isDevelopment ? 2000 : false,
   });
 
   const isLoading = profileLoading || socialsLoading;
@@ -57,15 +62,14 @@ function AppContent() {
   }
 
   const defaultProfile = {
-    name: 'Alex Developer',
-    tagline: 'Full-Stack Developer & Writer',
+    name: 'Felipe F. Rocha',
+    tagline: 'Technologist & Writer',
   };
 
   const defaultSocials: SocialLink[] = [
-    { platform: 'github', url: 'https://github.com', handle: 'alexdev' },
-    { platform: 'linkedin', url: 'https://linkedin.com', handle: 'alexdev' },
-    { platform: 'instagram', url: 'https://instagram.com', handle: 'alexdev' },
-    { platform: 'twitter', url: 'https://twitter.com', handle: 'alexdev' },
+    { platform: 'github', url: 'https://github.com', handle: 'felipefrocha'},
+    { platform: 'linkedin', url: 'https://linkedin.com/in', handle: 'felipefonsecarocha' },
+    { platform: 'instagram', url: 'https://instagram.com', handle: '_felipefrocha' },
   ];
 
   return (

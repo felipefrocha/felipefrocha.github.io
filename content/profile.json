@@ -1,7 +1,8 @@
 {
-  "name": "Alex Developer",
-  "tagline": "Full-Stack Developer & Writer",
+  "name": "Felipe F. Rocha",
+  "tagline": "Technologist & Writer",
   "bio": "I'm a passionate developer with over 5 years of experience building web applications. I love working with modern technologies and sharing my knowledge through writing. When I'm not coding, you'll find me exploring new tech, contributing to open source, or writing about software development best practices.",
-  "email": "hello@example.com",
-  "location": "San Francisco, CA"
+  "avatar": "/avatar.jpg",
+  "email": "contato@feliprocha.systems",
+  "location": "Boston, MA"
 }

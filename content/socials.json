@@ -1,6 +1,5 @@
 [
-  { "platform": "github", "url": "https://github.com", "handle": "alexdev" },
-  { "platform": "linkedin", "url": "https://linkedin.com", "handle": "alexdev" },
-  { "platform": "instagram", "url": "https://instagram.com", "handle": "alexdev" },
-  { "platform": "twitter", "url": "https://twitter.com", "handle": "alexdev" }
+  { "platform": "github", "url": "https://github.com", "handle": "felipefrocha" },
+  { "platform": "linkedin", "url": "https://linkedin.com", "handle": "felipefonsecarocha" },
+  { "platform": "instagram", "url": "https://instagram.com", "handle": "_felipefrocha" }
 ]

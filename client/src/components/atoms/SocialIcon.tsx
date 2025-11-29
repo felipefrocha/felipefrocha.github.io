@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 interface SocialIconProps {
-  platform: 'github' | 'linkedin' | 'instagram' | 'twitter';
+  platform: 'github' | 'linkedin' | 'instagram';
   url: string;
   size?: 'sm' | 'default';
 }
@@ -12,14 +12,12 @@ const icons = {
   github: SiGithub,
   linkedin: SiLinkedin,
   instagram: SiInstagram,
-  twitter: SiX,
 };
 
 const labels = {
   github: 'GitHub',
   linkedin: 'LinkedIn',
   instagram: 'Instagram',
-  twitter: 'X (Twitter)',
 };
 
 export function SocialIcon({ platform, url, size = 'default' }: SocialIconProps) {

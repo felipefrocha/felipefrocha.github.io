@@ -33,10 +33,10 @@ client/src/components/
 - **Semantic HTML5**: Proper use of header, main, footer, article, section, nav, aside
 - **Responsive Design**: Mobile-first with sidebar navigation
 - **Accessibility**: Skip links, ARIA labels, keyboard navigation
-- **Social Integration**: GitHub, LinkedIn, Instagram, Twitter links
+- **Social Integration**: GitHub, LinkedIn, Instagram links
 
 ## Tech Stack
-- React 18 + Vite
+- React 19 + Vite
 - TypeScript
 - Tailwind CSS with custom design system
 - Shadcn UI components

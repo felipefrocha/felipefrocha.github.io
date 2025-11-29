@@ -5,7 +5,10 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      // Fast Refresh is enabled by default in @vitejs/plugin-react
+      // This ensures optimal HMR for React components
+    }),
     runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
@@ -36,5 +39,11 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
+    // HMR configuration is handled in server/vite.ts
+    // This ensures proper WebSocket connection through Express
+  },
+  // Optimize HMR updates
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
   },
 });

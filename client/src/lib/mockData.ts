@@ -2,22 +2,21 @@ import type { BlogPost, Project, SocialLink, ProfileInfo } from '@/types/blog';
 
 // todo: remove mock functionality - replace with actual data fetching
 export const mockProfile: ProfileInfo = {
-  name: 'Alex Developer',
-  tagline: 'Full-Stack Developer & Writer',
+  name: 'Felipe F. Rocha',
+  tagline: 'Technologist & Writer',
   bio: `I'm a passionate developer with over 5 years of experience building web applications. 
   I love working with modern technologies and sharing my knowledge through writing. 
   When I'm not coding, you'll find me exploring new tech, contributing to open source, 
   or writing about software development best practices.`,
-  email: 'hello@example.com',
-  location: 'San Francisco, CA',
+  email: 'contato@feliprocha.systems',
+  location: 'Boston, MA',
 };
 
 // todo: remove mock functionality
 export const mockSocialLinks: SocialLink[] = [
-  { platform: 'github', url: 'https://github.com', handle: 'alexdev' },
-  { platform: 'linkedin', url: 'https://linkedin.com', handle: 'alexdev' },
-  { platform: 'instagram', url: 'https://instagram.com', handle: 'alexdev' },
-  { platform: 'twitter', url: 'https://twitter.com', handle: 'alexdev' },
+  { platform: 'github', url: 'https://github.com', handle: 'felipefrocha' },
+  { platform: 'linkedin', url: 'https://linkedin.com', handle: 'felipefonsecarocha' },
+  { platform: 'instagram', url: 'https://instagram.com', handle: '_felipefrocha' },
 ];
 
 // todo: remove mock functionality

@@ -8,10 +8,14 @@ import { ConnectSection } from '@/components/organisms/ConnectSection';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { SiteData } from '@/lib/api';
 
+// Auto-refresh in development mode
+const isDevelopment = import.meta.env.DEV;
+
 export default function Home() {
   const { data, isLoading, error } = useQuery<SiteData>({
     queryKey: ['/api/site-data'],
-    staleTime: 5 * 60 * 1000,
+    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
+    refetchInterval: isDevelopment ? 2000 : false,
   });
 
   if (isLoading) {

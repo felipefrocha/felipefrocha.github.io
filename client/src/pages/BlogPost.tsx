@@ -7,6 +7,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ArrowLeft, Calendar, Clock, ChevronRight } from 'lucide-react';
 import type { BlogPost } from '@/types/blog';
 
+// Auto-refresh in development mode
+const isDevelopment = import.meta.env.DEV;
+
 export default function BlogPostPage() {
   const [, params] = useRoute('/blog/:slug');
   const slug = params?.slug || '';
@@ -14,12 +17,14 @@ export default function BlogPostPage() {
   const { data: post, isLoading, error } = useQuery<BlogPost>({
     queryKey: ['/api/posts', slug],
     enabled: !!slug,
-    staleTime: 5 * 60 * 1000,
+    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
+    refetchInterval: isDevelopment ? 2000 : false,
   });
 
   const { data: allPosts } = useQuery<BlogPost[]>({
     queryKey: ['/api/posts'],
-    staleTime: 5 * 60 * 1000,
+    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
+    refetchInterval: isDevelopment ? 2000 : false,
   });
 
   if (isLoading) {

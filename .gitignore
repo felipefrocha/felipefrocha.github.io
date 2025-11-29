@@ -4,3 +4,6 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Cloudflare Pages build artifacts
+functions/_init.ts

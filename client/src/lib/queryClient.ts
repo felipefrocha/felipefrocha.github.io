@@ -41,13 +41,16 @@ export const getQueryFn: <T>(options: {
     return await res.json();
   };
 
+// Auto-refresh in development mode
+const isDevelopment = import.meta.env.DEV;
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       queryFn: getQueryFn({ on401: "throw" }),
-      refetchInterval: false,
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
+      refetchInterval: isDevelopment ? 2000 : false, // Auto-refresh every 2 seconds in dev
+      refetchOnWindowFocus: isDevelopment, // Refetch on window focus in dev
+      staleTime: isDevelopment ? 0 : Infinity, // Always consider stale in dev
       retry: false,
     },
     mutations: {

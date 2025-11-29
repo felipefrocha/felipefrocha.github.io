@@ -7,13 +7,17 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Search } from 'lucide-react';
 import type { BlogPost } from '@/types/blog';
 
+// Auto-refresh in development mode
+const isDevelopment = import.meta.env.DEV;
+
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const { data: posts, isLoading, error } = useQuery<BlogPost[]>({
     queryKey: ['/api/posts'],
-    staleTime: 5 * 60 * 1000,
+    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
+    refetchInterval: isDevelopment ? 2000 : false,
   });
 
   if (isLoading) {

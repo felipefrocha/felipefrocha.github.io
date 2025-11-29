@@ -3,10 +3,14 @@ import { ProjectCard } from '@/components/molecules/ProjectCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { Project } from '@/types/blog';
 
+// Auto-refresh in development mode
+const isDevelopment = import.meta.env.DEV;
+
 export default function Portfolio() {
   const { data: projects, isLoading, error } = useQuery<Project[]>({
     queryKey: ['/api/projects'],
-    staleTime: 5 * 60 * 1000,
+    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
+    refetchInterval: isDevelopment ? 2000 : false,
   });
 
   if (isLoading) {

@@ -44,7 +44,7 @@ export const projectSchema = z.object({
 export type Project = z.infer<typeof projectSchema>;
 
 export const socialLinkSchema = z.object({
-  platform: z.enum(['github', 'linkedin', 'instagram', 'twitter']),
+  platform: z.enum(['github', 'linkedin', 'instagram']),
   url: z.string(),
   handle: z.string(),
 });
