@@ -59,11 +59,12 @@ export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
                       isActive={isActive}
                       tooltip={item.label}
                     >
-                      <Link href={item.href}>
-                        <a data-testid={`link-nav-${item.label.toLowerCase()}`}>
-                          <item.icon className="h-5 w-5" />
-                          <span>{item.label}</span>
-                        </a>
+                      <Link 
+                        href={item.href}
+                        data-testid={`link-nav-${item.label.toLowerCase()}`}
+                      >
+                        <item.icon className="h-5 w-5" />
+                        <span>{item.label}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

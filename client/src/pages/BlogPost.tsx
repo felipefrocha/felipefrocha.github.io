@@ -22,10 +22,8 @@ export default function BlogPost() {
           </p>
           <Button asChild>
             <Link href="/blog">
-              <a>
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Blog
-              </a>
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Blog
             </Link>
           </Button>
         </div>
@@ -42,12 +40,12 @@ export default function BlogPost() {
           className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
           aria-label="Breadcrumb"
         >
-          <Link href="/">
-            <a className="hover:text-foreground transition-colors">Home</a>
+          <Link href="/" className="hover:text-foreground transition-colors">
+            Home
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <Link href="/blog">
-            <a className="hover:text-foreground transition-colors">Blog</a>
+          <Link href="/blog" className="hover:text-foreground transition-colors">
+            Blog
           </Link>
           <ChevronRight className="h-4 w-4" />
           <span className="text-foreground truncate">{post.title}</span>
@@ -127,19 +125,19 @@ function greet(name: string): string {
           <h2 className="text-2xl font-semibold mb-6">Related Posts</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {relatedPosts.map((relatedPost) => (
-              <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`}>
-                <a 
-                  className="block p-4 rounded-lg border border-border hover-elevate"
-                  data-testid={`link-related-${relatedPost.slug}`}
-                >
-                  <Badge variant="outline" className="mb-2 text-xs">
-                    {relatedPost.category}
-                  </Badge>
-                  <h3 className="font-medium line-clamp-2">{relatedPost.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {relatedPost.readTime}
-                  </p>
-                </a>
+              <Link 
+                key={relatedPost.slug} 
+                href={`/blog/${relatedPost.slug}`}
+                className="block p-4 rounded-lg border border-border hover-elevate"
+                data-testid={`link-related-${relatedPost.slug}`}
+              >
+                <Badge variant="outline" className="mb-2 text-xs">
+                  {relatedPost.category}
+                </Badge>
+                <h3 className="font-medium line-clamp-2">{relatedPost.title}</h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {relatedPost.readTime}
+                </p>
               </Link>
             ))}
           </div>

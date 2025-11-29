@@ -39,13 +39,12 @@ export function Footer({ socialLinks }: FooterProps) {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href}>
-                    <a 
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      data-testid={`link-footer-${link.label.toLowerCase()}`}
-                    >
-                      {link.label}
-                    </a>
+                  <Link 
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    data-testid={`link-footer-${link.label.toLowerCase()}`}
+                  >
+                    {link.label}
                   </Link>
                 </li>
               ))}
