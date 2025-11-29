@@ -96,11 +96,11 @@ export default function Contact() {
             <CardHeader>
               <CardTitle>Send a Message</CardTitle>
               <CardDescription>
-                Fill out the form below and I'll get back to you as soon as possible.
+                Contact form is currently disabled. Please reach out via email or social media.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4" data-testid="form-contact">
+              <form onSubmit={(e) => { e.preventDefault(); }} className="space-y-4" data-testid="form-contact">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name</Label>
@@ -109,6 +109,7 @@ export default function Contact() {
                       name="name"
                       placeholder="Your name" 
                       required 
+                      disabled
                       value={formData.name}
                       onChange={handleChange}
                       data-testid="input-contact-name"
@@ -122,6 +123,7 @@ export default function Contact() {
                       type="email" 
                       placeholder="your@email.com" 
                       required 
+                      disabled
                       value={formData.email}
                       onChange={handleChange}
                       data-testid="input-contact-email"
@@ -136,6 +138,7 @@ export default function Contact() {
                     name="subject"
                     placeholder="What's this about?" 
                     required 
+                    disabled
                     value={formData.subject}
                     onChange={handleChange}
                     data-testid="input-contact-subject"
@@ -150,6 +153,7 @@ export default function Contact() {
                     placeholder="Your message..."
                     rows={5}
                     required
+                    disabled
                     value={formData.message}
                     onChange={handleChange}
                     data-testid="input-contact-message"
@@ -158,18 +162,12 @@ export default function Contact() {
 
                 <Button 
                   type="submit" 
-                  disabled={contactMutation.isPending}
+                  disabled={true}
                   className="w-full"
                   data-testid="button-contact-submit"
                 >
-                  {contactMutation.isPending ? (
-                    <span>Sending...</span>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4 mr-2" />
-                      Send Message
-                    </>
-                  )}
+                  <Send className="h-4 w-4 mr-2" />
+                  Send Message
                 </Button>
               </form>
             </CardContent>
