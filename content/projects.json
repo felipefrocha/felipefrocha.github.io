@@ -1,0 +1,25 @@
+[
+  {
+    "id": "project-1",
+    "title": "E-Commerce Platform",
+    "description": "A modern e-commerce platform built with Next.js, featuring real-time inventory, secure payments, and an intuitive admin dashboard.",
+    "techStack": ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
+    "link": "https://example.com",
+    "github": "https://github.com"
+  },
+  {
+    "id": "project-2",
+    "title": "Task Management App",
+    "description": "A collaborative task management application with real-time updates, team workspaces, and advanced filtering capabilities.",
+    "techStack": ["React", "Node.js", "Socket.io", "MongoDB"],
+    "link": "https://example.com",
+    "github": "https://github.com"
+  },
+  {
+    "id": "project-3",
+    "title": "Developer Portfolio",
+    "description": "A performant portfolio site with markdown blog, PWA support, and a custom design system built with Tailwind CSS.",
+    "techStack": ["React", "Vite", "Tailwind CSS", "MDX"],
+    "github": "https://github.com"
+  }
+]

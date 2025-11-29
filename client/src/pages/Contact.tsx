@@ -1,33 +1,83 @@
 import { useState } from 'react';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { SocialCard } from '@/components/molecules/SocialCard';
 import { Send, Mail, MapPin } from 'lucide-react';
-import { mockProfile, mockSocialLinks } from '@/lib/mockData';
+import { submitContactForm } from '@/lib/api';
+import type { ProfileInfo, SocialLink } from '@/types/blog';
 
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const { data: profile } = useQuery<ProfileInfo>({
+    queryKey: ['/api/profile'],
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const { data: socialLinks, isLoading } = useQuery<SocialLink[]>({
+    queryKey: ['/api/socials'],
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: submitContactForm,
+    onSuccess: () => {
+      toast({
+        title: 'Message Sent!',
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: 'Error',
+        description: error.message || 'Failed to send message. Please try again.',
+        variant: 'destructive',
+      });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // todo: remove mock functionality - integrate with actual contact form API
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    toast({
-      title: 'Message Sent!',
-      description: 'Thank you for reaching out. I\'ll get back to you soon.',
-    });
-
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    contactMutation.mutate(formData);
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  if (isLoading) {
+    return (
+      <article className="py-8 md:py-12 px-6 md:px-8">
+        <div className="max-w-4xl mx-auto">
+          <Skeleton className="h-10 w-48 mb-4" />
+          <Skeleton className="h-6 w-96 mb-8" />
+          <div className="grid gap-8 lg:grid-cols-2">
+            <Skeleton className="h-96" />
+            <div className="space-y-6">
+              <Skeleton className="h-32" />
+              <Skeleton className="h-48" />
+            </div>
+          </div>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article className="py-8 md:py-12 px-6 md:px-8">
@@ -59,6 +109,8 @@ export default function Contact() {
                       name="name"
                       placeholder="Your name" 
                       required 
+                      value={formData.name}
+                      onChange={handleChange}
                       data-testid="input-contact-name"
                     />
                   </div>
@@ -70,6 +122,8 @@ export default function Contact() {
                       type="email" 
                       placeholder="your@email.com" 
                       required 
+                      value={formData.email}
+                      onChange={handleChange}
                       data-testid="input-contact-email"
                     />
                   </div>
@@ -82,6 +136,8 @@ export default function Contact() {
                     name="subject"
                     placeholder="What's this about?" 
                     required 
+                    value={formData.subject}
+                    onChange={handleChange}
                     data-testid="input-contact-subject"
                   />
                 </div>
@@ -94,17 +150,19 @@ export default function Contact() {
                     placeholder="Your message..."
                     rows={5}
                     required
+                    value={formData.message}
+                    onChange={handleChange}
                     data-testid="input-contact-message"
                   />
                 </div>
 
                 <Button 
                   type="submit" 
-                  disabled={isSubmitting}
+                  disabled={contactMutation.isPending}
                   className="w-full"
                   data-testid="button-contact-submit"
                 >
-                  {isSubmitting ? (
+                  {contactMutation.isPending ? (
                     <span>Sending...</span>
                   ) : (
                     <>
@@ -122,7 +180,7 @@ export default function Contact() {
               <CardContent className="p-6">
                 <h3 className="font-semibold mb-4">Contact Information</h3>
                 <div className="space-y-4">
-                  {mockProfile.email && (
+                  {profile?.email && (
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-md bg-muted">
                         <Mail className="h-4 w-4" />
@@ -130,23 +188,23 @@ export default function Contact() {
                       <div>
                         <p className="text-sm font-medium">Email</p>
                         <a 
-                          href={`mailto:${mockProfile.email}`}
+                          href={`mailto:${profile.email}`}
                           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                           data-testid="link-contact-email"
                         >
-                          {mockProfile.email}
+                          {profile.email}
                         </a>
                       </div>
                     </div>
                   )}
-                  {mockProfile.location && (
+                  {profile?.location && (
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-md bg-muted">
                         <MapPin className="h-4 w-4" />
                       </div>
                       <div>
                         <p className="text-sm font-medium">Location</p>
-                        <p className="text-sm text-muted-foreground">{mockProfile.location}</p>
+                        <p className="text-sm text-muted-foreground">{profile.location}</p>
                       </div>
                     </div>
                   )}
@@ -154,19 +212,21 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            <div>
-              <h3 className="font-semibold mb-4">Connect on Social</h3>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {mockSocialLinks.map((link) => (
-                  <SocialCard
-                    key={link.platform}
-                    platform={link.platform}
-                    handle={link.handle}
-                    url={link.url}
-                  />
-                ))}
+            {socialLinks && socialLinks.length > 0 && (
+              <div>
+                <h3 className="font-semibold mb-4">Connect on Social</h3>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {socialLinks.map((link) => (
+                    <SocialCard
+                      key={link.platform}
+                      platform={link.platform}
+                      handle={link.handle}
+                      url={link.url}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
