@@ -101,7 +101,7 @@ export function getProfile(): ProfileInfo {
   return {
     name: 'Felipe F. Rocha',
     tagline: 'Technologist & Writer',
-    bio: `I'm a passionate developer with over 5 years of experience building web applications. I love working with modern technologies and sharing my knowledge through writing. When I'm not coding, you'll find me exploring new tech, contributing to open source, or writing about software development best practices.`,
+    bio: `"I'm a passionate engineer with over 7 years of experience building and integrating complex systems.`,
     email: 'contato@feliprocha.systems',
     location: 'Boston, MA',
   };

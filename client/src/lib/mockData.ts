@@ -4,10 +4,7 @@ import type { BlogPost, Project, SocialLink, ProfileInfo } from '@/types/blog';
 export const mockProfile: ProfileInfo = {
   name: 'Felipe F. Rocha',
   tagline: 'Technologist & Writer',
-  bio: `I'm a passionate developer with over 5 years of experience building web applications. 
-  I love working with modern technologies and sharing my knowledge through writing. 
-  When I'm not coding, you'll find me exploring new tech, contributing to open source, 
-  or writing about software development best practices.`,
+  bio: `"I'm a passionate engineer with over 7 years of experience building and integrating complex systems. I love working with modern technologies and sharing my knowledge as I believe knowledge is not a property, but a responsibility. When I'm not coding, you'll find me exploring new tech, studying about software development best practices, or cooking for my family. X)",`,
   email: 'contato@feliprocha.systems',
   location: 'Boston, MA',
 };

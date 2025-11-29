@@ -4,7 +4,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 
 interface SocialIconProps {
   platform: 'github' | 'linkedin' | 'instagram';
-  url: string;
+  url?: string;
+  handle?: string;
   size?: 'sm' | 'default';
 }
 
@@ -20,9 +21,26 @@ const labels = {
   instagram: 'Instagram',
 };
 
-export function SocialIcon({ platform, url, size = 'default' }: SocialIconProps) {
+const getProfileUrl = (platform: 'github' | 'linkedin' | 'instagram', handle?: string, url?: string): string => {
+  // If handle is provided, construct the full profile URL
+  if (handle) {
+    switch (platform) {
+      case 'github':
+        return `https://github.com/${handle}`;
+      case 'linkedin':
+        return `https://linkedin.com/in/${handle}`;
+      case 'instagram':
+        return `https://instagram.com/${handle}`;
+    }
+  }
+  // Fallback to provided URL if no handle
+  return url || '#';
+};
+
+export function SocialIcon({ platform, url, handle, size = 'default' }: SocialIconProps) {
   const Icon = icons[platform];
   const label = labels[platform];
+  const profileUrl = getProfileUrl(platform, handle, url);
 
   return (
     <Tooltip>
@@ -35,7 +53,7 @@ export function SocialIcon({ platform, url, size = 'default' }: SocialIconProps)
           data-testid={`link-social-${platform}`}
         >
           <a
-            href={url}
+            href={profileUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Visit ${label} profile`}

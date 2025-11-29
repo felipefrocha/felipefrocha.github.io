@@ -92,7 +92,7 @@ async function buildCloudflare() {
     {
       name: 'Felipe F. Rocha',
       tagline: 'Technologist & Writer',
-      bio: `I'm a passionate developer with over 5 years of experience building web applications.`,
+      bio: `"I'm a passionate engineer with over 7 years of experience building and integrating complex systems.`,
       email: 'contato@feliprocha.systems',
       location: 'Boston, MA',
     }

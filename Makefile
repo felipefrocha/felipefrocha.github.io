@@ -102,7 +102,7 @@ deploy: build
 	fi
 	@echo "$(YELLOW)Project name: $(PROJECT_NAME)$(NC)"
 	@echo "$(YELLOW)Deploying...$(NC)"
-	wrangler pages deploy $(BUILD_DIR) --project-name=$(PROJECT_NAME)
+	wrangler pages deploy $(BUILD_DIR) --project-name=$(PROJECT_NAME) --commit-dirty=true
 	@echo ""
 	@echo "$(GREEN)✓ Deployment complete!$(NC)"
 

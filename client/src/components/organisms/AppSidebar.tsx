@@ -77,13 +77,16 @@ export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
 
       <SidebarFooter className="border-t border-sidebar-border">
         <nav 
-          className="flex items-center justify-center gap-1 py-2"
+          className={`flex items-center justify-center gap-1 py-2 ${
+            isCollapsed ? 'flex-col' : 'flex-row'
+          }`}
           aria-label="Social media links"
         >
           {socialLinks.map((link) => (
             <SocialIcon
               key={link.platform}
               platform={link.platform}
+              handle={link.handle}
               url={link.url}
               size="sm"
             />

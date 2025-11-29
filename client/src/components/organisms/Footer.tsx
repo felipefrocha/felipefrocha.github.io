@@ -58,6 +58,7 @@ export function Footer({ socialLinks }: FooterProps) {
                 <SocialIcon
                   key={link.platform}
                   platform={link.platform}
+                  handle={link.handle}
                   url={link.url}
                 />
               ))}
