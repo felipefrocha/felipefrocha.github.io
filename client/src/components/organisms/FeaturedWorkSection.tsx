@@ -17,11 +17,9 @@ export function FeaturedWorkSection({ projects }: FeaturedWorkSectionProps) {
             Featured Work
           </h2>
           <Button variant="ghost" asChild>
-            <Link href="/portfolio">
-              <a data-testid="link-view-portfolio">
-                View All
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </a>
+            <Link href="/portfolio" data-testid="link-view-portfolio">
+              View All
+              <ArrowRight className="h-4 w-4 ml-2" />
             </Link>
           </Button>
         </div>

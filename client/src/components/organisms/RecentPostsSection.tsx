@@ -17,11 +17,9 @@ export function RecentPostsSection({ posts }: RecentPostsSectionProps) {
             Recent Posts
           </h2>
           <Button variant="ghost" asChild>
-            <Link href="/blog">
-              <a data-testid="link-view-all-posts">
-                View All
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </a>
+            <Link href="/blog" data-testid="link-view-all-posts">
+              View All
+              <ArrowRight className="h-4 w-4 ml-2" />
             </Link>
           </Button>
         </div>
