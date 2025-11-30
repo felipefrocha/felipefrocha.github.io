@@ -63,7 +63,7 @@ function AppContent() {
 
   const defaultProfile = {
     name: 'Felipe F. Rocha',
-    tagline: 'Technologist & Writer',
+    tagline: 'Systems Engineer',
   };
 
   const defaultSocials: SocialLink[] = [

@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <article>
       <HeroSection 
-        headline="Developer. Writer. Creator."
+        headline="Curious. Engineer. Builder."
         subheadline="Building digital experiences and sharing knowledge through code and words."
       />
       

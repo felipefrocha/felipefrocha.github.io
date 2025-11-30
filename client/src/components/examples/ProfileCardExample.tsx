@@ -5,7 +5,7 @@ export default function ProfileCardExample() {
     <div className="max-w-xs bg-sidebar rounded-lg">
       <ProfileCard
         name="Felipe F. Rocha"
-        tagline="Technologist & Writer"
+        tagline="Systems Engineer"
       />
     </div>
   );

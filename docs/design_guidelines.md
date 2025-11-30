@@ -51,7 +51,7 @@
 ### Homepage Sections (5-7 sections)
 
 1. **Hero Section (80-100vh)**
-   - Large typographic statement: "Developer. Writer. Creator."
+   - Large typographic statement: "Curious. Engineer. Builder."
    - Animated gradient text effect on key words
    - Scroll indicator at bottom
    - NO background image - pure typography focus

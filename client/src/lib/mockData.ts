@@ -3,7 +3,7 @@ import type { BlogPost, Project, SocialLink, ProfileInfo } from '@/types/blog';
 // todo: remove mock functionality - replace with actual data fetching
 export const mockProfile: ProfileInfo = {
   name: 'Felipe F. Rocha',
-  tagline: 'Technologist & Writer',
+  tagline: 'Systems Engineer',
   bio: `"I'm a passionate engineer with over 7 years of experience building and integrating complex systems. I love working with modern technologies and sharing my knowledge as I believe knowledge is not a property, but a responsibility. When I'm not coding, you'll find me exploring new tech, studying about software development best practices, or cooking for my family. X)",`,
   email: 'contato@feliprocha.systems',
   location: 'Boston, MA',
@@ -20,26 +20,11 @@ export const mockSocialLinks: SocialLink[] = [
 export const mockProjects: Project[] = [
   {
     id: 'project-1',
-    title: 'E-Commerce Platform',
-    description: 'A modern e-commerce platform built with Next.js, featuring real-time inventory, secure payments, and an intuitive admin dashboard.',
-    techStack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe'],
-    link: 'https://example.com',
-    github: 'https://github.com',
-  },
-  {
-    id: 'project-2',
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates, team workspaces, and advanced filtering capabilities.',
-    techStack: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-    link: 'https://example.com',
-    github: 'https://github.com',
-  },
-  {
-    id: 'project-3',
-    title: 'Developer Portfolio',
-    description: 'A performant portfolio site with markdown blog, PWA support, and a custom design system built with Tailwind CSS.',
-    techStack: ['React', 'Vite', 'Tailwind CSS', 'MDX'],
-    github: 'https://github.com',
+    title: 'WIP - Work in Progress',
+    description: 'This is a work in progress project. I will update it as I progress.',
+    techStack: ['Terraform', 'AWS', 'CI/CD', 'GitHub Actions'],
+    link: 'https://feliperocha.systems',
+    github: 'https://github.com/felipefrocha',
   },
 ];
 

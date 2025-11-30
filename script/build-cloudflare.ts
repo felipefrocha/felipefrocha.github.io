@@ -91,7 +91,7 @@ async function buildCloudflare() {
     path.join(CONTENT_DIR, 'profile.json'),
     {
       name: 'Felipe F. Rocha',
-      tagline: 'Technologist & Writer',
+      tagline: 'Systems Engineer',
       bio: `"I'm a passionate engineer with over 7 years of experience building and integrating complex systems.`,
       email: 'contato@feliprocha.systems',
       location: 'Boston, MA',

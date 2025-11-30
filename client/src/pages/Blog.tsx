@@ -61,7 +61,7 @@ export default function Blog() {
             Blog
           </h1>
           <p className="text-lg text-muted-foreground">
-            Thoughts, tutorials, and insights on web development.
+            GenAI architectures, system design, and the what and how of building at scale.
           </p>
         </header>
 
