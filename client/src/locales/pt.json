@@ -1,0 +1,99 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "all": "Todos",
+    "viewAll": "Ver Todos",
+    "readMore": "Ler Mais",
+    "search": "Buscar",
+    "noResults": "Nenhum resultado encontrado"
+  },
+  "nav": {
+    "home": "Início",
+    "blog": "Blog",
+    "portfolio": "Portfólio",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "hero": {
+    "headline": "Curioso. Engenheiro. Construtor.",
+    "subheadline": "Construindo experiências digitais e compartilhando conhecimento através de código e palavras."
+  },
+  "home": {
+    "failedToLoad": "Falha ao carregar conteúdo. Por favor, tente novamente."
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Arquiteturas GenAI, design de sistemas e o quê e como construir em escala.",
+    "searchPlaceholder": "Buscar posts...",
+    "noPostsFound": "Nenhum post encontrado que corresponda aos seus critérios.",
+    "failedToLoad": "Falha ao carregar posts do blog.",
+    "readTime": "{{minutes}} min de leitura",
+    "postNotFound": "Post Não Encontrado",
+    "postNotFoundDescription": "O post do blog que você está procurando não existe.",
+    "backToBlog": "Voltar ao Blog",
+    "relatedPosts": "Posts Relacionados"
+  },
+  "portfolio": {
+    "title": "Portfólio",
+    "description": "Uma coleção de projetos nos quais trabalhei, desde experimentos pessoais até aplicações em produção. Cada projeto representa um desafio único e uma experiência de aprendizado.",
+    "failedToLoad": "Falha ao carregar projetos."
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "background": "Histórico",
+    "skills": "Habilidades e Tecnologias",
+    "experience": "Experiência",
+    "journey": {
+      "title": "Minha Jornada: Do Chão de Fábrica à Estratégia Global de IA",
+      "foundation": {
+        "title": "A Base: Lógica e Precisão",
+        "content": "Minha carreira não começou na nuvem; começou no chão de fábrica. Por mais de uma década, trabalhei em Automação Industrial, dominando a precisão de CLPs, sistemas SCADA e robótica para empresas como Fiat e Schneider Electric. Este período me ensinou que um \"bug\" no mundo real tem consequências físicas. Isso me incutiu uma abordagem disciplinada e de pensamento sistêmico onde a confiabilidade não era opcional—era crítica."
+      },
+      "pivot": {
+        "title": "A Mudança: Construindo a Ponte Digital",
+        "content": "Impulsionado por uma curiosidade por um impacto sistêmico mais amplo, fiz a transição para Engenharia de Software e Engenharia de Sistemas. Passei de ligar circuitos para conectar aplicações complexas, trabalhando como Desenvolvedor Full-Stack com Java, Spring Boot e React. Percebi que escrever código era poderoso, mas entregá-lo com eficiência era o verdadeiro gargalo. Esta percepção lançou minha imersão profunda em DevOps, SRE e Arquitetura em Nuvem."
+      },
+      "scale": {
+        "title": "A Escala: Domínio Cloud Native e DevOps",
+        "content": "Em empresas como Banco Inter, Queima Diária e CI&T, me especializei em escalar infraestrutura. Não apenas construí sistemas; projetei as plataformas que permitiram que eles sobrevivessem. Lidei a adoção de Infrastructure as Code (Terraform), defini estratégias multi-região e construí equipes de DevOps de alto desempenho do zero. Aprendi a equilibrar custo, desempenho e as intrincadas metodologias \"12 Factor\" necessárias para aplicações modernas cloud-native."
+      },
+      "present": {
+        "title": "O Presente: Liderança Estratégica e Inovação em IA",
+        "content": "Hoje, como Gerente Sênior e Líder de Capítulo Técnico na BCG (Boston Consulting Group), opero na fronteira da tecnologia. Meu foco mudou de gerenciar servidores para gerenciar visão. Lidero equipes diversas e globais na construção de soluções GenAI e LLM, fazendo a ponte entre possibilidades técnicas complexas e valor estratégico de negócios. Não sou mais apenas o engenheiro que resolve o problema; sou o líder que define como resolvemos, capacitando equipes para inovar com confiança."
+      }
+    }
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "description": "Tem uma pergunta ou quer trabalhar junto? Adoraria ouvir de você.",
+    "sendMessage": "Enviar Mensagem",
+    "formDisabled": "O formulário de contato está atualmente desabilitado. Por favor, entre em contato por e-mail ou redes sociais.",
+    "name": "Nome",
+    "namePlaceholder": "Seu nome",
+    "email": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "subject": "Assunto",
+    "subjectPlaceholder": "Sobre o que é?",
+    "message": "Mensagem",
+    "messagePlaceholder": "Sua mensagem...",
+    "sendButton": "Enviar Mensagem",
+    "contactInfo": "Informações de Contato",
+    "location": "Localização",
+    "connectSocial": "Conectar nas Redes Sociais",
+    "messageSent": "Mensagem Enviada!",
+    "messageSentDescription": "Obrigado por entrar em contato. Entrarei em contato em breve.",
+    "messageError": "Falha ao enviar mensagem. Por favor, tente novamente."
+  },
+  "sections": {
+    "featuredWork": "Trabalhos em Destaque",
+    "recentPosts": "Posts Recentes",
+    "about": "Sobre Mim",
+    "connect": "Vamos Conectar"
+  },
+  "work": {
+    "viewProject": "Ver Projeto",
+    "viewCode": "Ver Código"
+  }
+}
+

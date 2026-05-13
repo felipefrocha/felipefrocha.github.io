@@ -1,0 +1,99 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "all": "All",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "search": "Search",
+    "noResults": "No results found"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headline": "Curious. Engineer. Builder.",
+    "subheadline": "Building digital experiences and sharing knowledge through code and words."
+  },
+  "home": {
+    "failedToLoad": "Failed to load content. Please try again."
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "GenAI architectures, system design, and the what and how of building at scale.",
+    "searchPlaceholder": "Search posts...",
+    "noPostsFound": "No posts found matching your criteria.",
+    "failedToLoad": "Failed to load blog posts.",
+    "readTime": "{{minutes}} min read",
+    "postNotFound": "Post Not Found",
+    "postNotFoundDescription": "The blog post you're looking for doesn't exist.",
+    "backToBlog": "Back to Blog",
+    "relatedPosts": "Related Posts"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "description": "A collection of projects I've worked on, from personal experiments to production applications. Each project represents a unique challenge and learning experience.",
+    "failedToLoad": "Failed to load projects."
+  },
+  "about": {
+    "title": "About Me",
+    "background": "Background",
+    "skills": "Skills & Technologies",
+    "experience": "Experience",
+    "journey": {
+      "title": "My Journey: From Factory Floors to Global AI Strategy",
+      "foundation": {
+        "title": "The Foundation: Logic & Precision",
+        "content": "My career didn't start in the cloud; it started on the factory floor. For over a decade, I worked in Industrial Automation, mastering the precision of PLCs, SCADA systems, and robotics for companies like Fiat and Schneider Electric. This period taught me that a \"bug\" in the real world has physical consequences. It instilled in me a disciplined, systems-thinking approach where reliability wasn't optional—it was critical."
+      },
+      "pivot": {
+        "title": "The Pivot: Building the Digital Bridge",
+        "content": "Driven by a curiosity for broader systemic impact, I transitioned into Software Engineering and Systems Engineering. I moved from wiring circuits to wiring complex applications, working as a Full-Stack Developer with Java, Spring Boot, and React. I realized that writing code was powerful, but shipping it efficiently was the real bottleneck. This insight launched my deep dive into DevOps, SRE, and Cloud Architecture."
+      },
+      "scale": {
+        "title": "The Scale: Cloud Native & DevOps Mastery",
+        "content": "At companies like Banco Inter, Queima Diária, and CI&T, I specialized in scaling infrastructure. I didn't just build systems; I engineered the platforms that allowed them to survive. I led the adoption of Infrastructure as Code (Terraform), defined multi-region strategies, and built high-performance DevOps teams from the ground up. I learned to balance cost, performance, and the intricate \"12 Factor\" methodologies required for modern cloud-native applications."
+      },
+      "present": {
+        "title": "The Present: Strategic Leadership & AI Innovation",
+        "content": "Today, as a Senior Manager and Tech Chapter Lead at BCG (Boston Consulting Group), I operate at the frontier of technology. My focus has shifted from managing servers to managing vision. I lead diverse, global teams in building GenAI and LLM solutions, bridging the gap between complex technical possibilities and strategic business value. I am no longer just the engineer who solves the problem; I am the leader who defines how we solve it, empowering teams to innovate with confidence."
+      }
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have a question or want to work together? I'd love to hear from you.",
+    "sendMessage": "Send a Message",
+    "formDisabled": "Contact form is currently disabled. Please reach out via email or social media.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "What's this about?",
+    "message": "Message",
+    "messagePlaceholder": "Your message...",
+    "sendButton": "Send Message",
+    "contactInfo": "Contact Information",
+    "location": "Location",
+    "connectSocial": "Connect on Social",
+    "messageSent": "Message Sent!",
+    "messageSentDescription": "Thank you for reaching out. I'll get back to you soon.",
+    "messageError": "Failed to send message. Please try again."
+  },
+  "sections": {
+    "featuredWork": "Featured Work",
+    "recentPosts": "Recent Posts",
+    "about": "About Me",
+    "connect": "Let's Connect"
+  },
+  "work": {
+    "viewProject": "View Project",
+    "viewCode": "View Code"
+  }
+}
+

@@ -1,5 +1,6 @@
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { ThemeToggle } from '@/components/atoms/ThemeToggle';
+import { LanguageSwitcher } from '@/components/atoms/LanguageSwitcher';
 import { Separator } from '@/components/ui/separator';
 
 interface HeaderProps {
@@ -22,7 +23,10 @@ export function Header({ title }: HeaderProps) {
           </>
         )}
       </div>
-      <ThemeToggle />
+      <div className="flex items-center gap-2">
+        <LanguageSwitcher />
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

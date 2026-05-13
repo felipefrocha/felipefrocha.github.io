@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,11 +9,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { SocialCard } from '@/components/molecules/SocialCard';
+import { SEO } from '@/components/atoms/SEO';
 import { Send, Mail, MapPin } from 'lucide-react';
 import { submitContactForm } from '@/lib/api';
 import type { ProfileInfo, SocialLink } from '@/types/blog';
 
 export default function Contact() {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -35,15 +38,15 @@ export default function Contact() {
     mutationFn: submitContactForm,
     onSuccess: () => {
       toast({
-        title: 'Message Sent!',
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: t('contact.messageSent'),
+        description: t('contact.messageSentDescription'),
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
     },
     onError: (error: Error) => {
       toast({
-        title: 'Error',
-        description: error.message || 'Failed to send message. Please try again.',
+        title: t('common.error'),
+        description: error.message || t('contact.messageError'),
         variant: 'destructive',
       });
     },
@@ -79,35 +82,43 @@ export default function Contact() {
     );
   }
 
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
+  const contactUrl = `${siteUrl}/contact`;
+
   return (
     <article className="py-8 md:py-12 px-6 md:px-8">
+      <SEO
+        title="Contact"
+        description={`Get in touch with ${profile?.name || 'Felipe F. Rocha'}. ${profile?.email ? `Email: ${profile.email}` : ''}`}
+        canonical={contactUrl}
+      />
       <div className="max-w-4xl mx-auto">
         <header className="mb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-contact-title">
-            Get in Touch
+            {t('contact.title')}
           </h1>
           <p className="text-lg text-muted-foreground">
-            Have a question or want to work together? I'd love to hear from you.
+            {t('contact.description')}
           </p>
         </header>
 
         <div className="grid gap-8 lg:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>Send a Message</CardTitle>
+              <CardTitle>{t('contact.sendMessage')}</CardTitle>
               <CardDescription>
-                Contact form is currently disabled. Please reach out via email or social media.
+                {t('contact.formDisabled')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={(e) => { e.preventDefault(); }} className="space-y-4" data-testid="form-contact">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="name">{t('contact.name')}</Label>
                     <Input 
                       id="name" 
                       name="name"
-                      placeholder="Your name" 
+                      placeholder={t('contact.namePlaceholder')} 
                       required 
                       disabled
                       value={formData.name}
@@ -116,12 +127,12 @@ export default function Contact() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">{t('contact.email')}</Label>
                     <Input 
                       id="email" 
                       name="email"
                       type="email" 
-                      placeholder="your@email.com" 
+                      placeholder={t('contact.emailPlaceholder')} 
                       required 
                       disabled
                       value={formData.email}
@@ -132,11 +143,11 @@ export default function Contact() {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
+                  <Label htmlFor="subject">{t('contact.subject')}</Label>
                   <Input 
                     id="subject" 
                     name="subject"
-                    placeholder="What's this about?" 
+                    placeholder={t('contact.subjectPlaceholder')} 
                     required 
                     disabled
                     value={formData.subject}
@@ -146,11 +157,11 @@ export default function Contact() {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message">{t('contact.message')}</Label>
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Your message..."
+                    placeholder={t('contact.messagePlaceholder')}
                     rows={5}
                     required
                     disabled
@@ -167,7 +178,7 @@ export default function Contact() {
                   data-testid="button-contact-submit"
                 >
                   <Send className="h-4 w-4 mr-2" />
-                  Send Message
+                  {t('contact.sendButton')}
                 </Button>
               </form>
             </CardContent>
@@ -176,7 +187,7 @@ export default function Contact() {
           <div className="space-y-6">
             <Card>
               <CardContent className="p-6">
-                <h3 className="font-semibold mb-4">Contact Information</h3>
+                <h3 className="font-semibold mb-4">{t('contact.contactInfo')}</h3>
                 <div className="space-y-4">
                   {profile?.email && (
                     <div className="flex items-center gap-3">
@@ -184,7 +195,7 @@ export default function Contact() {
                         <Mail className="h-4 w-4" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium">Email</p>
+                        <p className="text-sm font-medium">{t('contact.email')}</p>
                         <a 
                           href={`mailto:${profile.email}`}
                           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -201,7 +212,7 @@ export default function Contact() {
                         <MapPin className="h-4 w-4" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium">Location</p>
+                        <p className="text-sm font-medium">{t('contact.location')}</p>
                         <p className="text-sm text-muted-foreground">{profile.location}</p>
                       </div>
                     </div>
@@ -212,7 +223,7 @@ export default function Contact() {
 
             {socialLinks && socialLinks.length > 0 && (
               <div>
-                <h3 className="font-semibold mb-4">Connect on Social</h3>
+                <h3 className="font-semibold mb-4">{t('contact.connectSocial')}</h3>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {socialLinks.map((link) => (
                     <SocialCard

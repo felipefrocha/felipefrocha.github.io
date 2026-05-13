@@ -1,4 +1,5 @@
 import { Home, FileText, FolderKanban, User, Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import {
   Sidebar,
   SidebarContent,
@@ -25,18 +26,19 @@ interface AppSidebarProps {
   socialLinks: SocialLink[];
 }
 
-const navItems = [
-  { href: '/', icon: Home, label: 'Home' },
-  { href: '/blog', icon: FileText, label: 'Blog' },
-  { href: '/portfolio', icon: FolderKanban, label: 'Portfolio' },
-  { href: '/about', icon: User, label: 'About' },
-  { href: '/contact', icon: Mail, label: 'Contact' },
-];
-
 export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
+  const { t } = useTranslation();
   const [location] = useLocation();
   const { state } = useSidebar();
   const isCollapsed = state === 'collapsed';
+
+  const navItems = [
+    { href: '/', icon: Home, label: t('nav.home') },
+    { href: '/blog', icon: FileText, label: t('nav.blog') },
+    { href: '/portfolio', icon: FolderKanban, label: t('nav.portfolio') },
+    { href: '/about', icon: User, label: t('nav.about') },
+    { href: '/contact', icon: Mail, label: t('nav.contact') },
+  ];
 
   return (
     <Sidebar collapsible="icon">

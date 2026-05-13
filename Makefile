@@ -42,7 +42,7 @@ wrangler-install:
 		wrangler --version; \
 	else \
 		echo "$(YELLOW)Installing Wrangler globally...$(NC)"; \
-		npm install -g wrangler; \
+		npm install -g wrangler@latest; \
 	fi
 
 ## wrangler-login: Login to Cloudflare via Wrangler

@@ -1,12 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { ProjectCard } from '@/components/molecules/ProjectCard';
 import { Skeleton } from '@/components/ui/skeleton';
+import { SEO } from '@/components/atoms/SEO';
+import { generateCollectionPageSchema } from '@/lib/structuredData';
 import type { Project } from '@/types/blog';
 
 // Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
 export default function Portfolio() {
+  const { t } = useTranslation();
   const { data: projects, isLoading, error } = useQuery<Project[]>({
     queryKey: ['/api/projects'],
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
@@ -32,21 +36,37 @@ export default function Portfolio() {
   if (error || !projects) {
     return (
       <article className="py-16 text-center">
-        <p className="text-muted-foreground">Failed to load projects.</p>
+        <p className="text-muted-foreground">{t('portfolio.failedToLoad')}</p>
       </article>
     );
   }
 
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
+  const portfolioUrl = `${siteUrl}/portfolio`;
+  const collectionItems = projects.map(project => ({
+    name: project.title,
+    url: project.link || portfolioUrl,
+  }));
+
   return (
     <article className="py-8 md:py-12 px-6 md:px-8">
+      <SEO
+        title="Portfolio"
+        description="Explore my projects and work. Showcase of software engineering projects, systems architecture, and technical solutions."
+        canonical={portfolioUrl}
+        structuredData={generateCollectionPageSchema(
+          'Portfolio Projects',
+          'Collection of software engineering and systems architecture projects',
+          collectionItems
+        )}
+      />
       <div className="max-w-6xl mx-auto">
         <header className="mb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-portfolio-title">
-            Portfolio
+            {t('portfolio.title')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            A collection of projects I've worked on, from personal experiments to 
-            production applications. Each project represents a unique challenge and learning experience.
+            {t('portfolio.description')}
           </p>
         </header>
 

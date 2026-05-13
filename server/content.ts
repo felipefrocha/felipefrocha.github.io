@@ -17,17 +17,17 @@ function ensureDirectories() {
 
 export function getAllBlogPosts(): BlogPost[] {
   ensureDirectories();
-  
+
   try {
     const files = fs.readdirSync(BLOG_DIR).filter(file => file.endsWith('.md'));
-    
+
     const posts = files.map(file => {
       const filePath = path.join(BLOG_DIR, file);
       const fileContent = fs.readFileSync(filePath, 'utf-8');
       const { data, content } = matter(fileContent);
-      
+
       const slug = file.replace('.md', '');
-      
+
       return {
         slug,
         title: data.title || 'Untitled',
@@ -65,17 +65,17 @@ export function getFeaturedBlogPosts(limit: number = 3): BlogPost[] {
 }
 
 function formatDate(date: Date | string | undefined): string {
-  if (!date) return new Date().toLocaleDateString('en-US', { 
-    month: 'short', 
-    day: 'numeric', 
-    year: 'numeric' 
+  if (!date) return new Date().toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
   });
-  
+
   const d = new Date(date);
-  return d.toLocaleDateString('en-US', { 
-    month: 'short', 
-    day: 'numeric', 
-    year: 'numeric' 
+  return d.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
   });
 }
 
@@ -88,7 +88,7 @@ function calculateReadTime(content: string): string {
 
 export function getProfile(): ProfileInfo {
   const profilePath = path.join(CONTENT_DIR, 'profile.json');
-  
+
   if (fs.existsSync(profilePath)) {
     try {
       const content = fs.readFileSync(profilePath, 'utf-8');
@@ -97,7 +97,7 @@ export function getProfile(): ProfileInfo {
       console.error('Error reading profile:', error);
     }
   }
-  
+
   return {
     name: 'Felipe F. Rocha',
     tagline: 'Systems Engineer',
@@ -109,7 +109,7 @@ export function getProfile(): ProfileInfo {
 
 export function getSocialLinks(): SocialLink[] {
   const socialsPath = path.join(CONTENT_DIR, 'socials.json');
-  
+
   if (fs.existsSync(socialsPath)) {
     try {
       const content = fs.readFileSync(socialsPath, 'utf-8');
@@ -118,7 +118,7 @@ export function getSocialLinks(): SocialLink[] {
       console.error('Error reading social links:', error);
     }
   }
-  
+
   return [
     { platform: 'github', url: 'https://github.com', handle: 'felipefrocha' },
     { platform: 'linkedin', url: 'https://linkedin.com', handle: 'felipefonsecarocha' },
@@ -128,7 +128,7 @@ export function getSocialLinks(): SocialLink[] {
 
 export function getProjects(): Project[] {
   const projectsPath = path.join(CONTENT_DIR, 'projects.json');
-  
+
   if (fs.existsSync(projectsPath)) {
     try {
       const content = fs.readFileSync(projectsPath, 'utf-8');
@@ -137,7 +137,7 @@ export function getProjects(): Project[] {
       console.error('Error reading projects:', error);
     }
   }
-  
+
   return [
     {
       id: 'project-1',
@@ -152,7 +152,7 @@ export function getProjects(): Project[] {
 
 export function getSkills(): string[] {
   const skillsPath = path.join(CONTENT_DIR, 'skills.json');
-  
+
   if (fs.existsSync(skillsPath)) {
     try {
       const content = fs.readFileSync(skillsPath, 'utf-8');
@@ -161,7 +161,7 @@ export function getSkills(): string[] {
       console.error('Error reading skills:', error);
     }
   }
-  
+
   return [
     'React', 'TypeScript', 'Node.js', 'Next.js', 'PostgreSQL',
     'MongoDB', 'GraphQL', 'REST APIs', 'Tailwind CSS', 'Docker',
@@ -171,7 +171,7 @@ export function getSkills(): string[] {
 
 export function getStats(): { value: string; label: string }[] {
   const statsPath = path.join(CONTENT_DIR, 'stats.json');
-  
+
   if (fs.existsSync(statsPath)) {
     try {
       const content = fs.readFileSync(statsPath, 'utf-8');
@@ -180,7 +180,7 @@ export function getStats(): { value: string; label: string }[] {
       console.error('Error reading stats:', error);
     }
   }
-  
+
   return [
     { value: '50+', label: 'Projects' },
     { value: '10K+', label: 'Blog Readers' },

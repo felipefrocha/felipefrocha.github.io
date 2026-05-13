@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = useTranslation();
   return (
     <Card 
       className="h-full transition-all hover-elevate group"
@@ -40,7 +42,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 data-testid={`link-project-demo-${project.id}`}
               >
                 <ExternalLink className="h-4 w-4 mr-1" />
-                Demo
+                {t('work.viewProject')}
               </a>
             </Button>
           )}
@@ -53,7 +55,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 data-testid={`link-project-github-${project.id}`}
               >
                 <Github className="h-4 w-4 mr-1" />
-                Code
+                {t('work.viewCode')}
               </a>
             </Button>
           )}

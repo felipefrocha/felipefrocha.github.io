@@ -1,13 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SkillTag } from '@/components/atoms/SkillTag';
 import { SocialIcon } from '@/components/atoms/SocialIcon';
+import { SEO } from '@/components/atoms/SEO';
+import { generatePersonSchema } from '@/lib/structuredData';
 import { MapPin, Mail } from 'lucide-react';
 import type { ProfileInfo, SocialLink } from '@/types/blog';
 
 export default function About() {
+  const { t } = useTranslation();
   const { data: profile, isLoading: profileLoading } = useQuery<ProfileInfo>({
     queryKey: ['/api/profile'],
     staleTime: 5 * 60 * 1000,
@@ -46,12 +50,22 @@ export default function About() {
     .join('')
     .toUpperCase();
 
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
+  const aboutUrl = `${siteUrl}/about`;
+
   return (
     <article className="py-8 md:py-12 px-6 md:px-8">
+      <SEO
+        title="About"
+        description={profile.bio}
+        type="profile"
+        canonical={aboutUrl}
+        structuredData={generatePersonSchema(profile, socialLinks || [])}
+      />
       <div className="max-w-4xl mx-auto">
         <header className="mb-12">
           <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-about-title">
-            About Me
+            {t('about.title')}
           </h1>
         </header>
 
@@ -106,40 +120,40 @@ export default function About() {
 
           <div className="lg:col-span-2 space-y-8">
             <section>
-              <h2 className="text-2xl font-semibold mb-4">Background</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('about.background')}</h2>
               <div className="prose prose-neutral dark:prose-invert max-w-none">
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   {profile.bio}
                 </p>
                 
-                <h3 className="text-xl font-semibold mt-8 mb-4">My Journey: From Factory Floors to Global AI Strategy</h3>
+                <h3 className="text-xl font-semibold mt-8 mb-4">{t('about.journey.title')}</h3>
                 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">The Foundation: Logic & Precision</h4>
+                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.foundation.title')}</h4>
                     <p className="text-muted-foreground leading-relaxed">
-                      My career didn't start in the cloud; it started on the factory floor. For over a decade, I worked in <strong>Industrial Automation</strong>, mastering the precision of PLCs, SCADA systems, and robotics for companies like <strong>Fiat</strong> and <strong>Schneider Electric</strong>. This period taught me that a "bug" in the real world has physical consequences. It instilled in me a disciplined, systems-thinking approach where reliability wasn't optional—it was critical.
+                      {t('about.journey.foundation.content')}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">The Pivot: Building the Digital Bridge</h4>
+                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.pivot.title')}</h4>
                     <p className="text-muted-foreground leading-relaxed">
-                      Driven by a curiosity for broader systemic impact, I transitioned into <strong>Software Engineering</strong> and <strong>Systems Engineering</strong>. I moved from wiring circuits to wiring complex applications, working as a Full-Stack Developer with <strong>Java, Spring Boot, and React</strong>. I realized that writing code was powerful, but <em>shipping</em> it efficiently was the real bottleneck. This insight launched my deep dive into <strong>DevOps, SRE, and Cloud Architecture</strong>.
+                      {t('about.journey.pivot.content')}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">The Scale: Cloud Native & DevOps Mastery</h4>
+                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.scale.title')}</h4>
                     <p className="text-muted-foreground leading-relaxed">
-                      At companies like <strong>Banco Inter</strong>, <strong>Queima Diária</strong>, and <strong>CI&T</strong>, I specialized in scaling infrastructure. I didn't just build systems; I engineered the platforms that allowed them to survive. I led the adoption of <strong>Infrastructure as Code (Terraform)</strong>, defined multi-region strategies, and built high-performance DevOps teams from the ground up. I learned to balance cost, performance, and the intricate "12 Factor" methodologies required for modern cloud-native applications.
+                      {t('about.journey.scale.content')}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">The Present: Strategic Leadership & AI Innovation</h4>
+                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.present.title')}</h4>
                     <p className="text-muted-foreground leading-relaxed">
-                      Today, as a <strong>Senior Manager and Tech Chapter Lead at BCG (Boston Consulting Group)</strong>, I operate at the frontier of technology. My focus has shifted from managing servers to managing vision. I lead diverse, global teams in building <strong>GenAI</strong> and <strong>LLM solutions</strong>, bridging the gap between complex technical possibilities and strategic business value. I am no longer just the engineer who solves the problem; I am the leader who defines how we solve it, empowering teams to innovate with confidence.
+                      {t('about.journey.present.content')}
                     </p>
                   </div>
                 </div>
@@ -148,7 +162,7 @@ export default function About() {
 
             {skills && skills.length > 0 && (
               <section>
-                <h2 className="text-2xl font-semibold mb-4">Skills & Technologies</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('about.skills')}</h2>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill) => (
                     <SkillTag key={skill} skill={skill} />
@@ -158,7 +172,7 @@ export default function About() {
             )}
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4">Experience</h2>
+              <h2 className="text-2xl font-semibold mb-4">{t('about.experience')}</h2>
               <div className="space-y-6">
                 <div className="border-l-2 border-primary pl-4">
                   <h3 className="font-medium">Senior Manager, Software Engineer</h3>

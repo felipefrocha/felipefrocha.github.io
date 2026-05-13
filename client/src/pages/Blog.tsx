@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { BlogPostCard } from '@/components/molecules/BlogPostCard';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
+import { SEO } from '@/components/atoms/SEO';
+import { generateCollectionPageSchema } from '@/lib/structuredData';
 import { Search } from 'lucide-react';
 import type { BlogPost } from '@/types/blog';
 
@@ -11,6 +14,7 @@ import type { BlogPost } from '@/types/blog';
 const isDevelopment = import.meta.env.DEV;
 
 export default function Blog() {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -39,7 +43,7 @@ export default function Blog() {
   if (error || !posts) {
     return (
       <article className="py-16 text-center">
-        <p className="text-muted-foreground">Failed to load blog posts.</p>
+        <p className="text-muted-foreground">{t('blog.failedToLoad')}</p>
       </article>
     );
   }
@@ -53,15 +57,32 @@ export default function Blog() {
     return matchesSearch && matchesCategory;
   });
 
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
+  const blogUrl = `${siteUrl}/blog`;
+  const collectionItems = posts.map(post => ({
+    name: post.title,
+    url: `${siteUrl}/blog/${post.slug}`,
+  }));
+
   return (
     <article className="py-8 md:py-12 px-6 md:px-8">
+      <SEO
+        title="Blog"
+        description="Read articles about software development, systems engineering, architecture, and technology insights."
+        canonical={blogUrl}
+        structuredData={generateCollectionPageSchema(
+          'Blog Posts',
+          'Collection of blog posts about software development and systems engineering',
+          collectionItems
+        )}
+      />
       <div className="max-w-6xl mx-auto">
         <header className="mb-8">
           <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-blog-title">
-            Blog
+            {t('blog.title')}
           </h1>
           <p className="text-lg text-muted-foreground">
-            GenAI architectures, system design, and the what and how of building at scale.
+            {t('blog.description')}
           </p>
         </header>
 
@@ -71,7 +92,7 @@ export default function Blog() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
-                placeholder="Search posts..."
+                placeholder={t('blog.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-9"
@@ -86,7 +107,7 @@ export default function Blog() {
                 onClick={() => setSelectedCategory(null)}
                 data-testid="badge-category-all"
               >
-                All
+                {t('common.all')}
               </Badge>
               {categories.map((category) => (
                 <Badge
@@ -111,7 +132,7 @@ export default function Blog() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No posts found matching your criteria.</p>
+            <p className="text-muted-foreground">{t('blog.noPostsFound')}</p>
           </div>
         )}
       </div>

@@ -1,16 +1,20 @@
 import { useRoute, Link } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
+import { SEO } from '@/components/atoms/SEO';
+import { generateBlogPostSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { ArrowLeft, Calendar, Clock, ChevronRight } from 'lucide-react';
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost, ProfileInfo } from '@/types/blog';
 
 // Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
 export default function BlogPostPage() {
+  const { t } = useTranslation();
   const [, params] = useRoute('/blog/:slug');
   const slug = params?.slug || '';
 
@@ -25,6 +29,11 @@ export default function BlogPostPage() {
     queryKey: ['/api/posts'],
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
+  });
+
+  const { data: profile } = useQuery<ProfileInfo>({
+    queryKey: ['/api/profile'],
+    staleTime: 5 * 60 * 1000,
   });
 
   if (isLoading) {
@@ -49,14 +58,14 @@ export default function BlogPostPage() {
     return (
       <article className="py-8 md:py-12 px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
+          <h1 className="text-2xl font-bold mb-4">{t('blog.postNotFound')}</h1>
           <p className="text-muted-foreground mb-6">
-            The blog post you're looking for doesn't exist.
+            {t('blog.postNotFoundDescription')}
           </p>
           <Button asChild>
             <Link href="/blog">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Blog
+              {t('blog.backToBlog')}
             </Link>
           </Button>
         </div>
@@ -66,19 +75,42 @@ export default function BlogPostPage() {
 
   const relatedPosts = allPosts?.filter(p => p.slug !== slug).slice(0, 3) || [];
 
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
+  const postUrl = `${siteUrl}/blog/${slug}`;
+  const publishedDate = post.date ? new Date(post.date).toISOString() : undefined;
+  const breadcrumbItems = [
+    { name: 'Home', url: siteUrl },
+    { name: 'Blog', url: `${siteUrl}/blog` },
+    { name: post.title, url: postUrl },
+  ];
+
   return (
     <article className="py-8 md:py-12 px-6 md:px-8">
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        type="article"
+        canonical={postUrl}
+        publishedTime={publishedDate}
+        modifiedTime={publishedDate}
+        author={profile?.name || 'Felipe F. Rocha'}
+        tags={post.tags}
+        structuredData={[
+          generateBlogPostSchema(post, profile || undefined),
+          generateBreadcrumbSchema(breadcrumbItems),
+        ]}
+      />
       <div className="max-w-3xl mx-auto">
         <nav 
           className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
           aria-label="Breadcrumb"
         >
           <Link href="/" className="hover:text-foreground transition-colors">
-            Home
+            {t('nav.home')}
           </Link>
           <ChevronRight className="h-4 w-4" />
           <Link href="/blog" className="hover:text-foreground transition-colors">
-            Blog
+            {t('nav.blog')}
           </Link>
           <ChevronRight className="h-4 w-4" />
           <span className="text-foreground truncate">{post.title}</span>
@@ -131,7 +163,7 @@ export default function BlogPostPage() {
           <>
             <Separator className="mb-12" />
             <section>
-              <h2 className="text-2xl font-semibold mb-6">Related Posts</h2>
+              <h2 className="text-2xl font-semibold mb-6">{t('blog.relatedPosts')}</h2>
               <div className="grid gap-4 md:grid-cols-3">
                 {relatedPosts.map((relatedPost) => (
                   <Link 
