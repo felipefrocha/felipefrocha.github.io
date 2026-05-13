@@ -9,24 +9,27 @@ import { SEO } from '@/components/atoms/SEO';
 import { generateBlogPostSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { ArrowLeft, Calendar, Clock, ChevronRight } from 'lucide-react';
 import type { BlogPost, ProfileInfo } from '@/types/blog';
+import { fetchPost, fetchAllPosts } from '@/lib/api';
 
 // Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
 export default function BlogPostPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [, params] = useRoute('/blog/:slug');
   const slug = params?.slug || '';
 
   const { data: post, isLoading, error } = useQuery<BlogPost>({
-    queryKey: ['/api/posts', slug],
+    queryKey: ['/api/posts', slug, i18n.language],
+    queryFn: () => fetchPost(slug),
     enabled: !!slug,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });
 
   const { data: allPosts } = useQuery<BlogPost[]>({
-    queryKey: ['/api/posts'],
+    queryKey: ['/api/posts', i18n.language],
+    queryFn: fetchAllPosts,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });

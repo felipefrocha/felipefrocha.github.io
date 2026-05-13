@@ -1,5 +1,5 @@
 ---
-title: The AI Phase Transition: Engineering Adaptive Resilience
+title: "The AI Phase Transition: Engineering Adaptive Resilience"
 excerpt: Why integrating GenAI isn't a feature upgrade, but a systemic perturbation that requires a new architectural approach.
 date: 2026-05-13
 readTime: 6 min read

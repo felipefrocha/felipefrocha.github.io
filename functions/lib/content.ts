@@ -31,13 +31,25 @@ export function getAllBlogPosts(): BlogPost[] {
   return BLOG_POSTS;
 }
 
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find(post => post.slug === slug);
+export function getBlogPostBySlug(slug: string, language: string = 'en'): BlogPost | undefined {
+  return BLOG_POSTS.find(post => post.slug === slug && post.language === language) || 
+         BLOG_POSTS.find(post => post.slug === slug && post.language === 'en') ||
+         BLOG_POSTS.find(post => post.slug === slug);
 }
 
-export function getFeaturedBlogPosts(limit: number = 3): BlogPost[] {
-  const featured = BLOG_POSTS.filter(post => post.featured);
-  const regular = BLOG_POSTS.filter(post => !post.featured);
+export function getFeaturedBlogPosts(limit: number = 3, language: string = 'en'): BlogPost[] {
+  const posts = BLOG_POSTS.filter(p => p.language === language || p.language === 'en');
+  // Deduplicate by slug, preferring the requested language
+  const uniquePosts = new Map<string, BlogPost>();
+  for (const post of posts) {
+    if (!uniquePosts.has(post.slug) || post.language === language) {
+      uniquePosts.set(post.slug, post);
+    }
+  }
+  
+  const deduplicated = Array.from(uniquePosts.values());
+  const featured = deduplicated.filter(post => post.featured);
+  const regular = deduplicated.filter(post => !post.featured);
   return [...featured, ...regular].slice(0, limit);
 }
 

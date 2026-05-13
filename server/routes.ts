@@ -20,8 +20,20 @@ export async function registerRoutes(
   
   app.get("/api/posts", (req, res) => {
     try {
-      const posts = getAllBlogPosts();
-      res.json(posts);
+      const language = (req.query.lang as string) || 'en';
+      const allPosts = getAllBlogPosts();
+      
+      // Filter for requested language, fallback to English if not available
+      const uniquePosts = new Map();
+      for (const post of allPosts) {
+        if (post.language === language) {
+          uniquePosts.set(post.slug, post);
+        } else if (post.language === 'en' && !uniquePosts.has(post.slug)) {
+          uniquePosts.set(post.slug, post);
+        }
+      }
+      
+      res.json(Array.from(uniquePosts.values()));
     } catch (error) {
       console.error("Error fetching posts:", error);
       res.status(500).json({ error: "Failed to fetch posts" });
@@ -31,7 +43,8 @@ export async function registerRoutes(
   app.get("/api/posts/featured", (req, res) => {
     try {
       const limit = parseInt(req.query.limit as string) || 3;
-      const posts = getFeaturedBlogPosts(limit);
+      const language = (req.query.lang as string) || 'en';
+      const posts = getFeaturedBlogPosts(limit, language);
       res.json(posts);
     } catch (error) {
       console.error("Error fetching featured posts:", error);
@@ -41,7 +54,8 @@ export async function registerRoutes(
 
   app.get("/api/posts/:slug", (req, res) => {
     try {
-      const post = getBlogPostBySlug(req.params.slug);
+      const language = (req.query.lang as string) || 'en';
+      const post = getBlogPostBySlug(req.params.slug, language);
       if (!post) {
         return res.status(404).json({ error: "Post not found" });
       }
@@ -104,12 +118,13 @@ export async function registerRoutes(
 
   app.get("/api/site-data", (req, res) => {
     try {
+      const language = (req.query.lang as string) || 'en';
       const profile = getProfile();
       const socials = getSocialLinks();
       const projects = getProjects();
       const skills = getSkills();
       const stats = getStats();
-      const featuredPosts = getFeaturedBlogPosts(3);
+      const featuredPosts = getFeaturedBlogPosts(3, language);
       
       res.json({
         profile,

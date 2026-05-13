@@ -21,25 +21,35 @@ export function getAllBlogPosts(): BlogPost[] {
   try {
     const files = fs.readdirSync(BLOG_DIR).filter(file => file.endsWith('.md'));
 
-    const posts = files.map(file => {
-      const filePath = path.join(BLOG_DIR, file);
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      const { data, content } = matter(fileContent);
+    const posts: BlogPost[] = [];
+    
+    for (const file of files) {
+      try {
+        const filePath = path.join(BLOG_DIR, file);
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const { data, content } = matter(fileContent);
 
-      const slug = file.replace('.md', '');
+        const parts = file.split('.');
+        parts.pop(); // remove 'md'
+        const language = parts.length > 1 ? parts.pop() : 'en';
+        const slug = parts.join('.');
 
-      return {
-        slug,
-        title: data.title || 'Untitled',
-        excerpt: data.excerpt || '',
-        content,
-        date: formatDate(data.date),
-        readTime: data.readTime || calculateReadTime(content),
-        category: data.category || 'General',
-        tags: data.tags || [],
-        featured: data.featured || false,
-      } as BlogPost;
-    });
+        posts.push({
+          slug,
+          language: language || 'en',
+          title: data.title || 'Untitled',
+          excerpt: data.excerpt || '',
+          content,
+          date: formatDate(data.date),
+          readTime: data.readTime || calculateReadTime(content),
+          category: data.category || 'General',
+          tags: data.tags || [],
+          featured: data.featured || false,
+        } as BlogPost);
+      } catch (error) {
+        console.error(`Error reading blog post ${file}:`, error);
+      }
+    }
 
     return posts.sort((a, b) => {
       const dateA = new Date(a.date);
@@ -47,20 +57,32 @@ export function getAllBlogPosts(): BlogPost[] {
       return dateB.getTime() - dateA.getTime();
     });
   } catch (error) {
-    console.error('Error reading blog posts:', error);
+    console.error('Error reading blog directory:', error);
     return [];
   }
 }
 
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+export function getBlogPostBySlug(slug: string, language: string = 'en'): BlogPost | undefined {
   const posts = getAllBlogPosts();
-  return posts.find(post => post.slug === slug);
+  // Try to find the exact language match, fallback to 'en', then fallback to any available
+  return posts.find(post => post.slug === slug && post.language === language) || 
+         posts.find(post => post.slug === slug && post.language === 'en') ||
+         posts.find(post => post.slug === slug);
 }
 
-export function getFeaturedBlogPosts(limit: number = 3): BlogPost[] {
-  const posts = getAllBlogPosts();
-  const featured = posts.filter(post => post.featured);
-  const regular = posts.filter(post => !post.featured);
+export function getFeaturedBlogPosts(limit: number = 3, language: string = 'en'): BlogPost[] {
+  const posts = getAllBlogPosts().filter(p => p.language === language || p.language === 'en');
+  // Deduplicate by slug, preferring the requested language
+  const uniquePosts = new Map<string, BlogPost>();
+  for (const post of posts) {
+    if (!uniquePosts.has(post.slug) || post.language === language) {
+      uniquePosts.set(post.slug, post);
+    }
+  }
+  
+  const deduplicated = Array.from(uniquePosts.values());
+  const featured = deduplicated.filter(post => post.featured);
+  const regular = deduplicated.filter(post => !post.featured);
   return [...featured, ...regular].slice(0, limit);
 }
 

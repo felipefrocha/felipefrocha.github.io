@@ -34,25 +34,35 @@ async function loadBlogPosts(): Promise<BlogPost[]> {
   try {
     const files = (await readdir(BLOG_DIR)).filter(file => file.endsWith('.md'));
     
-    const posts = await Promise.all(files.map(async (file) => {
-      const filePath = path.join(BLOG_DIR, file);
-      const fileContent = await readFile(filePath, 'utf-8');
-      const { data, content } = matter(fileContent);
-      
-      const slug = file.replace('.md', '');
-      
-      return {
-        slug,
-        title: data.title || 'Untitled',
-        excerpt: data.excerpt || '',
-        content,
-        date: formatDate(data.date),
-        readTime: data.readTime || calculateReadTime(content),
-        category: data.category || 'General',
-        tags: data.tags || [],
-        featured: data.featured || false,
-      } as BlogPost;
-    }));
+    const posts: BlogPost[] = [];
+    
+    for (const file of files) {
+      try {
+        const filePath = path.join(BLOG_DIR, file);
+        const fileContent = await readFile(filePath, 'utf-8');
+        const { data, content } = matter(fileContent);
+        
+        const parts = file.split('.');
+        parts.pop(); // remove 'md'
+        const language = parts.length > 1 ? parts.pop() : 'en';
+        const slug = parts.join('.');
+        
+        posts.push({
+          slug,
+          language: language || 'en',
+          title: data.title || 'Untitled',
+          excerpt: data.excerpt || '',
+          content,
+          date: formatDate(data.date),
+          readTime: data.readTime || calculateReadTime(content),
+          category: data.category || 'General',
+          tags: data.tags || [],
+          featured: data.featured || false,
+        } as BlogPost);
+      } catch (error) {
+        console.error(`Error loading blog post ${file}:`, error);
+      }
+    }
 
     return posts.sort((a, b) => {
       const dateA = new Date(a.date);
@@ -60,7 +70,7 @@ async function loadBlogPosts(): Promise<BlogPost[]> {
       return dateB.getTime() - dateA.getTime();
     });
   } catch (error) {
-    console.error('Error loading blog posts:', error);
+    console.error('Error loading blog directory:', error);
     return [];
   }
 }

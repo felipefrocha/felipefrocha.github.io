@@ -9,17 +9,19 @@ import { SEO } from '@/components/atoms/SEO';
 import { generateCollectionPageSchema } from '@/lib/structuredData';
 import { Search } from 'lucide-react';
 import type { BlogPost } from '@/types/blog';
+import { fetchAllPosts } from '@/lib/api';
 
 // Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
 export default function Blog() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const { data: posts, isLoading, error } = useQuery<BlogPost[]>({
-    queryKey: ['/api/posts'],
+    queryKey: ['/api/posts', i18n.language],
+    queryFn: fetchAllPosts,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });

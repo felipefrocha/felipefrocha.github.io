@@ -1,4 +1,5 @@
 import type { BlogPost, Project, SocialLink, ProfileInfo } from '@/types/blog';
+import i18n from './i18n';
 
 export interface SiteData {
   profile: ProfileInfo;
@@ -9,8 +10,14 @@ export interface SiteData {
   featuredPosts: BlogPost[];
 }
 
+const getLangQuery = () => {
+  const lang = i18n.language || 'en';
+  // Use primary language code (e.g., 'en' from 'en-US')
+  return `?lang=${lang.split('-')[0]}`;
+};
+
 export async function fetchSiteData(): Promise<SiteData> {
-  const response = await fetch('/api/site-data');
+  const response = await fetch(`/api/site-data${getLangQuery()}`);
   if (!response.ok) {
     throw new Error('Failed to fetch site data');
   }
@@ -18,7 +25,7 @@ export async function fetchSiteData(): Promise<SiteData> {
 }
 
 export async function fetchAllPosts(): Promise<BlogPost[]> {
-  const response = await fetch('/api/posts');
+  const response = await fetch(`/api/posts${getLangQuery()}`);
   if (!response.ok) {
     throw new Error('Failed to fetch posts');
   }
@@ -26,7 +33,8 @@ export async function fetchAllPosts(): Promise<BlogPost[]> {
 }
 
 export async function fetchPost(slug: string): Promise<BlogPost> {
-  const response = await fetch(`/api/posts/${slug}`);
+  const langQuery = getLangQuery();
+  const response = await fetch(`/api/posts/${slug}${langQuery}`);
   if (!response.ok) {
     if (response.status === 404) {
       throw new Error('Post not found');

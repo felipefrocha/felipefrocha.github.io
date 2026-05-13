@@ -19,6 +19,7 @@ export type User = typeof users.$inferSelect;
 
 export const blogPostSchema = z.object({
   slug: z.string(),
+  language: z.string().default('en'),
   title: z.string(),
   excerpt: z.string(),
   content: z.string(),
