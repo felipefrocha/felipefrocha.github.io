@@ -8,14 +8,17 @@ import {
   getFeaturedBlogPosts
 } from '../lib/content';
 
-export async function onRequest(): Promise<Response> {
+export async function onRequest(context: { request: Request }): Promise<Response> {
   try {
+    const url = new URL(context.request.url);
+    const language = url.searchParams.get('lang') || 'en';
+    
     const profile = getProfile();
     const socials = getSocialLinks();
     const projects = getProjects();
     const skills = getSkills();
     const stats = getStats();
-    const featuredPosts = getFeaturedBlogPosts(3);
+    const featuredPosts = getFeaturedBlogPosts(3, language);
     
     return new Response(
       JSON.stringify({

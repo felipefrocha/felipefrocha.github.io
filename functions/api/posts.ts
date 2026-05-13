@@ -1,9 +1,25 @@
 import '../_init';
 import { getAllBlogPosts } from '../lib/content';
 
-export async function onRequest(): Promise<Response> {
+export async function onRequest(context: { request: Request }): Promise<Response> {
   try {
-    const posts = getAllBlogPosts();
+    const url = new URL(context.request.url);
+    const language = url.searchParams.get('lang') || 'en';
+    
+    const allPosts = getAllBlogPosts();
+    
+    // Filter for requested language, fallback to English if not available
+    const uniquePosts = new Map();
+    for (const post of allPosts) {
+      if (post.language === language) {
+        uniquePosts.set(post.slug, post);
+      } else if (post.language === 'en' && !uniquePosts.has(post.slug)) {
+        uniquePosts.set(post.slug, post);
+      }
+    }
+    
+    const posts = Array.from(uniquePosts.values());
+    
     return new Response(JSON.stringify(posts), {
       headers: { 'Content-Type': 'application/json' },
     });
