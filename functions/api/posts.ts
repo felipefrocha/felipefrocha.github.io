@@ -7,7 +7,7 @@ export async function onRequest(context: { request: Request }): Promise<Response
     const url = new URL(context.request.url);
     const language = url.searchParams.get('lang') || 'en';
     
-    const allPosts = getAllBlogPosts();
+    const allPosts = await getAllBlogPosts();
     
     // Filter for requested language, fallback to English if not available
     const uniquePosts = new Map();

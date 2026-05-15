@@ -18,10 +18,10 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
   
-  app.get("/api/posts", (req, res) => {
+  app.get("/api/posts", async (req, res) => {
     try {
       const language = (req.query.lang as string) || 'en';
-      const allPosts = getAllBlogPosts();
+      const allPosts = await getAllBlogPosts();
       
       // Filter for requested language, fallback to English if not available
       const uniquePosts = new Map();
@@ -40,11 +40,11 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/posts/featured", (req, res) => {
+  app.get("/api/posts/featured", async (req, res) => {
     try {
       const limit = parseInt(req.query.limit as string) || 3;
       const language = (req.query.lang as string) || 'en';
-      const posts = getFeaturedBlogPosts(limit, language);
+      const posts = await getFeaturedBlogPosts(limit, language);
       res.json(posts);
     } catch (error) {
       console.error("Error fetching featured posts:", error);
@@ -52,10 +52,10 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/posts/:slug", (req, res) => {
+  app.get("/api/posts/:slug", async (req, res) => {
     try {
       const language = (req.query.lang as string) || 'en';
-      const post = getBlogPostBySlug(req.params.slug, language);
+      const post = await getBlogPostBySlug(req.params.slug, language);
       if (!post) {
         return res.status(404).json({ error: "Post not found" });
       }
@@ -66,9 +66,9 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/profile", (req, res) => {
+  app.get("/api/profile", async (req, res) => {
     try {
-      const profile = getProfile();
+      const profile = await getProfile();
       res.json(profile);
     } catch (error) {
       console.error("Error fetching profile:", error);
@@ -76,9 +76,9 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/socials", (req, res) => {
+  app.get("/api/socials", async (req, res) => {
     try {
-      const socials = getSocialLinks();
+      const socials = await getSocialLinks();
       res.json(socials);
     } catch (error) {
       console.error("Error fetching socials:", error);
@@ -86,9 +86,9 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/projects", (req, res) => {
+  app.get("/api/projects", async (req, res) => {
     try {
-      const projects = getProjects();
+      const projects = await getProjects();
       res.json(projects);
     } catch (error) {
       console.error("Error fetching projects:", error);
@@ -96,9 +96,9 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/skills", (req, res) => {
+  app.get("/api/skills", async (req, res) => {
     try {
-      const skills = getSkills();
+      const skills = await getSkills();
       res.json(skills);
     } catch (error) {
       console.error("Error fetching skills:", error);
@@ -106,9 +106,9 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/stats", (req, res) => {
+  app.get("/api/stats", async (req, res) => {
     try {
-      const stats = getStats();
+      const stats = await getStats();
       res.json(stats);
     } catch (error) {
       console.error("Error fetching stats:", error);
@@ -116,15 +116,15 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/site-data", (req, res) => {
+  app.get("/api/site-data", async (req, res) => {
     try {
       const language = (req.query.lang as string) || 'en';
-      const profile = getProfile();
-      const socials = getSocialLinks();
-      const projects = getProjects();
-      const skills = getSkills();
-      const stats = getStats();
-      const featuredPosts = getFeaturedBlogPosts(3, language);
+      const profile = await getProfile();
+      const socials = await getSocialLinks();
+      const projects = await getProjects();
+      const skills = await getSkills();
+      const stats = await getStats();
+      const featuredPosts = await getFeaturedBlogPosts(3, language);
       
       res.json({
         profile,

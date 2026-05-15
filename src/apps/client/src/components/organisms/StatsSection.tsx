@@ -10,6 +10,10 @@ interface StatsSectionProps {
 }
 
 export function StatsSection({ stats }: StatsSectionProps) {
+  if (!stats || !Array.isArray(stats)) {
+    return null;
+  }
+
   return (
     <section className="py-16 md:py-20 px-6 md:px-8 bg-muted/30" data-testid="section-stats">
       <div className="max-w-4xl mx-auto">
