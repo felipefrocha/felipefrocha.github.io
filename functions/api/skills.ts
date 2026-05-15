@@ -1,3 +1,4 @@
+import "../_init";
 
 
 import { getSkills } from '@core/content/index';

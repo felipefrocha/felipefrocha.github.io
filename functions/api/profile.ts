@@ -1,3 +1,4 @@
+import "../_init";
 
 
 import { getProfile } from '@core/content/index';

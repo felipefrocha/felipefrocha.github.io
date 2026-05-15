@@ -1,3 +1,4 @@
+import "../../_init";
 
 
 import { getFeaturedBlogPosts } from '@core/content/index';

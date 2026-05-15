@@ -1,3 +1,4 @@
+import "../_init";
 
 
 import { getStats } from '@core/content/index';

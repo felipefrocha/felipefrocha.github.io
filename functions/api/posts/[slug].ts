@@ -1,3 +1,4 @@
+import "../../_init";
 
 
 import { getBlogPostBySlug } from '@core/content/index';

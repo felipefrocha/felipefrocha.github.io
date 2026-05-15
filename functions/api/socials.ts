@@ -1,3 +1,4 @@
+import "../_init";
 
 
 import { getSocialLinks } from '@core/content/index';

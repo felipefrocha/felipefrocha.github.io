@@ -1,3 +1,4 @@
+import "../_init";
 
 
 import { getProjects } from '@core/content/index';

@@ -1,3 +1,4 @@
+import "../_init";
 
 
 import { getAllBlogPosts } from '@core/content/index';
