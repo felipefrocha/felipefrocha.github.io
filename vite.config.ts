@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
@@ -8,6 +9,19 @@ export default defineConfig({
     react({
       // Fast Refresh is enabled by default in @vitejs/plugin-react
       // This ensures optimal HMR for React components
+    }),
+    VitePWA({
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
+      registerType: 'autoUpdate',
+      injectManifest: {
+        injectionPoint: undefined, // We are handling our own precaching logic via SW caches.addAll
+      },
+      manifest: false, // We already have a static manifest.json in public/
+      devOptions: {
+        enabled: false,
+      }
     }),
     runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&
