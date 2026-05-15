@@ -149,7 +149,7 @@ export default function BlogPostPage() {
           <div 
             className="space-y-6"
             dangerouslySetInnerHTML={{ 
-              __html: formatMarkdownContent(post.content) 
+              __html: DOMPurify.sanitize(formatMarkdownContent(post.content))
             }}
           />
         </div>

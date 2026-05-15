@@ -6,6 +6,20 @@ import { createServer } from "http";
 const app = express();
 const httpServer = createServer(app);
 
+// Basic security headers
+app.use(helmet({
+  contentSecurityPolicy: false, // Disabling CSP for development/Vite compatibility, should be configured properly for prod
+}));
+
+// Basic rate limiting for API endpoints
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use("/api/", apiLimiter);
+
 declare module "http" {
   interface IncomingMessage {
     rawBody: unknown;
