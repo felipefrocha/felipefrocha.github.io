@@ -1,0 +1,27 @@
+import '../../_init';
+import { getFeaturedBlogPosts } from '@core/content/index';
+
+export async function onRequest(context: { request: Request }): Promise<Response> {
+  try {
+    const url = new URL(context.request.url);
+    const limitParam = url.searchParams.get('limit');
+    const limit = limitParam ? parseInt(limitParam, 10) : 3;
+    const language = url.searchParams.get('lang') || 'en';
+    
+    const posts = getFeaturedBlogPosts(limit, language);
+    
+    return new Response(JSON.stringify(posts), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error('Error fetching featured posts:', error);
+    return new Response(
+      JSON.stringify({ error: 'Failed to fetch featured posts' }),
+      { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
+}
+
