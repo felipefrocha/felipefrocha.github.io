@@ -4,7 +4,7 @@ import { getProfile } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
-    const profile = getProfile();
+    const profile = await getProfile();
     return new Response(JSON.stringify(profile), {
       headers: { 'Content-Type': 'application/json' },
     });

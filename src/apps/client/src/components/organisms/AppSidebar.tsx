@@ -84,7 +84,7 @@ export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
           }`}
           aria-label="Social media links"
         >
-          {socialLinks.map((link) => (
+          {Array.isArray(socialLinks) ? socialLinks.map((link) => (
             <SocialIcon
               key={link.platform}
               platform={link.platform}
@@ -92,7 +92,7 @@ export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
               url={link.url}
               size="sm"
             />
-          ))}
+          )) : null}
         </nav>
       </SidebarFooter>
     </Sidebar>

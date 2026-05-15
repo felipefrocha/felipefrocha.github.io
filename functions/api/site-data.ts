@@ -13,12 +13,12 @@ export async function onRequest(context: { request: Request }): Promise<Response
     const url = new URL(context.request.url);
     const language = url.searchParams.get('lang') || 'en';
     
-    const profile = getProfile();
-    const socials = getSocialLinks();
-    const projects = getProjects();
-    const skills = getSkills();
-    const stats = getStats();
-    const featuredPosts = getFeaturedBlogPosts(3, language);
+    const profile = await getProfile();
+    const socials = await getSocialLinks();
+    const projects = await getProjects();
+    const skills = await getSkills();
+    const stats = await getStats();
+    const featuredPosts = await getFeaturedBlogPosts(3, language);
     
     return new Response(
       JSON.stringify({

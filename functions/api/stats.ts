@@ -4,7 +4,7 @@ import { getStats } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
-    const stats = getStats();
+    const stats = await getStats();
     return new Response(JSON.stringify(stats), {
       headers: { 'Content-Type': 'application/json' },
     });

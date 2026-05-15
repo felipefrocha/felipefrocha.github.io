@@ -8,7 +8,7 @@ export async function onRequest(context: { request: Request, params: { slug: str
     const language = url.searchParams.get('lang') || 'en';
     const { slug } = context.params;
     
-    const post = getBlogPostBySlug(slug, language);
+    const post = await getBlogPostBySlug(slug, language);
     
     if (!post) {
       return new Response(

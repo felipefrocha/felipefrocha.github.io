@@ -4,7 +4,7 @@ import { getSkills } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
-    const skills = getSkills();
+    const skills = await getSkills();
     return new Response(JSON.stringify(skills), {
       headers: { 'Content-Type': 'application/json' },
     });

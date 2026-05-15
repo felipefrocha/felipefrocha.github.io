@@ -4,7 +4,7 @@ import { getProjects } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
-    const projects = getProjects();
+    const projects = await getProjects();
     return new Response(JSON.stringify(projects), {
       headers: { 'Content-Type': 'application/json' },
     });

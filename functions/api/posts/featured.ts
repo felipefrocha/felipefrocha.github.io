@@ -9,7 +9,7 @@ export async function onRequest(context: { request: Request }): Promise<Response
     const limit = limitParam ? parseInt(limitParam, 10) : 3;
     const language = url.searchParams.get('lang') || 'en';
     
-    const posts = getFeaturedBlogPosts(limit, language);
+    const posts = await getFeaturedBlogPosts(limit, language);
     
     return new Response(JSON.stringify(posts), {
       headers: { 'Content-Type': 'application/json' },

@@ -4,7 +4,7 @@ import { getSocialLinks } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
-    const socials = getSocialLinks();
+    const socials = await getSocialLinks();
     return new Response(JSON.stringify(socials), {
       headers: { 'Content-Type': 'application/json' },
     });
