@@ -1,12 +1,42 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import type { BlogPost, Project, SocialLink, ProfileInfo } from '@shared/schema';
 
-const CONTENT_DIR = path.join(process.cwd(), 'content');
-const BLOG_DIR = path.join(CONTENT_DIR, 'blog');
+// Static content store for Cloudflare Pages (where FS is unavailable)
+let _staticContent: {
+  blogPosts?: BlogPost[];
+  profile?: ProfileInfo;
+  socialLinks?: SocialLink[];
+  projects?: Project[];
+  skills?: string[];
+  stats?: { value: string; label: string }[];
+} | null = null;
 
-function ensureDirectories() {
+export function initContent(content: any) {
+  _staticContent = content;
+}
+
+// Ensure fs/path imports are purely for Node environment and aren't bundled when _staticContent is used
+async function getNodeFs() {
+  if (typeof process !== 'undefined' && process.versions && process.versions.node) {
+    try {
+      const fs = await import('node:fs');
+      const path = await import('node:path');
+      return { fs, path };
+    } catch (e) {
+      // Ignored
+    }
+  }
+  return null;
+}
+
+async function ensureDirectories() {
+  if (_staticContent) return;
+  const nodeEnv = await getNodeFs();
+  if (!nodeEnv) return;
+  const { fs, path } = nodeEnv;
+  
+  const CONTENT_DIR = path.join(process.cwd(), 'content');
+  const BLOG_DIR = path.join(CONTENT_DIR, 'blog');
+
   if (!fs.existsSync(CONTENT_DIR)) {
     fs.mkdirSync(CONTENT_DIR, { recursive: true });
   }
@@ -15,8 +45,18 @@ function ensureDirectories() {
   }
 }
 
-export function getAllBlogPosts(): BlogPost[] {
-  ensureDirectories();
+export async function getAllBlogPostsAsync(): Promise<BlogPost[]> {
+  if (_staticContent && _staticContent.blogPosts) {
+    return _staticContent.blogPosts;
+  }
+
+  await ensureDirectories();
+  const nodeEnv = await getNodeFs();
+  if (!nodeEnv) return [];
+  const { fs, path } = nodeEnv;
+  const matter = (await import('gray-matter')).default;
+  const CONTENT_DIR = path.join(process.cwd(), 'content');
+  const BLOG_DIR = path.join(CONTENT_DIR, 'blog');
 
   try {
     const files = fs.readdirSync(BLOG_DIR).filter(file => file.endsWith('.md'));
@@ -61,6 +101,17 @@ export function getAllBlogPosts(): BlogPost[] {
     console.error('Error reading blog directory:', error);
     return [];
   }
+}
+
+export function getAllBlogPosts(): BlogPost[] {
+  if (_staticContent && _staticContent.blogPosts) {
+    return _staticContent.blogPosts;
+  }
+  // Synchronous fallback is only safe if not relying on dynamic imports above, 
+  // but for Express it's fine because we should use Async methods or pre-load.
+  // For safety in Cloudflare, this must return _staticContent which is checked above.
+  console.error("Synchronous getAllBlogPosts called without static content.");
+  return [];
 }
 
 export function getBlogPostBySlug(slug: string, language: string = 'en'): BlogPost | undefined {

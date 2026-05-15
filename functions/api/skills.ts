@@ -1,5 +1,5 @@
-import '../_init';
-import { getSkills } from '../src/core/content/index';
+
+import { getSkills } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {

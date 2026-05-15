@@ -1,4 +1,4 @@
-import '../_init';
+
 import { 
   getProfile,
   getSocialLinks,
@@ -6,7 +6,7 @@ import {
   getSkills,
   getStats,
   getFeaturedBlogPosts
-} from '../src/core/content/index';
+} from '@core/content/index';
 
 export async function onRequest(context: { request: Request }): Promise<Response> {
   try {

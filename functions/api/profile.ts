@@ -1,5 +1,5 @@
-import '../_init';
-import { getProfile } from '../src/core/content/index';
+
+import { getProfile } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {

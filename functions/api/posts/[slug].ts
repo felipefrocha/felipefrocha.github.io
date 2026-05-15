@@ -1,5 +1,5 @@
-import '../../_init';
-import { getBlogPostBySlug } from '../src/core/content/index';
+
+import { getBlogPostBySlug } from '@core/content/index';
 
 export async function onRequest(context: { request: Request, params: { slug: string } }): Promise<Response> {
   try {

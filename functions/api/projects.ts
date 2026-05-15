@@ -1,5 +1,5 @@
-import '../_init';
-import { getProjects } from '../src/core/content/index';
+
+import { getProjects } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
