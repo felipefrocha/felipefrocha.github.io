@@ -71,6 +71,7 @@ export interface ContactFormData {
   email: string;
   subject: string;
   message: string;
+  turnstileToken: string;
 }
 
 export async function submitContactForm(data: ContactFormData): Promise<{ success: boolean; message: string }> {

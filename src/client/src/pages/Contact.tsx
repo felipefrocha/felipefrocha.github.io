@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { SocialCard } from '@/components/molecules/SocialCard';
+import { Turnstile } from '@marsidev/react-turnstile';
 import { SEO } from '@/components/atoms/SEO';
 import { Send, Mail, MapPin } from 'lucide-react';
 import { submitContactForm, fetchProfile, fetchSocials } from '@/lib/api';
@@ -173,9 +174,16 @@ export default function Contact() {
                   />
                 </div>
 
+                <div className="flex justify-center mb-6">
+                  <Turnstile 
+                    siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
+                    onSuccess={(token) => setFormData({...formData, turnstileToken: token})} 
+                  />
+                </div>
+
                 <Button 
                   type="submit" 
-                  disabled={true}
+                  disabled={contactMutation.isPending || !formData.turnstileToken}
                   className="w-full"
                   data-testid="button-contact-submit"
                 >

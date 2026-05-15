@@ -10,7 +10,7 @@ import {
   getFeaturedBlogPosts
 } from '../src/core/content/index';
 
-const PUBLIC_API_DIR = path.join(process.cwd(), 'src/apps/client/public/api');
+const PUBLIC_API_DIR = path.join(process.cwd(), 'src/client/public/api');
 
 function writeJson(filePath: string, data: any) {
   const fullPath = path.join(PUBLIC_API_DIR, filePath);

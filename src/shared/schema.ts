@@ -69,6 +69,7 @@ export const contactMessageSchema = z.object({
   email: z.string().email("Invalid email address"),
   subject: z.string().min(1, "Subject is required"),
   message: z.string().min(10, "Message must be at least 10 characters"),
+  turnstileToken: z.string().min(1, "Please complete the CAPTCHA"),
 });
 
 export type ContactMessage = z.infer<typeof contactMessageSchema>;

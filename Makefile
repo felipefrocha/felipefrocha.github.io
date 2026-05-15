@@ -86,7 +86,7 @@ build:
 clean:
 	@echo "$(CYAN)Cleaning build artifacts...$(NC)"
 	rm -rf dist
-	rm -rf src/apps/client/public/api
+	rm -rf src/client/public/api
 	@echo "$(GREEN)✓ Clean complete!$(NC)"
 
 ## deploy: Deploy to Cloudflare Pages
@@ -131,7 +131,7 @@ preview: build
 dev:
 	@echo "$(CYAN)Starting local development server...$(NC)"
 	@echo "$(YELLOW)Server will start using Wrangler over Vite$(NC)"
-	npm run dev
+	npm run dev 
 
 ## setup: Complete setup (install deps, wrangler, login)
 setup: install wrangler-install

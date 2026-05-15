@@ -1,15 +1,12 @@
 
 
-import { z } from 'zod';
+import { contactMessageSchema } from '@shared/schema';
 
-const contactMessageSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(1, "Subject is required"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+interface Env {
+  TURNSTILE_SECRET_KEY: string;
+}
 
-export async function onRequest(context: { request: Request }): Promise<Response> {
+export async function onRequest(context: { request: Request; env: Env }): Promise<Response> {
   if (context.request.method !== 'POST') {
     return new Response(
       JSON.stringify({ error: 'Method not allowed' }),
@@ -37,7 +34,33 @@ export async function onRequest(context: { request: Request }): Promise<Response
       );
     }
 
-    console.log("Contact message received:", result.data);
+    // Validate Turnstile token
+    const token = result.data.turnstileToken;
+    const secret = context.env.TURNSTILE_SECRET_KEY || '1x0000000000000000000000000000000AA';
+    
+    const formData = new FormData();
+    formData.append('secret', secret);
+    formData.append('response', token);
+    
+    const ip = context.request.headers.get('CF-Connecting-IP');
+    if (ip) {
+      formData.append('remoteip', ip);
+    }
+
+    const turnstileRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const turnstileData = await turnstileRes.json() as { success: boolean; 'error-codes': string[] };
+    if (!turnstileData.success) {
+      return new Response(
+        JSON.stringify({ error: "Captcha verification failed" }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log("Contact message received & validated:", result.data);
     
     // In production, you would send this to an email service or save to a database
     // For now, we'll just log it
