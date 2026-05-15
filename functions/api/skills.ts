@@ -1,4 +1,5 @@
 
+
 import { getSkills } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {

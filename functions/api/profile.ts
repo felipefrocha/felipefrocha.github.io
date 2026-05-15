@@ -1,4 +1,5 @@
 
+
 import { getProfile } from '@core/content/index';
 
 export async function onRequest(): Promise<Response> {
