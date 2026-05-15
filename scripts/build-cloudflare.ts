@@ -129,7 +129,7 @@ async function buildCloudflare() {
   console.log("Bundling content for Functions...");
   const initContent = `
 // Auto-generated content bundle - DO NOT EDIT
-import { initContent } from '../core/content/index';
+import { initContent } from '../src/core/content/index';
 
 const content = ${JSON.stringify({
   blogPosts,
@@ -144,7 +144,7 @@ initContent(content);
 `;
 
   // Ensure functions directory exists
-  const functionsDir = path.join(process.cwd(), 'src', 'apps', 'functions');
+  const functionsDir = path.join(process.cwd(), 'functions');
   if (!existsSync(functionsDir)) {
     await mkdir(functionsDir, { recursive: true });
   }

@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { useRoute, Link } from 'wouter';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +10,7 @@ import { SEO } from '@/components/atoms/SEO';
 import { generateBlogPostSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { ArrowLeft, Calendar, Clock, ChevronRight } from 'lucide-react';
 import type { BlogPost, ProfileInfo, SocialLink, Project } from '@shared/schema';
-import { fetchPost, fetchAllPosts } from '@/lib/api';
+import { fetchPost, fetchAllPosts, fetchProfile } from '@/lib/api';
 
 // Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
@@ -36,6 +37,7 @@ export default function BlogPostPage() {
 
   const { data: profile } = useQuery<ProfileInfo>({
     queryKey: ['/api/profile'],
+    queryFn: fetchProfile,
     staleTime: 5 * 60 * 1000,
   });
 

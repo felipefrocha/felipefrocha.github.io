@@ -4,6 +4,7 @@ import { ProjectCard } from '@/components/molecules/ProjectCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SEO } from '@/components/atoms/SEO';
 import { generateCollectionPageSchema } from '@/lib/structuredData';
+import { fetchProjects } from '@/lib/api';
 import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
 
 // Auto-refresh in development mode
@@ -13,6 +14,7 @@ export default function Portfolio() {
   const { t } = useTranslation();
   const { data: projects, isLoading, error } = useQuery<Project[]>({
     queryKey: ['/api/projects'],
+    queryFn: fetchProjects,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });

@@ -1,5 +1,5 @@
 import '../_init';
-import { getAllBlogPosts } from '@core/content/index';
+import { getAllBlogPosts } from '../src/core/content/index';
 
 export async function onRequest(context: { request: Request }): Promise<Response> {
   try {

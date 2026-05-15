@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MainLayout } from "@/components/templates/MainLayout";
 import { Skeleton } from "@/components/ui/skeleton";
+import { fetchProfile, fetchSocials } from "@/lib/api";
 
 import Home from "@/pages/Home";
 import Blog from "@/pages/Blog";
@@ -37,12 +38,14 @@ const isDevelopment = import.meta.env.DEV;
 function AppContent() {
   const { data: profile, isLoading: profileLoading } = useQuery<ProfileInfo>({
     queryKey: ['/api/profile'],
+    queryFn: fetchProfile,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });
 
   const { data: socialLinks, isLoading: socialsLoading } = useQuery<SocialLink[]>({
     queryKey: ['/api/socials'],
+    queryFn: fetchSocials,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });

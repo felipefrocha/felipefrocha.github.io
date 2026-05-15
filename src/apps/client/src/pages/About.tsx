@@ -9,21 +9,25 @@ import { SEO } from '@/components/atoms/SEO';
 import { generatePersonSchema } from '@/lib/structuredData';
 import { MapPin, Mail } from 'lucide-react';
 import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
+import { fetchProfile, fetchSkills, fetchSocials } from '@/lib/api';
 
 export default function About() {
   const { t } = useTranslation();
   const { data: profile, isLoading: profileLoading } = useQuery<ProfileInfo>({
     queryKey: ['/api/profile'],
+    queryFn: fetchProfile,
     staleTime: 5 * 60 * 1000,
   });
 
   const { data: skills } = useQuery<string[]>({
     queryKey: ['/api/skills'],
+    queryFn: fetchSkills,
     staleTime: 5 * 60 * 1000,
   });
 
   const { data: socialLinks } = useQuery<SocialLink[]>({
     queryKey: ['/api/socials'],
+    queryFn: fetchSocials,
     staleTime: 5 * 60 * 1000,
   });
 

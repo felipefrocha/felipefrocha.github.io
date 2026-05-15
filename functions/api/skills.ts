@@ -1,16 +1,16 @@
 import '../_init';
-import { getProfile } from '@core/content/index';
+import { getSkills } from '../src/core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
-    const profile = getProfile();
-    return new Response(JSON.stringify(profile), {
+    const skills = getSkills();
+    return new Response(JSON.stringify(skills), {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Error fetching profile:', error);
+    console.error('Error fetching skills:', error);
     return new Response(
-      JSON.stringify({ error: 'Failed to fetch profile' }),
+      JSON.stringify({ error: 'Failed to fetch skills' }),
       { 
         status: 500,
         headers: { 'Content-Type': 'application/json' },

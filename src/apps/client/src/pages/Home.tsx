@@ -9,7 +9,7 @@ import { ConnectSection } from '@/components/organisms/ConnectSection';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SEO } from '@/components/atoms/SEO';
 import { generateWebsiteSchema } from '@/lib/structuredData';
-import type { SiteData } from '@/lib/api';
+import { fetchSiteData, type SiteData } from '@/lib/api';
 
 // Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
@@ -18,6 +18,7 @@ export default function Home() {
   const { t } = useTranslation();
   const { data, isLoading, error } = useQuery<SiteData>({
     queryKey: ['/api/site-data'],
+    queryFn: fetchSiteData,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });

@@ -1,16 +1,16 @@
 import '../_init';
-import { getStats } from '@core/content/index';
+import { getProjects } from '../src/core/content/index';
 
 export async function onRequest(): Promise<Response> {
   try {
-    const stats = getStats();
-    return new Response(JSON.stringify(stats), {
+    const projects = getProjects();
+    return new Response(JSON.stringify(projects), {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Error fetching stats:', error);
+    console.error('Error fetching projects:', error);
     return new Response(
-      JSON.stringify({ error: 'Failed to fetch stats' }),
+      JSON.stringify({ error: 'Failed to fetch projects' }),
       { 
         status: 500,
         headers: { 'Content-Type': 'application/json' },

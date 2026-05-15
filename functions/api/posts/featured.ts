@@ -1,5 +1,5 @@
 import '../../_init';
-import { getFeaturedBlogPosts } from '@core/content/index';
+import { getFeaturedBlogPosts } from '../src/core/content/index';
 
 export async function onRequest(context: { request: Request }): Promise<Response> {
   try {

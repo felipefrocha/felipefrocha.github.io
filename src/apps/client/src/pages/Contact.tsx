@@ -11,7 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { SocialCard } from '@/components/molecules/SocialCard';
 import { SEO } from '@/components/atoms/SEO';
 import { Send, Mail, MapPin } from 'lucide-react';
-import { submitContactForm } from '@/lib/api';
+import { submitContactForm, fetchProfile, fetchSocials } from '@/lib/api';
 import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
 
 export default function Contact() {
@@ -26,11 +26,13 @@ export default function Contact() {
 
   const { data: profile } = useQuery<ProfileInfo>({
     queryKey: ['/api/profile'],
+    queryFn: fetchProfile,
     staleTime: 5 * 60 * 1000,
   });
 
   const { data: socialLinks, isLoading } = useQuery<SocialLink[]>({
     queryKey: ['/api/socials'],
+    queryFn: fetchSocials,
     staleTime: 5 * 60 * 1000,
   });
 
