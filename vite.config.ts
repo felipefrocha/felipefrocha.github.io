@@ -40,8 +40,6 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
-    // HMR configuration is handled in server/vite.ts
-    // This ensures proper WebSocket connection through Express
   },
   // Optimize HMR updates
   optimizeDeps: {

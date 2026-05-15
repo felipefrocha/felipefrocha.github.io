@@ -1,0 +1,15 @@
+[
+  {
+    "id": "project-1",
+    "title": "WIP - Work in Progress",
+    "description": "This is a work in progress project. I will update it as I progress.",
+    "techStack": [
+      "Terraform",
+      "AWS",
+      "CI/CD",
+      "GitHub Actions"
+    ],
+    "link": "https://feliperocha.systems",
+    "github": "https://github.com/felipefrocha"
+  }
+]

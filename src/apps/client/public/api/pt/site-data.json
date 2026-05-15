@@ -1,0 +1,163 @@
+{
+  "profile": {
+    "name": "Felipe F. Rocha",
+    "tagline": "Systems Engineer",
+    "bio": "I'm a passionate engineer with over 7 years of experience building and integrating complex systems. I love working with modern technologies and sharing my knowledge as I believe knowledge is not a property, but a responsibility. When I'm not coding, you'll find me exploring new tech, studying about software development best practices, or cooking for my family. X)",
+    "avatar": "/assets/avatar.jpg",
+    "email": "felipefonsecarocha@gmail.com",
+    "location": "Boston, MA"
+  },
+  "socials": [
+    {
+      "platform": "github",
+      "url": "https://github.com",
+      "handle": "felipefrocha"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://linkedin.com",
+      "handle": "felipefonsecarocha"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://instagram.com",
+      "handle": "_felipefrocha"
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-1",
+      "title": "WIP - Work in Progress",
+      "description": "This is a work in progress project. I will update it as I progress.",
+      "techStack": [
+        "Terraform",
+        "AWS",
+        "CI/CD",
+        "GitHub Actions"
+      ],
+      "link": "https://feliperocha.systems",
+      "github": "https://github.com/felipefrocha"
+    }
+  ],
+  "skills": [
+    "GenAI",
+    "OpenAI",
+    "MLOps",
+    "AWS",
+    "Azure",
+    "Kubernetes",
+    "Terraform",
+    "Ansible",
+    "Packer",
+    "CI/CD",
+    "GitHub Actions",
+    "GitLab CI",
+    "Jenkins",
+    "12 Factor App",
+    "Containerization",
+    "ECS",
+    "Spring Boot",
+    "Node.js",
+    "Fastify",
+    "LoopBack",
+    "React.js",
+    "Angular",
+    "C# (.NET Core)",
+    "JavaScript",
+    "SQL",
+    "PostgreSQL",
+    "MongoDB",
+    "MS SQL Server",
+    "Oracle",
+    "FlyWay",
+    "R",
+    "Gurobi",
+    "React-Native",
+    "JavaEE",
+    "Jest",
+    "Mockito",
+    "Selenium",
+    "Pitest",
+    "C",
+    "C++",
+    "SCADA",
+    "IEC 61131-3",
+    "HMI",
+    "JSP",
+    "JPA",
+    "Hibernate",
+    "JSF"
+  ],
+  "stats": [
+    {
+      "value": "50+",
+      "label": "Projects"
+    },
+    {
+      "value": "10K+",
+      "label": "Blog Readers"
+    },
+    {
+      "value": "500+",
+      "label": "GitHub Stars"
+    },
+    {
+      "value": "5+",
+      "label": "Years Exp."
+    }
+  ],
+  "featuredPosts": [
+    {
+      "slug": "the-70-problem",
+      "language": "pt",
+      "title": "O Problema dos 70%: Por que a maioria dos pilotos de GenAI nunca chegam à produção",
+      "excerpt": "Os últimos 30% da implementação da GenAI expõem a fragilidade subjacente das arquiteturas corporativas e das cadeias de suprimento de dados.",
+      "content": "\nChegar a 70% de conclusão em um projeto de IA Generativa é surpreendentemente fácil. Chegar a 100%—e na produção com segurança—é onde a maioria das iniciativas corporativas vão para morrer. Eu chamo isso de **O Problema dos 70%**.\n\n### A Armadilha da Demonstração\n\nO ciclo de vida corporativo moderno da GenAI geralmente se parece com isto:\n\n1.  **Semanas 1-2:** Uma equipe pequena e isolada constrói um protótipo usando um modelo de fundação pronto para uso. Ele responde a perguntas perfeitamente em um conjunto de dados pequeno e limpo. A demonstração impressiona os executivos. O financiamento está garantido.\n2.  **Semanas 3-6:** A equipe tenta conectar o protótipo às fontes de dados corporativas em tempo real. Eles começam a lidar com autorização, recuperação de contexto e limites de token. O progresso diminui, mas eles chegam a \"70% do caminho lá\".\n3.  **Mês 3 e além:** O projeto estanca. O modelo começa a alucinar de maneiras imprevisíveis. As verificações de segurança falham. Os tempos de resposta inaceitáveis paralisam o sistema. O projeto retrocede para o modo de \"prova de conceito prolongada\" até que o orçamento acabe.\n\n### Por que os últimos 30% são tão difíceis?\n\nA facilidade da demonstração mascara a complexidade da produção. A GenAI não é apenas outra chamada de API; é uma interface de processamento de linguagem natural posicionada no topo da sua infraestrutura corporativa. Se a sua infraestrutura for frágil, a GenAI exporá todas as fraturas.\n\n#### 1. A Cadeia de Suprimentos de Dados está Quebrada\n\nUm RAG (Geração Aumentada de Recuperação) é tão bom quanto o contexto que pode recuperar. Em uma demonstração, o contexto é selecionado à mão. Na produção, ele deve ser extraído de repositórios desorganizados do SharePoint, sistemas de ERP legados e bancos de dados isolados. Se a arquitetura e a governança de dados da sua organização estiverem bagunçadas, a IA também será.\n\n#### 2. Ausência de Barreiras de Proteção (Guardrails) Sistêmicas\n\nSistemas determinísticos falham de maneiras determinísticas. LLMs falham por alucinação, injeção de prompt ou perda de contexto. Projetar \"barreiras de proteção\" não se trata de ajustar os prompts do sistema; requer a construção de camadas de validação rígidas e programáticas ao redor das respostas do modelo antes que elas alcancem o usuário. A maioria das arquiteturas carece desses roteadores e validadores intermediários.\n\n#### 3. Controle de Acesso Baseado em Função (RBAC) Implícito\n\nQuando um usuário pesquisa o banco de dados corporativo por meio de uma IA, a IA deve herdar e respeitar o nível de permissão desse usuário em milhares de documentos. Implementar a aplicação do RBAC de granularidade fina no nível da pesquisa de similaridade vetorial é um problema de engenharia massivo, muitas vezes descoberto no final do ciclo de desenvolvimento.\n\n### Atravessando o Golfo\n\nPassar de 70% a 100% não requer melhores LLMs. Requer melhor engenharia de sistemas tradicional.\n\n*   **Corrija os Dados Primeiro:** Antes de implantar sistemas de RAG complexos, invista no mapeamento, limpeza e unificação de suas fontes de dados.\n*   **Abrace a Arquitetura Orientada a Agentes (AOA):** Projete a IA não como um monólito onisciente, mas como um sistema de pequenos agentes especializados e acoplados frouxamente, limitados por permissões e escopos estritos.\n*   **Trate a IA como Sistemas Não Confiáveis:** Construa suas camadas de API e microsserviços assumindo que as saídas do LLM são inerentemente suspeitas e devem ser validadas contra esquemas estritos (por exemplo, usando bibliotecas como Pydantic e Zod) antes do processamento posterior.\n\nO Problema dos 70% é um sintoma. A doença é a dívida arquitetônica. Até que enfrentemos as realidades de engenharia subjacentes, continuaremos sendo iludidos por demonstrações incríveis que nunca veem a luz do dia na produção.\n",
+      "date": "Nov 29, 2025",
+      "readTime": "5 min read",
+      "category": "Architecture",
+      "tags": [
+        "genai",
+        "architecture",
+        "data-engineering",
+        "production"
+      ],
+      "featured": true
+    },
+    {
+      "slug": "the-complexity-of-ai",
+      "language": "pt",
+      "title": "A Transição de Fase da IA: Engenharia de Resiliência Adaptativa",
+      "excerpt": "Por que integrar GenAI não é uma atualização de recurso, mas uma perturbação sistêmica que requer uma nova abordagem arquitetônica.",
+      "content": "\n## A Perturbação da IA: De Ótimos Locais a Transições de Fase Sistêmicas\n\n### Vamos dar algum Contexto\n\nA descoberta do DORA 2025 apresenta que a IA cria produtividade localizada frequentemente perdida para o caos a jusante, o que destaca uma falha fundamental no gerenciamento de sistemas complexos. Em grandes arquiteturas corporativas, especialmente aquelas que ainda não alcançaram a fluidez topológica de um modelo DevOps maduro, a introdução da IA gerativa não é uma atualização de recurso. É uma enorme **perturbação exógena** em uma rede sociotécnica rígida.\n\n### A Ilusão do \"Ótimo Local\"\n\nA fase mais perigosa da adoção da IA é a ilusão de retorno imediato. Quando nós individuais (por exemplo, um único desenvolvedor ou uma equipe isolada) usam a IA para aumentar sua produção, eles alcançam um **ótimo local**.\n\nNo entanto, em um sistema adaptativo complexo, otimizar um único nó sem atualizar as bordas de conexão (os pipelines, governança e integrações) degrada o estado global. A \"sensação de retorno\" é uma miragem; os gargalos apenas mudam de lugar. O aumento da velocidade no nível do nó cria atrito na rede, transformando a eficiência local em dívida técnica sistêmica.\n\n### A Transição de Fase e a Perda de Equilíbrio\n\nA introdução da IA força a rede organizacional a um **estado longe do equilíbrio**. A perturbação é tão significativa que desencadeia uma **transição de fase**. A arquitetura do sistema e as regras de comportamento são fundamentalmente reescritas.\n\nEnquanto os nós individuais podem parecer superficialmente seguir velhos padrões, o **comportamento emergente** de toda a rede mudou. Tentar gerenciar este novo estado com frameworks legados é o equivalente a aplicar as regras da mecânica dos sólidos a um problema de dinâmica de fluidos. O sistema não se comportará mais de forma linear ou previsível.\n\n### A Trajetória em Direção à Falha em Cascata\n\nIgnorar esta transição de fase significa tentar forçar saídas de IA não determinísticas e de alta velocidade por meio de topologias frágeis e legadas. À medida que os nós a montante aceleram sua saída, a carga nas bordas a jusante (QA, conformidade de segurança, limites de implantação) excede sua capacidade estrutural.\n\nComo o sistema é profundamente interconectado, esse estresse localizado não permanece local. Ele rompe o limite de resiliência da rede, desencadeando uma **falha em cascata**. O atrito se propaga pelas dependências da rede, sobrecarregando as funções a jusante, paralisando o fluxo de valor e, em última análise, fazendo com que o modelo operacional entre em colapso sob sua própria velocidade não gerenciada.\n\n## Engenharia de Resiliência Adaptativa\n\nPara evitar esse colapso sistêmico, as organizações devem mudar seu foco arquitetônico da otimização rígida para a **resiliência adaptativa**. Isso requer a introdução de **modularidade** e **acoplamento fraco** para conter perturbações locais e evitar o contágio de falhas. Além disso, a rede deve integrar **loops de feedback de balanceamento** (feedback negativo), por exemplo, mecanismos capazes de limitar automaticamente a velocidade da IA a montante quando a capacidade de absorção a jusante é violada. Em última análise, sobreviver a esta transição de fase exige projetar um sistema sociotécnico capaz de religar dinamicamente suas bordas para absorver o choque, em vez de se estilhaçar sob o estresse da velocidade desalinhada.\n\n## Referências\n\nT. V. olde Scheper, \"Controlled bio-inspired self-organised criticality,\" PLOS ONE, vol. 17, no. 1, p. e0260016, 2022.\n\nD. Plenz, T. L. Ribeiro, S. R. Miller, P. A. Kells, A. Vakili, and E. L. Capek, \"Self-Organized Criticality in the Brain,\" Frontiers in Physics, vol. 9, 2021.\n",
+      "date": "May 12, 2026",
+      "readTime": "6 min read",
+      "category": "Architecture",
+      "tags": [
+        "complex-systems",
+        "genai",
+        "resilience",
+        "devops"
+      ],
+      "featured": false
+    },
+    {
+      "slug": "the-ai-strategy",
+      "language": "pt",
+      "title": "A Estratégia de IA é fácil de pesquisar. A Prontidão da IA é difícil de executar.",
+      "excerpt": "As organizações não falham em prever o impacto da IA. Elas falham em projetar os sistemas sociotécnicos necessários para absorvê-lo.",
+      "content": "\nEm 2026, a \"Estratégia de IA\" corporativa tornou-se uma mercadoria. Se você ler os relatórios anuais do ano passado, todos eles dizem a mesma coisa: a IA gerativa desbloqueará ganhos de produtividade massivos, personalizará a experiência do cliente e otimizará as operações internas. A visão é universalmente aceita. \n\nNo entanto, à medida que passamos da experimentação (pilotos de 2024-2025) para a implantação sistêmica, uma dura realidade está emergindo: **visão não é capacidade.**\n\nA lacuna entre o que a IA promete e o que as organizações podem realmente absorver está se tornando a principal restrição de engenharia da nossa década. Esta não é uma falha de algoritmos ou poder de computação; é uma falha de prontidão sociotécnica.\n\n### A Ilusão da Integração de IA\n\nA maioria das empresas aborda a IA como uma \"integração\". Eles assumem que podem conectar um LLM em seus pipelines de dados existentes ou ferramentas de desenvolvedor e obter valor imediato. Isso é fundamentalmente equivocado. \n\nA IA não é uma atualização de software; é uma força perturbadora de alta velocidade e não determinística. Quando você a injeta em uma arquitetura rígida e determinística—seja o pipeline de CI/CD, o processo de aprovação de conformidade ou os silos organizacionais tradicionais—você não obtém aceleração. Você obtém atrito.\n\n### O Déficit de Prontidão\n\nO déficit de prontidão de IA se manifesta de várias maneiras previsíveis (e prejudiciais):\n\n1. **Aceleração do Gargalo:** Os desenvolvedores usam a IA para gerar código mais rápido, mas o código se acumula em revisões manuais de QA e gargalos de segurança. A velocidade da criação excede a velocidade de validação.\n2. **Entropia de Dados:** Os modelos são apenas tão bons quanto o contexto que recebem. Organizações com arquiteturas de dados fragmentadas e isoladas descobrem que seus agentes de IA produzem alucinações não porque o modelo é falho, mas porque o grafo de conhecimento corporativo está quebrado.\n3. **Colapso Operacional:** Quando a produção de código e conteúdo escala logaritmicamente, ferramentas de gerenciamento antigas e processos de aprovação baseados em humanos entram em colapso sob a carga.\n\n### Engenharia para Absorção\n\nO desafio de 2026 não é construir IA melhor; é construir organizações que possam *absorver* a IA. Isso requer uma mudança de Estratégia de IA para **Prontidão Sistêmica de IA**.\n\nA prontidão requer:\n- **Acoplamento Fraco:** Desacoplamento de sistemas para conter falhas e permitir que diferentes partes da organização adotem ferramentas de IA em seus próprios ritmos.\n- **Validação Automatizada:** Deslocar a carga de validação de revisores humanos para portões de segurança e pipelines de teste automatizados e robustos que podem lidar com a escala do código gerado por IA.\n- **Topologia Sociotécnica:** Alinhamento das estruturas da equipe e dos canais de comunicação para aproveitar as ferramentas de IA de forma colaborativa, em vez de isolada.\n\nO fosso competitivo nos próximos cinco anos não pertencerá àqueles que adotam a IA mais rapidamente, mas àqueles que arquitetam seus sistemas — tanto técnicos quanto humanos — para suportar sua velocidade.\n",
+      "date": "Jan 27, 2026",
+      "readTime": "4 min read",
+      "category": "Strategy",
+      "tags": [
+        "ai",
+        "strategy",
+        "architecture",
+        "complex-systems",
+        "sociotechnical"
+      ],
+      "featured": false
+    }
+  ]
+}
