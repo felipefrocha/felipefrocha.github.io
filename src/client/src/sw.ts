@@ -41,6 +41,11 @@ sw.addEventListener('fetch', (event: FetchEvent) => {
     return;
   }
 
+  // Only handle HTTP and HTTPS requests to prevent chrome-extension / data schema errors
+  if (!url.protocol.startsWith('http')) {
+    return;
+  }
+
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(
       fetch(request)
@@ -77,7 +82,7 @@ sw.addEventListener('fetch', (event: FetchEvent) => {
           if (cachedResponse) {
             fetch(request).then((networkResponse) => {
               if (networkResponse.ok) {
-                cache.put(request, networkResponse);
+                cache.put(request, networkResponse.clone());
               }
             }).catch(() => {});
             return cachedResponse;

@@ -6,7 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MainLayout } from "@/components/templates/MainLayout";
 import { Skeleton } from "@/components/ui/skeleton";
-import { fetchProfile, fetchSocials } from "@/lib/api";
+import { fetchSiteData, type SiteData } from "@/lib/api";
+import { useTranslation } from "react-i18next";
 
 import Home from "@/pages/Home";
 import Blog from "@/pages/Blog";
@@ -36,21 +37,14 @@ function Router() {
 const isDevelopment = import.meta.env.DEV;
 
 function AppContent() {
-  const { data: profile, isLoading: profileLoading } = useQuery<ProfileInfo>({
-    queryKey: ['/api/profile'],
-    queryFn: fetchProfile,
+  const { i18n } = useTranslation();
+
+  const { data: siteData, isLoading } = useQuery<SiteData>({
+    queryKey: ['/api/site-data', i18n.language],
+    queryFn: fetchSiteData,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });
-
-  const { data: socialLinks, isLoading: socialsLoading } = useQuery<SocialLink[]>({
-    queryKey: ['/api/socials'],
-    queryFn: fetchSocials,
-    staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
-    refetchInterval: isDevelopment ? 2000 : false,
-  });
-
-  const isLoading = profileLoading || socialsLoading;
 
   if (isLoading) {
     return (
@@ -74,6 +68,9 @@ function AppContent() {
     { platform: 'linkedin', url: 'https://linkedin.com/in', handle: 'felipefonsecarocha' },
     { platform: 'instagram', url: 'https://instagram.com', handle: '_felipefrocha' },
   ];
+
+  const profile = siteData?.profile;
+  const socialLinks = siteData?.socials;
 
   return (
     <MainLayout

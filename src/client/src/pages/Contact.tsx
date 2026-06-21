@@ -23,6 +23,7 @@ export default function Contact() {
     email: '',
     subject: '',
     message: '',
+    turnstileToken: '',
   });
 
   const { data: profile } = useQuery<ProfileInfo>({
@@ -44,7 +45,7 @@ export default function Contact() {
         title: t('contact.messageSent'),
         description: t('contact.messageSentDescription'),
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '', turnstileToken: '' });
     },
     onError: (error: Error) => {
       toast({
