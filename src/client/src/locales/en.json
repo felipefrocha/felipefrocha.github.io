@@ -34,6 +34,16 @@
     "backToBlog": "Back to Blog",
     "relatedPosts": "Related Posts"
   },
+  "presentation": {
+    "start": "Start Presentation",
+    "readArticle": "Read Article",
+    "viewPresentation": "View Presentation",
+    "articleCtaTitle": "This article has a companion presentation",
+    "articleCtaDescription": "Open the native presentation experience built for this summary.",
+    "keyMetrics": "Key presentation metrics",
+    "notFound": "Presentation Not Found",
+    "notFoundDescription": "The presentation you're looking for doesn't exist."
+  },
   "portfolio": {
     "title": "Portfolio",
     "description": "A collection of projects I've worked on, from personal experiments to production applications. Each project represents a unique challenge and learning experience.",
@@ -96,4 +106,3 @@
     "viewCode": "View Code"
   }
 }
-

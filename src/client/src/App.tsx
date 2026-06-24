@@ -15,6 +15,7 @@ import BlogPost from "@/pages/BlogPost";
 import Portfolio from "@/pages/Portfolio";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import Presentation from "@/pages/Presentation";
 import NotFound from "@/pages/not-found";
 
 import type { ProfileInfo, BlogPost as BlogPostType, SocialLink, Project } from '@shared/schema';
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/portfolio" component={Portfolio} />
+      <Route path="/presentations/:slug" component={Presentation} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />

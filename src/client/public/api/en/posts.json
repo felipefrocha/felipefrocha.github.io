@@ -1,5 +1,81 @@
 [
   {
+    "slug": "agentic-dev-team-tactics-executive-summary",
+    "language": "en",
+    "title": "Executive Summary: Operationalizing the Agentic Dev Team",
+    "excerpt": "A 90-day operating plan for moving from AI experimentation to agent-supervised delivery across brownfield and greenfield contexts.",
+    "content": "\n## The executive signal\n\nAgentic development fails when it is treated as a tool rollout. The real change is operating-model design: who supervises agents, which gates are safe to flip, what context is required, and how the team knows whether autonomy is improving.\n\nThe first 90 days should not automate everything. They should build the map, select the first gates, observe agent divergence, and convert validated patterns into team standards.\n\n## What must change\n\nThe team needs different paths for brownfield and greenfield work. Brownfield contexts usually start with regression-safe gates such as test generation and review support. Greenfield contexts can start with spec-to-scaffold workflows, but only when tickets include clear acceptance criteria, constraints, and expected output shape.\n\nEach gate needs a supervisor, a definition of correct output, a shadow-mode period, and explicit flip criteria. This prevents agent use from becoming informal improvisation hidden inside individual developer workflows.\n\n## The leadership takeaway\n\nThe practical target is not \"everyone uses AI.\" The target is a repeatable gate pattern that can be handed from senior engineers to the broader team without losing quality.\n\nBy the end of 90 days, leadership should have baseline-to-current metrics, documented intervention reasons, a gate pattern, and a six-month roadmap for expanding autonomy where it is already proving reliable.\n\n## What the presentation covers\n\nThe companion presentation turns the operating model into a tactical workspace: phases, weekly actions, context filters, gate sequencing, and the metric stack needed to manage an agent-augmented dev team.\n",
+    "date": "Jun 24, 2026",
+    "readTime": "4 min read",
+    "category": "AI Strategy",
+    "tags": [
+      "agentic",
+      "operating-model",
+      "engineering-management",
+      "sdlc"
+    ],
+    "featured": false,
+    "presentationSlug": "agentic-dev-team-tactics",
+    "author": "Felipe F. Rocha"
+  },
+  {
+    "slug": "agentic-metrics-stack-executive-summary",
+    "language": "en",
+    "title": "Executive Summary: Stop Counting Code, Start Measuring Leverage",
+    "excerpt": "Agentic development breaks traditional output metrics. The better scorecard measures intervention rate, quality movement, and leverage per developer.",
+    "content": "\n## The executive signal\n\nCounting code worked when output was constrained by human typing speed. Agentic development changes that premise. If a team measures lines, pull requests, or raw velocity, it can reward the exact behaviors that increase downstream review load, defects, and rework.\n\nThe question is no longer \"how much did the team produce?\" The better question is \"how much reliable leverage did each human create through the system?\"\n\n## What must change\n\nThe scorecard needs to move from activity metrics to control metrics. Useful signals include PR cycle time, toil index, test coverage movement, human intervention rate, and feature delivery coverage per developer.\n\nHuman intervention rate is especially important. It shows how often agent output still requires structural correction or rejection. When that number declines while quality remains stable or improves, the team is not just producing more work; it is building a more reliable operating model.\n\n## The leadership takeaway\n\nAgentic delivery should be managed as a system of leverage, not as a contest of output volume. Leaders need baselines before rollout, separate views for different delivery contexts, and a regular cadence for reading trends instead of anecdotes.\n\nThe highest-value metric stack is not a report card. It is a control panel that shows where autonomy is compounding and where human judgment is still the bottleneck.\n\n## What the presentation covers\n\nThe companion presentation reframes obsolete productivity metrics, introduces the metric hierarchy, defines the five core signals, and shows how to use them as an operating model for agent-augmented engineering teams.\n",
+    "date": "Jun 24, 2026",
+    "readTime": "4 min read",
+    "category": "AI Strategy",
+    "tags": [
+      "metrics",
+      "agentic",
+      "engineering-leadership",
+      "productivity"
+    ],
+    "featured": false,
+    "presentationSlug": "agentic-metrics-stack",
+    "author": "Felipe F. Rocha"
+  },
+  {
+    "slug": "production-ai-agents-executive-summary",
+    "language": "en",
+    "title": "Executive Summary: Architecting the Enterprise for Production AI Agents",
+    "excerpt": "Production AI agents require more than model access. They need context infrastructure, deterministic gates, and operating metrics built for autonomy.",
+    "content": "\n## The executive signal\n\nAI adoption is no longer blocked by model availability. The real constraint is the enterprise architecture around the model: how context is assembled, how decisions are bounded, how state changes are sequenced, and how quality is measured after humans stop writing every line by hand.\n\nIndividual productivity gains can be real and still fail to become organizational throughput. When agents operate against fragmented knowledge, weak governance, and manual validation bottlenecks, the output curve rises while delivery reliability falls.\n\n## What must change\n\nProduction agents need a dedicated infrastructure layer. The minimum viable stack combines a contextual data layer, procedural memory, deterministic policy gates, and an execution harness that owns state instead of assuming agents can safely mutate systems in parallel.\n\nThe goal is not to let models improvise across the SDLC. The goal is to create a controlled prompt-to-production pipeline where probabilistic reasoning is surrounded by deterministic checks, auditable decisions, and measurable operational outcomes.\n\n## The leadership takeaway\n\nThe next maturity step is moving from AI-enabled teams to agent-ready systems. That requires mapping the highest-risk bottlenecks first: knowledge gaps, approval gates, deployment ownership, test quality, and escaped defects.\n\nOrganizations that win with agents will not be the ones with the most prompts. They will be the ones that can govern autonomy, measure leverage, and continuously reduce the human intervention required to deliver safe changes.\n\n## What the presentation covers\n\nThe companion presentation translates this summary into an executive flow: the strategic shift, the required architecture stack, the maturity curve, the scorecard, and the action plan for securing an agentic SDLC.\n",
+    "date": "Jun 24, 2026",
+    "readTime": "4 min read",
+    "category": "AI Strategy",
+    "tags": [
+      "ai-agents",
+      "architecture",
+      "governance",
+      "sdlc"
+    ],
+    "featured": false,
+    "presentationSlug": "production-ai-agents",
+    "author": "Felipe F. Rocha"
+  },
+  {
+    "slug": "agentic-sdlc",
+    "language": "en",
+    "title": "The Agentic SDLC: A Strategic Blueprint for Enterprise AI-Driven Development",
+    "excerpt": "Most enterprises are adding AI to their SDLC. The ones winning are rebuilding the SDLC for AI. Here is the blueprint.",
+    "content": "\n## The Paradox at the Heart of AI Adoption\n\nThe data is in — and it tells a conflicting story. Analysis of over 211 million lines of code shows that unstructured AI adoption is **accelerating technical debt, not velocity**. Copy-paste code instances surged 48%. Structural refactoring dropped 60%. Meanwhile, structured agentic systems are achieving 2–3× completion velocity with 60%+ code acceptance rates.\n\nThe difference is not the AI. The difference is the architecture around it.\n\n## Why Single-Agent Approaches Fail at Scale\n\nThree systemic failure modes emerge consistently across enterprise AI rollouts:\n\n**1. Correlated Hallucinations.** When a single agent reviews its own work, it uses the same reasoning pathways that generated the errors in the first place. There is no independent validation — so hallucinations survive internal review, infinite retry loops form, and no quality gate catches them.\n\n**2. State Collision Under Parallelism.** Multiple agents operating simultaneously assume a shared global state. Write operations corrupt architecture. Implicit decisions conflict. Cognition's own research confirms: parallel writes fail. Serial writes with isolated verification succeed.\n\n**3. The Three-Month Maintenance Wall.** \"Vibe coding\" prioritises speed over intent documentation. Teams hit a wall where accumulated rework, discovered architectural flaws, and unmaintainable technical debt paralyses delivery entirely.\n\nThe root cause: repositories are designed for humans. SDLC processes treat AI as improvisation. The fix requires a structural rebuild.\n\n## The Agentic SDLC Maturity Model\n\nProgress unfolds across four distinct levels:\n\n- **Level 1 — Copilots:** Humans architect, AI writes syntax.\n- **Level 2 — Semi-Autonomous:** Humans orchestrate, AI executes multi-step workflows.\n- **Level 3 — Spec-Driven Multi-Agent:** Humans specify, agents plan, execute, and verify independently.\n- **Level 4 — Autonomous SDLC:** Agents propose priorities, humans coach.\n\nMost enterprises should target **Level 3 within six months**. Level 4 is the long-term horizon.\n\n## Three Pillars of Enterprise-Grade Agentic Development\n\n### Pillar 1: Agent-Friendly Repository Foundation\n\nThe repository must be legible to agents. This means:\n- **AGENTS.md / CLAUDE.md** committed to git — domain context and operational guardrails, under 150 lines, hand-written.\n- **Code SEO** — descriptive filenames, directory READMEs, synonym integration so agents find what they need without burning context.\n- **`evals/` directory** — golden datasets (JSONL), versioned test suites, CI wired to run on code changes.\n- **Single-entry task runner** — Makefile or npm scripts for test, lint, and typecheck.\n\n### Pillar 2: Spec-Driven Multi-Agent Orchestration\n\nThe Coordinator-Implementor-Verifier (CIV) pattern separates planning, execution, and validation into independent reasoning paths. No agent reviews its own work:\n- **SPEC.md** is a living artifact: Overview, Architecture, Component Contracts, Constraints.\n- **Git worktrees** provide physical isolation — each agent works in its own branch, no state collisions.\n- **Merge-Readiness Pack (MRP)** — an evidence bundle (tests, SAST, performance traces, proofs) for human review.\n\n### Pillar 3: Deterministic Safety Layer\n\nThe hybrid safety approach combines deterministic rules (sandboxed, 20ms, 100% reproducible) with LLM evaluation only at the edges where logic fails. This combination moves compliance from 60% to 80–90% at enterprise scale. Knowledge Graphs enable multi-hop reasoning over live enterprise architecture.\n\n## The ROI and Investment Path\n\n| Level | Investment | Timeline |\n|---|---|---|\n| Level 1 | $0 (tooling exists) | 2 weeks |\n| Level 2 | $50–100K + 1 FTE | 6–8 weeks |\n| Level 3 | $200–400K + 2–3 FTE | 3–4 months |\n| Level 4 | $500K+ + 3–5 FTE | 6+ months |\n\nROI typically breaks even at **Level 3**: 3–4× task completion velocity, 60%+ code acceptance rates.\n\n## Starting This Week\n\n**Days 1–5:** Draft and commit AGENTS.md. Don't wait for perfect — 20 curated eval cases beats perfection delayed.\n\n**Days 6–15:** Implement Code SEO across the highest-traffic repositories.\n\n**Days 16–30:** Deploy `evals/` with a golden dataset. Wire CI. Identify first features for Level 3 pilot.\n\nThe organisations that win the agentic era will not be those who added AI to their SDLC. They will be those who rebuilt the SDLC for AI.\n\n---\n\n*Author: Felipe F. Rocha · Systems Engineer & AI Strategist*\n",
+    "date": "May 31, 2026",
+    "readTime": "8 min read",
+    "category": "AI Strategy",
+    "tags": [
+      "agentic",
+      "sdlc",
+      "enterprise",
+      "architecture",
+      "devops"
+    ],
+    "featured": true,
+    "presentationSlug": "agentic-sdlc"
+  },
+  {
     "slug": "the-complexity-of-ai",
     "language": "en",
     "title": "The AI Phase Transition: Engineering Adaptive Resilience",

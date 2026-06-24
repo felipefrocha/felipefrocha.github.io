@@ -29,6 +29,8 @@ export const blogPostSchema = z.object({
   tags: z.array(z.string()),
   featured: z.boolean().optional(),
   image: z.string().optional(),
+  presentationSlug: z.string().optional(),
+  author: z.string().optional(),
 });
 
 export type BlogPost = z.infer<typeof blogPostSchema>;

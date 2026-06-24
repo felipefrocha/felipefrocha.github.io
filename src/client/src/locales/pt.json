@@ -34,6 +34,16 @@
     "backToBlog": "Voltar ao Blog",
     "relatedPosts": "Posts Relacionados"
   },
+  "presentation": {
+    "start": "Iniciar Apresentação",
+    "readArticle": "Ler Artigo",
+    "viewPresentation": "Ver Apresentação",
+    "articleCtaTitle": "Este artigo tem uma apresentação complementar",
+    "articleCtaDescription": "Abra a experiência nativa de apresentação criada para este resumo.",
+    "keyMetrics": "Métricas principais da apresentação",
+    "notFound": "Apresentação Não Encontrada",
+    "notFoundDescription": "A apresentação que você está procurando não existe."
+  },
   "portfolio": {
     "title": "Portfólio",
     "description": "Uma coleção de projetos nos quais trabalhei, desde experimentos pessoais até aplicações em produção. Cada projeto representa um desafio único e uma experiência de aprendizado.",
@@ -96,4 +106,3 @@
     "viewCode": "Ver Código"
   }
 }
-

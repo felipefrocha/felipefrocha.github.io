@@ -1,5 +1,81 @@
 [
   {
+    "slug": "agentic-dev-team-tactics-executive-summary",
+    "language": "pt",
+    "title": "Resumo Executivo: Operacionalizando o Time de Desenvolvimento Agêntico",
+    "excerpt": "Um plano operacional de 90 dias para sair da experimentação com IA e chegar à entrega supervisionada por agentes em contextos brownfield e greenfield.",
+    "content": "\n## O sinal executivo\n\nDesenvolvimento agêntico falha quando é tratado como rollout de ferramenta. A mudança real é desenho de modelo operacional: quem supervisiona agentes, quais gates são seguros para ativar, qual contexto é necessário e como a equipe sabe se a autonomia está melhorando.\n\nOs primeiros 90 dias não devem automatizar tudo. Eles devem construir o mapa, selecionar os primeiros gates, observar divergência dos agentes e converter padrões validados em standards da equipe.\n\n## O que precisa mudar\n\nA equipe precisa de caminhos diferentes para trabalhos brownfield e greenfield. Contextos brownfield normalmente começam por gates seguros contra regressão, como geração de testes e apoio à revisão. Contextos greenfield podem começar por fluxos de spec-to-scaffold, mas apenas quando os tickets incluem critérios de aceite claros, restrições e formato esperado de output.\n\nCada gate precisa de supervisor, definição de output correto, período em shadow mode e critérios explícitos de ativação. Isso impede que o uso de agentes vire improvisação informal escondida dentro de workflows individuais.\n\n## A mensagem para liderança\n\nO alvo prático não é \"todo mundo usa IA\". O alvo é um padrão repetível de gates que possa ser transferido de pessoas engenheiras seniores para o restante da equipe sem perder qualidade.\n\nAo final de 90 dias, a liderança deve ter métricas de baseline versus estado atual, razões documentadas de intervenção, um padrão de gate e um roadmap de seis meses para expandir autonomia onde ela já se mostra confiável.\n\n## O que a apresentação cobre\n\nA apresentação complementar transforma o modelo operacional em um workspace tático: fases, ações semanais, filtros de contexto, sequência de gates e o stack de métricas necessário para gerenciar um time de desenvolvimento aumentado por agentes.\n",
+    "date": "Jun 24, 2026",
+    "readTime": "4 min de leitura",
+    "category": "Estratégia de IA",
+    "tags": [
+      "agêntico",
+      "modelo-operacional",
+      "gestão-engenharia",
+      "sdlc"
+    ],
+    "featured": false,
+    "presentationSlug": "agentic-dev-team-tactics",
+    "author": "Felipe F. Rocha"
+  },
+  {
+    "slug": "agentic-metrics-stack-executive-summary",
+    "language": "pt",
+    "title": "Resumo Executivo: Pare de Contar Código, Comece a Medir Alavancagem",
+    "excerpt": "O desenvolvimento agêntico quebra métricas tradicionais de output. O melhor scorecard mede intervenção humana, movimento de qualidade e alavancagem por pessoa desenvolvedora.",
+    "content": "\n## O sinal executivo\n\nContar código funcionava quando o output era limitado pela velocidade de digitação humana. O desenvolvimento agêntico muda essa premissa. Se uma equipe mede linhas, pull requests ou velocidade bruta, pode recompensar exatamente os comportamentos que aumentam carga de revisão, defeitos e retrabalho.\n\nA pergunta não é mais \"quanto a equipe produziu?\". A melhor pergunta é \"quanta alavancagem confiável cada pessoa criou por meio do sistema?\".\n\n## O que precisa mudar\n\nO scorecard precisa sair de métricas de atividade e ir para métricas de controle. Sinais úteis incluem tempo de ciclo de PR, índice de toil, evolução de cobertura de testes, taxa de intervenção humana e cobertura de entrega de funcionalidades por pessoa desenvolvedora.\n\nA taxa de intervenção humana é especialmente importante. Ela mostra com que frequência o output do agente ainda exige correção estrutural ou rejeição. Quando esse número cai enquanto a qualidade se mantém ou melhora, a equipe não está apenas produzindo mais; ela está construindo um modelo operacional mais confiável.\n\n## A mensagem para liderança\n\nEntrega agêntica deve ser gerenciada como um sistema de alavancagem, não como uma disputa por volume de output. Lideranças precisam de baselines antes do rollout, visões separadas por contexto de entrega e uma cadência regular para ler tendências em vez de anedotas.\n\nO stack de métricas de maior valor não é um boletim. É um painel de controle que mostra onde a autonomia está compondo e onde o julgamento humano ainda é o gargalo.\n\n## O que a apresentação cobre\n\nA apresentação complementar reenquadra métricas obsoletas de produtividade, introduz a hierarquia de métricas, define os cinco sinais centrais e mostra como usá-los como modelo operacional para equipes de engenharia aumentadas por agentes.\n",
+    "date": "Jun 24, 2026",
+    "readTime": "4 min de leitura",
+    "category": "Estratégia de IA",
+    "tags": [
+      "métricas",
+      "agêntico",
+      "liderança-engenharia",
+      "produtividade"
+    ],
+    "featured": false,
+    "presentationSlug": "agentic-metrics-stack",
+    "author": "Felipe F. Rocha"
+  },
+  {
+    "slug": "production-ai-agents-executive-summary",
+    "language": "pt",
+    "title": "Resumo Executivo: Arquitetando a Empresa para Agentes de IA em Produção",
+    "excerpt": "Agentes de IA em produção exigem mais do que acesso a modelos. Eles precisam de infraestrutura de contexto, gates determinísticos e métricas operacionais para autonomia.",
+    "content": "\n## O sinal executivo\n\nA adoção de IA não está mais bloqueada pela disponibilidade de modelos. A restrição real está na arquitetura corporativa ao redor do modelo: como o contexto é reunido, como decisões são limitadas, como mudanças de estado são sequenciadas e como qualidade é medida quando humanos deixam de escrever cada linha manualmente.\n\nGanhos individuais de produtividade podem ser reais e ainda assim não virar throughput organizacional. Quando agentes operam sobre conhecimento fragmentado, governança fraca e gargalos manuais de validação, a curva de produção sobe enquanto a confiabilidade da entrega cai.\n\n## O que precisa mudar\n\nAgentes em produção precisam de uma camada dedicada de infraestrutura. O stack mínimo combina uma camada de dados contextual, memória procedural, gates determinísticos de política e um harness de execução que controla estado em vez de assumir que agentes podem modificar sistemas em paralelo com segurança.\n\nO objetivo não é permitir que modelos improvisem pelo SDLC. O objetivo é criar um pipeline controlado de prompt até produção, no qual raciocínio probabilístico é cercado por verificações determinísticas, decisões auditáveis e resultados operacionais mensuráveis.\n\n## A mensagem para liderança\n\nO próximo estágio de maturidade é sair de equipes habilitadas por IA para sistemas prontos para agentes. Isso exige mapear primeiro os gargalos de maior risco: lacunas de conhecimento, gates de aprovação, ownership de deploy, qualidade de testes e defeitos escapados.\n\nAs organizações que vencerem com agentes não serão as que tiverem mais prompts. Serão as que conseguirem governar autonomia, medir alavancagem e reduzir continuamente a intervenção humana necessária para entregar mudanças seguras.\n\n## O que a apresentação cobre\n\nA apresentação complementar transforma este resumo em um fluxo executivo: a mudança estratégica, o stack arquitetural necessário, a curva de maturidade, o scorecard e o plano de ação para proteger um SDLC agêntico.\n",
+    "date": "Jun 24, 2026",
+    "readTime": "4 min de leitura",
+    "category": "Estratégia de IA",
+    "tags": [
+      "agentes-ia",
+      "arquitetura",
+      "governança",
+      "sdlc"
+    ],
+    "featured": false,
+    "presentationSlug": "production-ai-agents",
+    "author": "Felipe F. Rocha"
+  },
+  {
+    "slug": "agentic-sdlc",
+    "language": "pt",
+    "title": "O SDLC Agêntico: Um Blueprint Estratégico para o Desenvolvimento Empresarial com IA",
+    "excerpt": "A maioria das empresas está adicionando IA ao seu SDLC. As que estão ganhando estão reconstruindo o SDLC para a IA. Aqui está o blueprint.",
+    "content": "\n## O Paradoxo no Coração da Adoção de IA\n\nOs dados chegaram — e contam uma história contraditória. A análise de mais de 211 milhões de linhas de código mostra que a adoção desestruturada de IA está **acelerando a dívida técnica, não a velocidade**. Instâncias de código copiado e colado aumentaram 48%. A refatoração estrutural caiu 60%. Ao mesmo tempo, sistemas agênticos estruturados estão atingindo 2–3× de velocidade de conclusão com taxas de aceitação de código acima de 60%.\n\nA diferença não é a IA. A diferença é a arquitetura ao redor dela.\n\n## Por Que Abordagens de Agente Único Falham em Escala\n\nTrês modos de falha sistêmica emergem consistentemente nas implementações de IA empresarial:\n\n**1. Alucinações Correlacionadas.** Quando um único agente revisa seu próprio trabalho, ele usa os mesmos caminhos de raciocínio que geraram os erros. Não há validação independente — então as alucinações sobrevivem à revisão interna, loops de repetição infinita se formam e nenhum gate de qualidade os captura.\n\n**2. Colisão de Estado Sob Paralelismo.** Vários agentes operando simultaneamente assumem um estado global compartilhado. As operações de escrita corrompem a arquitetura. Decisões implícitas conflitam. A própria pesquisa da Cognition confirma: escritas paralelas falham. Escritas seriais com verificação isolada têm sucesso.\n\n**3. O Muro dos Três Meses.** O \"vibe coding\" prioriza a velocidade em detrimento da documentação de intenção. As equipes atingem um muro onde o retrabalho acumulado, falhas arquiteturais descobertas e a dívida técnica impossível de manter paralisam a entrega por completo.\n\nA causa raiz: repositórios são projetados para humanos. Os processos de SDLC tratam a IA como improvisação. A correção requer uma reconstrução estrutural.\n\n## O Modelo de Maturidade do SDLC Agêntico\n\nO progresso se desdobra em quatro níveis distintos:\n\n- **Nível 1 — Copilotos:** Humanos arquitetam, IA escreve sintaxe.\n- **Nível 2 — Semiautônomo:** Humanos orquestram, IA executa fluxos de trabalho de várias etapas.\n- **Nível 3 — Multiagente Orientado a Especificações:** Humanos especificam, agentes planejam, executam e verificam de forma independente.\n- **Nível 4 — SDLC Autônomo:** Agentes propõem prioridades, humanos orientam.\n\nA maioria das empresas deve atingir o **Nível 3 em seis meses**. O Nível 4 é o horizonte de longo prazo.\n\n## Três Pilares do Desenvolvimento Agêntico de Nível Empresarial\n\n### Pilar 1: Fundação de Repositório Amigável a Agentes\n\nO repositório deve ser legível para agentes. Isso significa:\n- **AGENTS.md / CLAUDE.md** confirmados no git — contexto de domínio e proteções operacionais, menos de 150 linhas, escritos à mão.\n- **Code SEO** — nomes de arquivos descritivos, READMEs de diretório, integração de sinônimos para que os agentes encontrem o que precisam sem gastar contexto.\n- **Diretório `evals/`** — conjuntos de dados dourados (JSONL), suítes de teste versionadas, CI configurado para ser executado em alterações de código.\n- **Executor de tarefas de entrada única** — Makefile ou scripts npm para teste, lint e verificação de tipos.\n\n### Pilar 2: Orquestração Multiagente Orientada a Especificações\n\nO padrão Coordenador-Implementador-Verificador (CIV) separa planejamento, execução e validação em caminhos de raciocínio independentes. Nenhum agente revisa seu próprio trabalho:\n- **SPEC.md** é um artefato vivo: Visão geral, Arquitetura, Contratos de Componentes, Restrições.\n- **Git worktrees** fornecem isolamento físico — cada agente trabalha em seu próprio branch, sem colisões de estado.\n- **Pacote de Prontidão para Merge (MRP)** — um pacote de evidências (testes, SAST, traces de desempenho, provas) para revisão humana.\n\n### Pilar 3: Camada de Segurança Determinística\n\nA abordagem híbrida de segurança combina regras determinísticas (sandboxed, 20ms, 100% reproduzíveis) com avaliação de LLM apenas nas bordas onde a lógica falha. Essa combinação move a conformidade de 60% para 80–90% em escala empresarial. Os Grafos de Conhecimento permitem raciocínio multi-hop sobre a arquitetura empresarial ativa.\n\n## O Caminho de ROI e Investimento\n\n| Nível | Investimento | Prazo |\n|---|---|---|\n| Nível 1 | $0 (ferramentas existem) | 2 semanas |\n| Nível 2 | $50–100K + 1 FTE | 6–8 semanas |\n| Nível 3 | $200–400K + 2–3 FTE | 3–4 meses |\n| Nível 4 | $500K+ + 3–5 FTE | 6+ meses |\n\nO ROI normalmente atinge o ponto de equilíbrio no **Nível 3**: 3–4× de velocidade de conclusão de tarefas, taxas de aceitação de código acima de 60%.\n\n## Começando Esta Semana\n\n**Dias 1–5:** Rascunhe e confirme o AGENTS.md. Não espere a perfeição — 20 casos de avaliação curados superam a perfeição adiada.\n\n**Dias 6–15:** Implemente Code SEO nos repositórios de maior tráfego.\n\n**Dias 16–30:** Implante `evals/` com um conjunto de dados dourado. Configure o CI. Identifique os primeiros recursos para o piloto de Nível 3.\n\nAs organizações que vencerão a era agêntica não serão aquelas que adicionaram IA ao seu SDLC. Serão aquelas que reconstruíram o SDLC para a IA.\n\n---\n\n*Autor: Felipe F. Rocha · Engenheiro de Sistemas & Estrategista de IA*\n",
+    "date": "May 31, 2026",
+    "readTime": "8 min de leitura",
+    "category": "AI Strategy",
+    "tags": [
+      "agêntico",
+      "sdlc",
+      "empresa",
+      "arquitetura",
+      "devops"
+    ],
+    "featured": true,
+    "presentationSlug": "agentic-sdlc"
+  },
+  {
     "slug": "the-complexity-of-ai",
     "language": "pt",
     "title": "A Transição de Fase da IA: Engenharia de Resiliência Adaptativa",

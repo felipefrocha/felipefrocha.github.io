@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SEO } from '@/components/atoms/SEO';
 import { generateBlogPostSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
-import { ArrowLeft, Calendar, Clock, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, ChevronRight, MonitorPlay, UserRound } from 'lucide-react';
 import type { BlogPost, ProfileInfo, SocialLink, Project } from '@shared/schema';
 import { fetchPost, fetchAllPosts, fetchProfile } from '@/lib/api';
 
@@ -83,6 +83,7 @@ export default function BlogPostPage() {
   const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
   const postUrl = `${siteUrl}/blog/${slug}`;
   const publishedDate = post.date ? new Date(post.date).toISOString() : undefined;
+  const author = post.author || profile?.name || 'Felipe F. Rocha';
   const breadcrumbItems = [
     { name: 'Home', url: siteUrl },
     { name: 'Blog', url: `${siteUrl}/blog` },
@@ -98,7 +99,7 @@ export default function BlogPostPage() {
         canonical={postUrl}
         publishedTime={publishedDate}
         modifiedTime={publishedDate}
-        author={profile?.name || 'Felipe F. Rocha'}
+        author={author}
         tags={post.tags}
         structuredData={[
           generateBlogPostSchema(post, profile || undefined),
@@ -138,6 +139,10 @@ export default function BlogPostPage() {
               <Clock className="h-4 w-4" />
               {post.readTime}
             </span>
+            <span className="flex items-center gap-1">
+              <UserRound className="h-4 w-4" />
+              {author}
+            </span>
           </div>
         </header>
 
@@ -147,6 +152,25 @@ export default function BlogPostPage() {
           </p>
           
           <Separator className="my-8" />
+
+          {post.presentationSlug && (
+            <div className="not-prose mb-8 border border-border bg-card p-5">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="font-medium">{t('presentation.articleCtaTitle')}</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {t('presentation.articleCtaDescription')}
+                  </p>
+                </div>
+                <Button asChild>
+                  <Link href={`/presentations/${post.presentationSlug}`}>
+                    <MonitorPlay className="h-4 w-4 mr-2" />
+                    {t('presentation.viewPresentation')}
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          )}
 
           <div 
             className="space-y-6"

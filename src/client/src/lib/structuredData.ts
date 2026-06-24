@@ -82,12 +82,12 @@ export function generateBlogPostSchema(post: BlogPost, profile?: ProfileInfo) {
     dateModified: post.date,
     author: {
       '@type': 'Person',
-      name: profile?.name || 'Felipe F. Rocha',
+      name: post.author || profile?.name || 'Felipe F. Rocha',
       url: SITE_URL,
     },
     publisher: {
       '@type': 'Person',
-      name: profile?.name || 'Felipe F. Rocha',
+      name: profile?.name || post.author || 'Felipe F. Rocha',
       url: SITE_URL,
     },
     mainEntityOfPage: {
@@ -134,4 +134,3 @@ export function generateCollectionPageSchema(title: string, description: string,
     },
   };
 }
-

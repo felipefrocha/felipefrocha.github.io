@@ -58,6 +58,8 @@ export function getAllBlogPosts(): BlogPost[] {
           tags: data.tags || [],
           featured: data.featured || false,
           image: data.image || undefined,
+          presentationSlug: data.presentationSlug || undefined,
+          author: data.author || undefined,
         } as BlogPost);
       } catch (error) {
         console.error(`Error reading blog post ${file}:`, error);
