@@ -32,6 +32,111 @@ export interface Presentation {
 
 export const presentations: Presentation[] = [
   {
+    slug: 'agentic-sdlc',
+    accent: 'blue',
+    translations: {
+      en: {
+        title: 'The Agentic SDLC',
+        subtitle: 'A strategic blueprint for rebuilding enterprise software delivery around AI agents, deterministic safety, and measurable autonomy.',
+        kicker: 'Enterprise blueprint',
+        articleSlug: 'agentic-sdlc',
+        metrics: [
+          { label: 'Maturity target', value: 'Level 3', note: 'Spec-driven multi-agent delivery within six months.' },
+          { label: 'Core pillars', value: '3', note: 'Agent-friendly repos, CIV orchestration, and deterministic safety.' },
+          { label: 'Pilot window', value: '30 days', note: 'Context, code SEO, evals, CI, and first Level 3 candidates.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Adoption paradox',
+            title: 'AI alone is accelerating debt, not delivery.',
+            body: 'Unstructured AI use increases generated code volume while reducing structural refactoring and architectural intent capture.',
+            points: ['Treat velocity without validation as risk.', 'Separate tool adoption from operating-model maturity.', 'Design the SDLC around AI rather than adding AI to the old one.'],
+          },
+          {
+            eyebrow: '02 / Enterprise architecture',
+            title: 'Repositories and workflows must become agent-legible.',
+            body: 'Agentic delivery needs explicit operating context, code discovery signals, golden evals, and a single task runner agents can trust.',
+            points: ['Commit concise AGENTS.md or CLAUDE.md guidance.', 'Use Code SEO so agents find the right files quickly.', 'Wire evals and CI before expanding autonomy.'],
+          },
+          {
+            eyebrow: '03 / Multi-agent control',
+            title: 'No agent should validate its own work.',
+            body: 'The Coordinator-Implementor-Verifier pattern separates planning, execution, and independent validation so correlated hallucinations are caught before merge.',
+            points: ['Use specs as living contracts.', 'Isolate execution with branches or worktrees.', 'Require merge-readiness evidence for human review.'],
+          },
+        ],
+        actionTitle: 'Rebuild the SDLC for governed autonomy.',
+        actionBody: 'Start with the first 30 days: commit agent context, improve repository discoverability, add evals, wire CI, and select the first Level 3 pilot candidates.',
+      },
+      pt: {
+        title: 'O SDLC Agentico',
+        subtitle: 'Um blueprint estrategico para reconstruir entrega de software empresarial em torno de agentes de IA, seguranca deterministica e autonomia mensuravel.',
+        kicker: 'Blueprint empresarial',
+        articleSlug: 'agentic-sdlc',
+        metrics: [
+          { label: 'Meta de maturidade', value: 'Nivel 3', note: 'Entrega multiagente orientada por specs em ate seis meses.' },
+          { label: 'Pilares centrais', value: '3', note: 'Repos agent-friendly, orquestracao CIV e seguranca deterministica.' },
+          { label: 'Janela piloto', value: '30 dias', note: 'Contexto, Code SEO, evals, CI e primeiros candidatos ao Nivel 3.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Paradoxo da adocao',
+            title: 'IA sozinha acelera divida, nao entrega.',
+            body: 'Uso nao estruturado de IA aumenta volume de codigo gerado enquanto reduz refatoracao estrutural e captura de intencao arquitetural.',
+            points: ['Tratar velocidade sem validacao como risco.', 'Separar adocao de ferramenta de maturidade operacional.', 'Desenhar o SDLC ao redor de IA, nao apenas adicionar IA ao modelo antigo.'],
+          },
+          {
+            eyebrow: '02 / Arquitetura empresarial',
+            title: 'Repositorios e workflows precisam ser legiveis para agentes.',
+            body: 'Entrega agentica exige contexto operacional explicito, sinais de descoberta de codigo, evals dourados e um runner unico de tarefas confiavel.',
+            points: ['Commitar orientacoes concisas em AGENTS.md ou CLAUDE.md.', 'Usar Code SEO para agentes encontrarem os arquivos certos rapido.', 'Conectar evals e CI antes de expandir autonomia.'],
+          },
+          {
+            eyebrow: '03 / Controle multiagente',
+            title: 'Nenhum agente deve validar o proprio trabalho.',
+            body: 'O padrao Coordinator-Implementor-Verifier separa planejamento, execucao e validacao independente para capturar alucinacoes correlacionadas antes do merge.',
+            points: ['Usar specs como contratos vivos.', 'Isolar execucao com branches ou worktrees.', 'Exigir evidencia de merge-readiness para revisao humana.'],
+          },
+        ],
+        actionTitle: 'Reconstrua o SDLC para autonomia governada.',
+        actionBody: 'Comece pelos primeiros 30 dias: commit do contexto para agentes, melhoria da descoberta do repositorio, criacao de evals, CI conectado e selecao dos primeiros pilotos de Nivel 3.',
+      },
+      es: {
+        title: 'El SDLC Agentico',
+        subtitle: 'Un blueprint estrategico para reconstruir la entrega de software empresarial alrededor de agentes de IA, seguridad deterministica y autonomia medible.',
+        kicker: 'Blueprint empresarial',
+        articleSlug: 'agentic-sdlc',
+        metrics: [
+          { label: 'Meta de madurez', value: 'Nivel 3', note: 'Entrega multiagente guiada por specs en hasta seis meses.' },
+          { label: 'Pilares centrales', value: '3', note: 'Repos agent-friendly, orquestacion CIV y seguridad deterministica.' },
+          { label: 'Ventana piloto', value: '30 dias', note: 'Contexto, Code SEO, evals, CI y primeros candidatos a Nivel 3.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Paradoja de adopcion',
+            title: 'La IA sola acelera deuda, no entrega.',
+            body: 'El uso no estructurado de IA aumenta el volumen de codigo generado mientras reduce refactorizacion estructural y captura de intencion arquitectonica.',
+            points: ['Tratar velocidad sin validacion como riesgo.', 'Separar adopcion de herramienta de madurez operativa.', 'Disenar el SDLC alrededor de IA, no solo agregar IA al modelo antiguo.'],
+          },
+          {
+            eyebrow: '02 / Arquitectura empresarial',
+            title: 'Repositorios y workflows deben ser legibles para agentes.',
+            body: 'La entrega agentica exige contexto operativo explicito, senales de descubrimiento de codigo, evals dorados y un runner unico de tareas confiable.',
+            points: ['Commitar guias concisas en AGENTS.md o CLAUDE.md.', 'Usar Code SEO para que los agentes encuentren rapido los archivos correctos.', 'Conectar evals y CI antes de expandir autonomia.'],
+          },
+          {
+            eyebrow: '03 / Control multiagente',
+            title: 'Ningun agente debe validar su propio trabajo.',
+            body: 'El patron Coordinator-Implementor-Verifier separa planificacion, ejecucion y validacion independiente para capturar alucinaciones correlacionadas antes del merge.',
+            points: ['Usar specs como contratos vivos.', 'Aislar ejecucion con branches o worktrees.', 'Exigir evidencia de merge-readiness para revision humana.'],
+          },
+        ],
+        actionTitle: 'Reconstruye el SDLC para autonomia gobernada.',
+        actionBody: 'Empieza por los primeros 30 dias: commit del contexto para agentes, mejora de descubrimiento del repositorio, creacion de evals, CI conectado y seleccion de los primeros pilotos de Nivel 3.',
+      },
+    },
+  },
+  {
     slug: 'production-ai-agents',
     accent: 'teal',
     translations: {
