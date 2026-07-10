@@ -1,5 +1,27 @@
 [
   {
+    "id": "vidafire",
+    "title": "VidaFire",
+    "description": "A personal finance and FIRE planning platform built to turn daily financial decisions into long-term independence scenarios. VidaFire combines authenticated budget tracking, transaction history, localized currency defaults, simulation paths, and cloud-native delivery so users can understand how today's habits affect tomorrow's optionality.",
+    "translations": {
+      "en": {
+        "title": "VidaFire",
+        "description": "A personal finance and FIRE planning platform built to turn daily financial decisions into long-term independence scenarios. VidaFire combines authenticated budget tracking, transaction history, localized currency defaults, simulation paths, and cloud-native delivery so users can understand how today's habits affect tomorrow's optionality."
+      },
+      "pt": {
+        "title": "VidaFire",
+        "description": "Uma plataforma de finanças pessoais e planejamento FIRE criada para transformar decisões financeiras do dia a dia em cenários de independência de longo prazo. O VidaFire combina acompanhamento de orçamento autenticado, histórico de transações, moeda padrão localizada, simulações e entrega cloud-native para mostrar como os hábitos de hoje afetam a liberdade de escolha de amanhã."
+      },
+      "es": {
+        "title": "VidaFire",
+        "description": "Una plataforma de finanzas personales y planificación FIRE creada para convertir decisiones financieras diarias en escenarios de independencia a largo plazo. VidaFire combina seguimiento autenticado de presupuestos, historial de transacciones, moneda predeterminada localizada, simulaciones y entrega cloud-native para mostrar cómo los hábitos de hoy afectan la libertad de elección de mañana."
+      }
+    },
+    "techStack": ["React", "TypeScript", "FastAPI", "PostgreSQL", "Keycloak", "Kubernetes"],
+    "link": "https://vidafire.feliperocha.systems",
+    "github": "https://github.com/usodussystems/vida-fire"
+  },
+  {
     "id": "project-1",
     "title": "WIP - Work in Progress",
     "description": "This is a work in progress project. I will update it as I progress.",

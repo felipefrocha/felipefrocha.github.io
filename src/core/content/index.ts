@@ -5,6 +5,12 @@ import type { BlogPost, Project, SocialLink, ProfileInfo } from '@shared/schema'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 const BLOG_DIR = path.join(CONTENT_DIR, 'blog');
+const SUPPORTED_LANGUAGES = ['en', 'pt', 'es'] as const;
+type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
+type ProjectTranslation = Pick<Project, 'title' | 'description'>;
+type ProjectContent = Project & {
+  translations?: Partial<Record<SupportedLanguage, ProjectTranslation>>;
+};
 
 function formatDate(date: Date | string | undefined): string {
   if (!date) return new Date().toLocaleDateString('en-US', {
@@ -127,12 +133,33 @@ export function getSocialLinks(): SocialLink[] {
   return [];
 }
 
-export function getProjects(): Project[] {
+function normalizeLanguage(language: string): SupportedLanguage {
+  const normalized = language.split('-')[0] as SupportedLanguage;
+  return SUPPORTED_LANGUAGES.includes(normalized) ? normalized : 'en';
+}
+
+function localizeProject(project: ProjectContent, language: SupportedLanguage): Project {
+  const translation = project.translations?.[language] ?? project.translations?.en;
+
+  return {
+    id: project.id,
+    title: translation?.title ?? project.title,
+    description: translation?.description ?? project.description,
+    techStack: project.techStack,
+    thumbnail: project.thumbnail,
+    link: project.link,
+    github: project.github,
+  };
+}
+
+export function getProjects(language: string = 'en'): Project[] {
   try {
     const projectsPath = path.join(CONTENT_DIR, 'projects.json');
     if (fs.existsSync(projectsPath)) {
       const content = fs.readFileSync(projectsPath, 'utf-8');
-      return JSON.parse(content);
+      const projects = JSON.parse(content) as ProjectContent[];
+      const normalizedLanguage = normalizeLanguage(language);
+      return projects.map((project) => localizeProject(project, normalizedLanguage));
     }
   } catch (error) {
     console.error('Error reading projects:', error);

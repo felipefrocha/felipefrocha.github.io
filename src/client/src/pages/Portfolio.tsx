@@ -11,9 +11,9 @@ import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema'
 const isDevelopment = import.meta.env.DEV;
 
 export default function Portfolio() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { data: projects, isLoading, error } = useQuery<Project[]>({
-    queryKey: ['/api/projects'],
+    queryKey: ['/api/projects', i18n.language],
     queryFn: fetchProjects,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,

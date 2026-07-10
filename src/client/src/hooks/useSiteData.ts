@@ -37,8 +37,10 @@ export function usePost(slug: string) {
 }
 
 export function useProjects() {
+  const { i18n } = useTranslation();
+
   return useQuery({
-    queryKey: ['/api/projects'],
+    queryKey: ['/api/projects', i18n.language],
     queryFn: fetchProjects,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,

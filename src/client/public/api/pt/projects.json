@@ -2,7 +2,7 @@
   {
     "id": "vidafire",
     "title": "VidaFire",
-    "description": "A personal finance and FIRE planning platform built to turn daily financial decisions into long-term independence scenarios. VidaFire combines authenticated budget tracking, transaction history, localized currency defaults, simulation paths, and cloud-native delivery so users can understand how today's habits affect tomorrow's optionality.",
+    "description": "Uma plataforma de finanças pessoais e planejamento FIRE criada para transformar decisões financeiras do dia a dia em cenários de independência de longo prazo. O VidaFire combina acompanhamento de orçamento autenticado, histórico de transações, moeda padrão localizada, simulações e entrega cloud-native para mostrar como os hábitos de hoje afetam a liberdade de escolha de amanhã.",
     "techStack": [
       "React",
       "TypeScript",

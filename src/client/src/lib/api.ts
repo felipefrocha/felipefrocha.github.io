@@ -1,5 +1,5 @@
 import type { BlogPost, ProfileInfo, SocialLink, Project } from '@shared/schema';
-import i18n from './i18n';
+import i18n, { SUPPORTED_LANGUAGES } from './i18n';
 
 export interface SiteData {
   profile: ProfileInfo;
@@ -11,8 +11,9 @@ export interface SiteData {
 }
 
 const getLang = () => {
-  const lang = i18n.language || 'en';
-  return lang.split('-')[0];
+  const lang = (i18n.language || 'en').split('-')[0];
+  const supportedLang = lang as (typeof SUPPORTED_LANGUAGES)[number];
+  return SUPPORTED_LANGUAGES.includes(supportedLang) ? supportedLang : 'en';
 };
 
 export async function fetchSiteData(): Promise<SiteData> {
@@ -37,7 +38,7 @@ export async function fetchPost(slug: string): Promise<BlogPost> {
 }
 
 export async function fetchProjects(): Promise<Project[]> {
-  const response = await fetch('/api/projects.json');
+  const response = await fetch(`/api/${getLang()}/projects.json`);
   if (!response.ok) throw new Error('Failed to fetch projects');
   return response.json();
 }

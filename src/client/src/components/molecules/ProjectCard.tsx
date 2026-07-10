@@ -22,7 +22,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="text-sm text-muted-foreground line-clamp-3">
+        <p className="text-sm text-muted-foreground">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-1">

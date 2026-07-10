@@ -26,6 +26,21 @@
   ],
   "projects": [
     {
+      "id": "vidafire",
+      "title": "VidaFire",
+      "description": "A personal finance and FIRE planning platform built to turn daily financial decisions into long-term independence scenarios. VidaFire combines authenticated budget tracking, transaction history, localized currency defaults, simulation paths, and cloud-native delivery so users can understand how today's habits affect tomorrow's optionality.",
+      "techStack": [
+        "React",
+        "TypeScript",
+        "FastAPI",
+        "PostgreSQL",
+        "Keycloak",
+        "Kubernetes"
+      ],
+      "link": "https://vidafire.feliperocha.systems",
+      "github": "https://github.com/usodussystems/vida-fire"
+    },
+    {
       "id": "project-1",
       "title": "WIP - Work in Progress",
       "description": "This is a work in progress project. I will update it as I progress.",

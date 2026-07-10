@@ -15,9 +15,9 @@ import { fetchSiteData, type SiteData } from '@/lib/api';
 const isDevelopment = import.meta.env.DEV;
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { data, isLoading, error } = useQuery<SiteData>({
-    queryKey: ['/api/site-data'],
+    queryKey: ['/api/site-data', i18n.language],
     queryFn: fetchSiteData,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,

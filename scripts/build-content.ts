@@ -31,13 +31,15 @@ async function buildContent() {
   // Global endpoints
   writeJson('profile.json', getProfile());
   writeJson('socials.json', getSocialLinks());
-  writeJson('projects.json', getProjects());
+  writeJson('projects.json', getProjects('en'));
   writeJson('skills.json', getSkills());
   writeJson('stats.json', getStats());
 
   const allPosts = getAllBlogPosts();
 
   for (const lang of langs) {
+    const projects = getProjects(lang);
+
     // Language specific posts
     const uniquePosts = new Map();
     for (const post of allPosts) {
@@ -54,12 +56,13 @@ async function buildContent() {
 
     // Write featured posts
     writeJson(`${lang}/posts/featured.json`, getFeaturedBlogPosts(3, lang));
+    writeJson(`${lang}/projects.json`, projects);
 
     // Write aggregated site data
     writeJson(`${lang}/site-data.json`, {
       profile: getProfile(),
       socials: getSocialLinks(),
-      projects: getProjects(),
+      projects,
       skills: getSkills(),
       stats: getStats(),
       featuredPosts: getFeaturedBlogPosts(3, lang),
