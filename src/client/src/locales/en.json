@@ -104,5 +104,24 @@
   "work": {
     "viewProject": "View Project",
     "viewCode": "View Code"
+  },
+  "comments": {
+    "title": "Comments",
+    "signInPrompt": "Sign in to join the conversation.",
+    "signInWithGithub": "Continue with GitHub",
+    "signInWithGoogle": "Continue with Google",
+    "signedInAs": "Commenting as {{name}}",
+    "signOut": "Sign out",
+    "placeholder": "Share your thoughts…",
+    "replyPlaceholder": "Write a reply…",
+    "submit": "Post comment",
+    "reply": "Reply",
+    "submitting": "Posting…",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edited": "edited",
+    "empty": "No comments yet. Be the first to share your thoughts.",
+    "failedTitle": "Something went wrong",
+    "failedDescription": "Your comment couldn't be posted. Please try again."
   }
 }

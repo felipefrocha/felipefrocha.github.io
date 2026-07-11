@@ -66,9 +66,13 @@ export function generatePersonSchema(profile: ProfileInfo, socialLinks: SocialLi
   };
 }
 
-export function generateBlogPostSchema(post: BlogPost, profile?: ProfileInfo) {
+export function generateBlogPostSchema(
+  post: BlogPost,
+  profile?: ProfileInfo,
+  extra?: { wordCount?: number; commentCount?: number },
+) {
   const postUrl = `${SITE_URL}/blog/${post.slug}`;
-  const imageUrl = post.image 
+  const imageUrl = post.image
     ? (post.image.startsWith('http') ? post.image : `${SITE_URL}${post.image}`)
     : `${SITE_URL}/assets/avatar.jpg`;
 
@@ -80,6 +84,10 @@ export function generateBlogPostSchema(post: BlogPost, profile?: ProfileInfo) {
     image: imageUrl,
     datePublished: post.date,
     dateModified: post.date,
+    inLanguage: post.language,
+    isAccessibleForFree: true,
+    ...(extra?.wordCount ? { wordCount: extra.wordCount } : {}),
+    ...(typeof extra?.commentCount === 'number' ? { commentCount: extra.commentCount } : {}),
     author: {
       '@type': 'Person',
       name: post.author || profile?.name || 'Felipe F. Rocha',
