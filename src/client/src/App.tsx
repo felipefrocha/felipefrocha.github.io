@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { MainLayout } from "@/components/templates/MainLayout";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchSiteData, type SiteData } from "@/lib/api";
+import { AuthProvider } from "@/hooks/useAuth";
 import { useTranslation } from "react-i18next";
 
 import Home from "@/pages/Home";
@@ -91,10 +92,12 @@ function AppContent() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <AppContent />
-        <Toaster />
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <AppContent />
+          <Toaster />
+        </TooltipProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

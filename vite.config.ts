@@ -45,6 +45,8 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "src", "client"),
+  // Env files (.env) live at the repo root, not under the Vite `root`.
+  envDir: import.meta.dirname,
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,

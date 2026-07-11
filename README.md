@@ -240,6 +240,27 @@ The project follows **Atomic Design** principles:
 - Prettier formatting (if configured)
 - Follow existing component patterns
 
+## 🧪 Testing
+
+Three layers, run locally and in CI:
+
+```bash
+npm test            # unit + integration (Vitest + Testing Library, jsdom)
+npm run test:coverage  # same, with a V8 coverage report (./coverage)
+npm run test:e2e    # end-to-end (Playwright, auto-starts the Vite dev server)
+```
+
+- **Unit / integration** specs live next to the code as `*.test.ts(x)`. They cover
+  the content pipeline, SEO helpers, markdown rendering, the Cloudflare contact
+  function, and the Supabase-backed comment layer (auth, data hooks, and UI).
+- **E2E** specs live in `e2e/` as `*.spec.ts` and drive real browser flows
+  (blog reading, navigation, i18n, and the comment login gate).
+- **Coverage scope:** the 90% thresholds in `vitest.config.ts` apply to
+  meaningful application code (`lib/`, `hooks/`, `core/`, `shared/`, the
+  comment/SEO components, and `functions/api`). Vendored shadcn `ui/`
+  primitives, `examples/`, generated content JSON, and entry/config files are
+  intentionally excluded.
+
 ## 📖 Additional Resources
 
 - [Deployment Guide](./docs/DEPLOYMENT.md) - Cloudflare Pages deployment

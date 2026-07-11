@@ -104,5 +104,24 @@
   "work": {
     "viewProject": "Ver Proyecto",
     "viewCode": "Ver Código"
+  },
+  "comments": {
+    "title": "Comentarios",
+    "signInPrompt": "Inicia sesión para unirte a la conversación.",
+    "signInWithGithub": "Continuar con GitHub",
+    "signInWithGoogle": "Continuar con Google",
+    "signedInAs": "Comentando como {{name}}",
+    "signOut": "Cerrar sesión",
+    "placeholder": "Comparte tu opinión…",
+    "replyPlaceholder": "Escribe una respuesta…",
+    "submit": "Publicar comentario",
+    "reply": "Responder",
+    "submitting": "Publicando…",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edited": "editado",
+    "empty": "Aún no hay comentarios. Sé el primero en opinar.",
+    "failedTitle": "Algo salió mal",
+    "failedDescription": "No se pudo publicar tu comentario. Inténtalo de nuevo."
   }
 }

@@ -8,3 +8,9 @@ vite.config.ts.*
 
 # Cloudflare Pages build artifacts
 functions/_init.ts
+
+# Test artifacts
+coverage
+playwright-report
+test-results
+.playwright
