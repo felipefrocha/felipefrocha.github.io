@@ -1,0 +1,8 @@
+# Minimal Supabase CLI config. Link a real project with:
+#   supabase link --project-ref <your-project-ref>
+# then apply migrations with:
+#   supabase db push
+#
+# OAuth providers (GitHub, Google) are configured in the hosted dashboard
+# under Authentication → Providers, not here. See docs/SUPABASE_OAUTH_SETUP.md.
+project_id = "feliperocha-portfolio"
