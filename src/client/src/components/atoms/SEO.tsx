@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export interface SEOProps {
@@ -35,6 +36,20 @@ export function SEO({
   const canonicalUrl = canonical || (typeof window !== 'undefined' ? window.location.href : SITE_URL);
   const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image}`;
 
+  useEffect(() => {
+    if (!structuredData) return;
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.dataset.seoStructuredData = 'true';
+    script.textContent = JSON.stringify(
+      Array.isArray(structuredData) ? structuredData : [structuredData]
+    );
+    document.head.appendChild(script);
+
+    return () => script.remove();
+  }, [structuredData]);
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
@@ -71,15 +86,6 @@ export function SEO({
         </>
       )}
 
-      {/* Structured Data (JSON-LD) */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(
-            Array.isArray(structuredData) ? structuredData : [structuredData]
-          )}
-        </script>
-      )}
     </Helmet>
   );
 }
-

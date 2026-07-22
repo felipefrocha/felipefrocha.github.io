@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { SiGithub, SiLinkedin, SiInstagram, SiX } from 'react-icons/si';
+import { SiGithub, SiInstagram } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa6';
 import { ExternalLink } from 'lucide-react';
 
 interface SocialCardProps {
@@ -12,7 +13,7 @@ interface SocialCardProps {
 
 const config = {
   github: { icon: SiGithub, label: 'GitHub', color: 'hover:border-[#333] dark:hover:border-[#fff]' },
-  linkedin: { icon: SiLinkedin, label: 'LinkedIn', color: 'hover:border-[#0A66C2]' },
+  linkedin: { icon: FaLinkedin, label: 'LinkedIn', color: 'hover:border-[#0A66C2]' },
   instagram: { icon: SiInstagram, label: 'Instagram', color: 'hover:border-[#E4405F]' },
 };
 

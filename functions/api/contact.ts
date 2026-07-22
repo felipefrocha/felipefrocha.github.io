@@ -3,40 +3,57 @@
 import { contactMessageSchema } from '@shared/schema';
 
 interface Env {
-  TURNSTILE_SECRET_KEY: string;
+  TURNSTILE_SECRET_KEY?: string;
+}
+
+const MAX_REQUEST_BYTES = 16 * 1024;
+
+function jsonResponse(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
 
 export async function onRequest(context: { request: Request; env: Env }): Promise<Response> {
   if (context.request.method !== 'POST') {
-    return new Response(
-      JSON.stringify({ error: 'Method not allowed' }),
-      { 
-        status: 405,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    return jsonResponse({ error: 'Method not allowed' }, 405);
   }
 
   try {
-    const body = await context.request.json();
+    const contentLength = Number(context.request.headers.get('Content-Length') || '0');
+    if (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES) {
+      return jsonResponse({ error: 'Request body too large' }, 413);
+    }
+
+    const rawBody = await context.request.text();
+    if (new TextEncoder().encode(rawBody).byteLength > MAX_REQUEST_BYTES) {
+      return jsonResponse({ error: 'Request body too large' }, 413);
+    }
+
+    let body: unknown;
+    try {
+      body = JSON.parse(rawBody);
+    } catch {
+      return jsonResponse({ error: 'Invalid JSON body' }, 400);
+    }
+
     const result = contactMessageSchema.safeParse(body);
     
     if (!result.success) {
-      return new Response(
-        JSON.stringify({ 
-          error: "Validation failed", 
-          details: result.error.flatten() 
-        }),
-        { 
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
+      return jsonResponse({
+        error: 'Validation failed',
+        details: result.error.flatten(),
+      }, 400);
     }
 
     // Validate Turnstile token
     const token = result.data.turnstileToken;
-    const secret = context.env.TURNSTILE_SECRET_KEY || '1x0000000000000000000000000000000AA';
+    const secret = context.env.TURNSTILE_SECRET_KEY?.trim();
+    if (!secret) {
+      console.error('Contact form is unavailable: TURNSTILE_SECRET_KEY is not configured.');
+      return jsonResponse({ error: 'Contact form is temporarily unavailable' }, 503);
+    }
     
     const formData = new FormData();
     formData.append('secret', secret);
@@ -54,35 +71,17 @@ export async function onRequest(context: { request: Request; env: Env }): Promis
 
     const turnstileData = await turnstileRes.json() as { success: boolean; 'error-codes': string[] };
     if (!turnstileData.success) {
-      return new Response(
-        JSON.stringify({ error: "Captcha verification failed" }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
+      return jsonResponse({ error: 'Captcha verification failed' }, 400);
     }
 
-    console.log("Contact message received & validated:", result.data);
-    
     // In production, you would send this to an email service or save to a database
-    // For now, we'll just log it
-    
-    return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: "Message received successfully" 
-      }),
-      {
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    // For now, acknowledge only; never log the message, email, or Turnstile token.
+    return jsonResponse({
+      success: true,
+      message: 'Message received successfully',
+    });
   } catch (error) {
     console.error('Error processing contact:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to process contact message' }),
-      { 
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    return jsonResponse({ error: 'Failed to process contact message' }, 500);
   }
 }
-

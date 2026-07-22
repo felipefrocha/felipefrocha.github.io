@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { SiGithub } from 'react-icons/si';
 import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
 
 interface ProjectCardProps {
@@ -54,7 +55,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 rel="noopener noreferrer"
                 data-testid={`link-project-github-${project.id}`}
               >
-                <Github className="h-4 w-4 mr-1" />
+                <SiGithub className="h-4 w-4 mr-1" />
                 {t('work.viewCode')}
               </a>
             </Button>

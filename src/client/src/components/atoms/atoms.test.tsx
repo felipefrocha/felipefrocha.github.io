@@ -88,8 +88,10 @@ describe('SEO', () => {
     await waitFor(() => expect(document.title).toContain('The Agentic SDLC'));
     const desc = document.head.querySelector('meta[name="description"]');
     expect(desc?.getAttribute('content')).toBe('A blueprint.');
-    const ld = document.head.querySelector('script[type="application/ld+json"]');
-    expect(ld?.textContent).toContain('BlogPosting');
+    await waitFor(() => {
+      const ld = document.head.querySelector('script[type="application/ld+json"]');
+      expect(ld?.textContent).toContain('BlogPosting');
+    });
   });
 
   it('falls back to the default title when none is provided', async () => {

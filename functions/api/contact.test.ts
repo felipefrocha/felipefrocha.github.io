@@ -50,6 +50,24 @@ describe('contact onRequest', () => {
     expect(json.error).toBe('Captcha verification failed');
   });
 
+  it('fails closed when the Turnstile secret is not configured', async () => {
+    const fetchMock = stubTurnstile(true);
+    const context = makeContext(validBody);
+    const res = await onRequest({ request: context.request, env: {} });
+    expect(res.status).toBe(503);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('rejects oversized request bodies before parsing or verification', async () => {
+    const fetchMock = stubTurnstile(true);
+    const res = await onRequest(makeContext({
+      ...validBody,
+      message: 'x'.repeat(17 * 1024),
+    }));
+    expect(res.status).toBe(413);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it('returns 200 for a valid, verified submission', async () => {
     const fetchMock = stubTurnstile(true);
     const res = await onRequest(makeContext(validBody, 'POST', { 'CF-Connecting-IP': '1.2.3.4' }));
@@ -63,13 +81,13 @@ describe('contact onRequest', () => {
     );
   });
 
-  it('returns 500 when the request body is not valid JSON', async () => {
+  it('returns 400 when the request body is not valid JSON', async () => {
     const request = new Request('https://site/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: 'not-json{',
     });
     const res = await onRequest({ request, env: { TURNSTILE_SECRET_KEY: 'secret' } });
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(400);
   });
 });

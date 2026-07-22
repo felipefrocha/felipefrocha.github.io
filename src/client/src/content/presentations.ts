@@ -347,6 +347,147 @@ export const presentations: Presentation[] = [
     },
   },
   {
+    slug: 'autonomous-adlc-workflow',
+    accent: 'teal',
+    translations: {
+      pt: {
+        title: 'ADLC Autônomo',
+        subtitle: 'Uma linha de engenharia em velocidade de máquina, com cinco estágios automatizados e três intertravamentos humanos que preservam controle e responsabilidade.',
+        kicker: 'Workflow operacional',
+        articleSlug: 'autonomous-adlc-workflow',
+        metrics: [
+          { label: 'Estágios automatizados', value: '5', note: 'Planejar, construir, testar, preparar e liberar.' },
+          { label: 'Intertravamentos humanos', value: '3', note: 'Plano, verdade técnica e valor de produto.' },
+          { label: 'Ambientes', value: '1:1', note: 'Um sandbox efêmero e isolado por feature.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Planejar + Gate 1',
+            title: 'O ticket vira especificação antes de virar código.',
+            body: 'Agentes sintetizam escopo, interfaces, restrições e riscos em um spec.md. Tech leads e arquitetos autorizam a intenção técnica antes do build.',
+            points: ['Recuperar contexto direto do sistema e do repositório.', 'Tratar a especificação como fonte de verdade verificável.', 'Bloquear geração enquanto objetivo e arquitetura não estiverem alinhados.'],
+          },
+          {
+            eyebrow: '02 / Construir',
+            title: 'Branches paralelas, estado isolado e revisão multimodelo.',
+            body: 'Agentes implementam em unidades de trabalho separadas, enquanto modelos complementares revisam arquitetura, qualidade, segurança e aderência à especificação.',
+            points: ['Paralelizar execução sem compartilhar estado de escrita.', 'Evitar que um único caminho de raciocínio valide o próprio erro.', 'Integrar somente por um caminho controlado.'],
+          },
+          {
+            eyebrow: '03 / Testar + Gate 2',
+            title: 'Cada feature ganha um mundo vivo e reproduzível.',
+            body: 'Um sandbox efêmero executa deploy, testes unitários e E2E. QA e engenharia inspecionam evidências e mantêm o merge bloqueado até validar a verdade.',
+            points: ['Eliminar a fila de staging compartilhado.', 'Ler traces e critérios, não apenas status verde.', 'Anexar ambiente e resultados à evidência de entrega.'],
+          },
+          {
+            eyebrow: '04 / Preparar + Gate 3',
+            title: 'Performance e produto são validados em paralelo.',
+            body: 'Uma trilha estressa performance enquanto outra oferece a experiência ao produto. Product owners decidem se a mudança realmente entrega valor.',
+            points: ['Medir latência e comportamento sob carga.', 'Permitir uso real antes da exposição ao cliente.', 'Não confundir correção técnica com adequação ao produto.'],
+          },
+          {
+            eyebrow: '05 / Liberar',
+            title: 'O rollout observa a si mesmo e torna falhas reversíveis.',
+            body: 'O canário aumenta tráfego gradualmente, compara métricas com o baseline e promove rollback automático quando detecta degradação.',
+            points: ['Usar métricas técnicas e de negócio.', 'Promover somente com evidência estável.', 'Reverter em segundos sem transformar cada falha em incidente.'],
+          },
+        ],
+        actionTitle: 'Automatize o fluxo. Preserve a responsabilidade.',
+        actionBody: 'O ADLC autônomo remove filas e trabalho mecânico, mas mantém pessoas exatamente nos pontos onde julgamento, evidência e contexto de negócio são insubstituíveis.',
+      },
+      en: {
+        title: 'Autonomous ADLC',
+        subtitle: 'A machine-speed engineering line with five automated stages and three human interlocks that preserve control and accountability.',
+        kicker: 'Operating workflow',
+        articleSlug: 'autonomous-adlc-workflow',
+        metrics: [
+          { label: 'Automated stages', value: '5', note: 'Plan, build, test, prepare, and release.' },
+          { label: 'Human interlocks', value: '3', note: 'Plan, technical truth, and product value.' },
+          { label: 'Environments', value: '1:1', note: 'One ephemeral, isolated sandbox per feature.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Plan + Gate 1',
+            title: 'The ticket becomes a specification before it becomes code.',
+            body: 'Agents synthesize scope, interfaces, constraints, and risks into a spec.md. Tech leads and architects authorize the technical intent before build begins.',
+            points: ['Retrieve context directly from the system and repository.', 'Treat the specification as a verifiable source of truth.', 'Block generation until business intent and architecture align.'],
+          },
+          {
+            eyebrow: '02 / Build',
+            title: 'Parallel branches, isolated state, and multi-model review.',
+            body: 'Agents implement in separate units of work while complementary models review architecture, quality, security, and adherence to the specification.',
+            points: ['Parallelize execution without sharing write state.', 'Prevent one reasoning path from validating its own error.', 'Integrate only through a controlled path.'],
+          },
+          {
+            eyebrow: '03 / Test + Gate 2',
+            title: 'Every feature gets a live, reproducible world.',
+            body: 'An ephemeral sandbox runs deployment, unit tests, and E2E tests. QA and engineering inspect the evidence and keep merge blocked until truth is validated.',
+            points: ['Remove the shared staging queue.', 'Read traces and criteria, not just green status.', 'Attach environment and results to delivery evidence.'],
+          },
+          {
+            eyebrow: '04 / Prepare + Gate 3',
+            title: 'Performance and product fitness are validated in parallel.',
+            body: 'One track stresses performance while another exposes the experience to product. Product owners decide whether the change truly delivers value.',
+            points: ['Measure latency and behavior under load.', 'Enable real use before customer exposure.', 'Do not confuse technical correctness with product fitness.'],
+          },
+          {
+            eyebrow: '05 / Release',
+            title: 'The rollout watches itself and makes failure reversible.',
+            body: 'The canary gradually increases traffic, compares metrics with the baseline, and automatically rolls back when it detects degradation.',
+            points: ['Use technical and business metrics.', 'Promote only with stable evidence.', 'Reverse within seconds without turning every failure into an incident.'],
+          },
+        ],
+        actionTitle: 'Automate the flow. Preserve accountability.',
+        actionBody: 'Autonomous ADLC removes queues and mechanical work while keeping people precisely where judgment, evidence, and business context are irreplaceable.',
+      },
+      es: {
+        title: 'ADLC Autónomo',
+        subtitle: 'Una línea de ingeniería a velocidad de máquina con cinco etapas automatizadas y tres interbloqueos humanos que preservan control y responsabilidad.',
+        kicker: 'Workflow operativo',
+        articleSlug: 'autonomous-adlc-workflow',
+        metrics: [
+          { label: 'Etapas automatizadas', value: '5', note: 'Planificar, construir, probar, preparar y liberar.' },
+          { label: 'Interbloqueos humanos', value: '3', note: 'Plan, verdad técnica y valor de producto.' },
+          { label: 'Entornos', value: '1:1', note: 'Un sandbox efímero y aislado por feature.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Planificar + Gate 1',
+            title: 'El ticket se convierte en especificación antes de convertirse en código.',
+            body: 'Los agentes sintetizan alcance, interfaces, restricciones y riesgos en un spec.md. Tech leads y arquitectos autorizan la intención técnica antes del build.',
+            points: ['Recuperar contexto directamente del sistema y del repositorio.', 'Tratar la especificación como fuente de verdad verificable.', 'Bloquear la generación hasta alinear objetivo y arquitectura.'],
+          },
+          {
+            eyebrow: '02 / Construir',
+            title: 'Branches paralelas, estado aislado y revisión multimodelo.',
+            body: 'Los agentes implementan en unidades de trabajo separadas mientras modelos complementarios revisan arquitectura, calidad, seguridad y adherencia a la especificación.',
+            points: ['Paralelizar ejecución sin compartir estado de escritura.', 'Evitar que una ruta de razonamiento valide su propio error.', 'Integrar solamente por un camino controlado.'],
+          },
+          {
+            eyebrow: '03 / Probar + Gate 2',
+            title: 'Cada feature obtiene un mundo vivo y reproducible.',
+            body: 'Un sandbox efímero ejecuta deploy, pruebas unitarias y E2E. QA e ingeniería inspeccionan la evidencia y mantienen el merge bloqueado hasta validar la verdad.',
+            points: ['Eliminar la cola de staging compartido.', 'Leer traces y criterios, no solo el estado verde.', 'Adjuntar entorno y resultados a la evidencia de entrega.'],
+          },
+          {
+            eyebrow: '04 / Preparar + Gate 3',
+            title: 'Rendimiento y adecuación al producto se validan en paralelo.',
+            body: 'Una vía estresa el rendimiento mientras otra expone la experiencia a producto. Product owners deciden si el cambio realmente entrega valor.',
+            points: ['Medir latencia y comportamiento bajo carga.', 'Permitir uso real antes de exponerlo al cliente.', 'No confundir corrección técnica con adecuación al producto.'],
+          },
+          {
+            eyebrow: '05 / Liberar',
+            title: 'El rollout se observa a sí mismo y hace reversible el fallo.',
+            body: 'El canario aumenta gradualmente el tráfico, compara métricas con el baseline y revierte automáticamente cuando detecta degradación.',
+            points: ['Usar métricas técnicas y de negocio.', 'Promover solamente con evidencia estable.', 'Revertir en segundos sin convertir cada fallo en incidente.'],
+          },
+        ],
+        actionTitle: 'Automatiza el flujo. Preserva la responsabilidad.',
+        actionBody: 'El ADLC autónomo elimina colas y trabajo mecánico, pero mantiene a las personas precisamente donde el juicio, la evidencia y el contexto de negocio son irreemplazables.',
+      },
+    },
+  },
+  {
     slug: 'agentic-dev-team-tactics',
     accent: 'amber',
     translations: {

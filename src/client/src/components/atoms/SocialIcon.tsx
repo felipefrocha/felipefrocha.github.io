@@ -1,4 +1,5 @@
-import { SiGithub, SiLinkedin, SiInstagram, SiX } from 'react-icons/si';
+import { SiGithub, SiInstagram } from 'react-icons/si';
+import { FaLinkedin } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
@@ -11,7 +12,7 @@ interface SocialIconProps {
 
 const icons = {
   github: SiGithub,
-  linkedin: SiLinkedin,
+  linkedin: FaLinkedin,
   instagram: SiInstagram,
 };
 

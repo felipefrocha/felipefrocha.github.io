@@ -127,10 +127,10 @@ preview: build
 	@echo "$(YELLOW)Press Ctrl+C to stop$(NC)"
 	wrangler pages dev $(BUILD_DIR) --project-name=$(PROJECT_NAME)
 
-## dev: Run local development server (Wrangler + Vite)
+## dev: Run the Vite development server with hot reload
 dev:
 	@echo "$(CYAN)Starting local development server...$(NC)"
-	@echo "$(YELLOW)Server will start using Wrangler over Vite$(NC)"
+	@echo "$(YELLOW)Starting Vite with hot reload$(NC)"
 	npm run dev 
 
 ## setup: Complete setup (install deps, wrangler, login)
