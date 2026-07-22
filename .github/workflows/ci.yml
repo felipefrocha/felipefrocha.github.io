@@ -66,4 +66,10 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Build
+        # Vite inlines VITE_* vars at build time. The anon/publishable key is
+        # safe to expose in the client; writes are guarded by Row Level Security.
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_TURNSTILE_SITE_KEY: ${{ secrets.VITE_TURNSTILE_SITE_KEY }}
         run: npm run build

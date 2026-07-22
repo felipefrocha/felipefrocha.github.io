@@ -264,6 +264,7 @@ npm run test:e2e    # end-to-end (Playwright, auto-starts the Vite dev server)
 ## 📖 Additional Resources
 
 - [Deployment Guide](./docs/DEPLOYMENT.md) - Cloudflare Pages deployment
+- [Supabase OAuth Setup](./docs/SUPABASE_OAUTH_SETUP.md) - Comments auth (GitHub + Google) and secrets
 - [Design Guidelines](./docs/design_guidelines.md) - Design system reference
 - [Agents Guide](./AGENTS.md) - Architecture and development notes
 

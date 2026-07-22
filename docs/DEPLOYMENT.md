@@ -119,6 +119,12 @@ Click **Save and Deploy**. Cloudflare will:
 
 ## Environment Variables
 
+The comment layer (Supabase Auth + GitHub/Google OAuth) needs
+`VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` at **build time** (Vite inlines
+`VITE_*` into the static bundle). See
+[Supabase OAuth Setup](./SUPABASE_OAUTH_SETUP.md) for provider configuration and
+the full list of secrets.
+
 If you need environment variables:
 
 1. Go to **Settings** → **Environment Variables** in your Pages project
