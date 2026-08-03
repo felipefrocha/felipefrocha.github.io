@@ -62,6 +62,8 @@ export default function PresentationPage() {
       <SEO
         title={presentation.title}
         description={presentation.subtitle}
+        image="/assets/social-card-article.png"
+        imageAlt={`${presentation.title} presentation by Felipe F. Rocha`}
         canonical={presentationUrl}
         author="Felipe F. Rocha"
       />

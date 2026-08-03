@@ -96,6 +96,8 @@ export default function BlogPostPage() {
       <SEO
         title={post.title}
         description={post.excerpt}
+        image={post.image || '/assets/social-card-article.png'}
+        imageAlt={post.title}
         type="article"
         canonical={postUrl}
         publishedTime={publishedDate}

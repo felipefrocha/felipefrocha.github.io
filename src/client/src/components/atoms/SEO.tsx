@@ -5,6 +5,7 @@ export interface SEOProps {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article' | 'profile';
   canonical?: string;
   publishedTime?: string;
@@ -15,7 +16,7 @@ export interface SEOProps {
 }
 
 const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://www.feliperocha.systems';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/avatar.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/social-card.png`;
 const DEFAULT_TITLE = 'Felipe F. Rocha - Systems Engineer, Developer, Writer';
 const DEFAULT_DESCRIPTION = 'Personal portfolio and blog showcasing projects, thoughts, and creative work. Systems Engineer with over 7 years of experience building and integrating complex systems.';
 
@@ -23,6 +24,7 @@ export function SEO({
   title,
   description,
   image = DEFAULT_IMAGE,
+  imageAlt,
   type = 'website',
   canonical,
   publishedTime,
@@ -35,6 +37,8 @@ export function SEO({
   const metaDescription = description || DEFAULT_DESCRIPTION;
   const canonicalUrl = canonical || (typeof window !== 'undefined' ? window.location.href : SITE_URL);
   const imageUrl = image.startsWith('http') ? image : `${SITE_URL}${image}`;
+  const metaImageAlt = imageAlt || `${fullTitle} social preview`;
+  const imageType = /\.jpe?g(?:\?|$)/i.test(imageUrl) ? 'image/jpeg' : 'image/png';
 
   useEffect(() => {
     if (!structuredData) return;
@@ -64,7 +68,13 @@ export function SEO({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:image" content={imageUrl} />
-      <meta property="og:site_name" content="Felipe's Portal" />
+      <meta property="og:image:secure_url" content={imageUrl} />
+      <meta property="og:image:type" content={imageType} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="627" />
+      <meta property="og:image:alt" content={metaImageAlt} />
+      <meta property="og:site_name" content="Felipe F. Rocha" />
+      <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -72,6 +82,7 @@ export function SEO({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={imageUrl} />
+      <meta name="twitter:image:alt" content={metaImageAlt} />
       <meta name="twitter:creator" content="@_felipefrocha" />
 
       {/* Article specific */}

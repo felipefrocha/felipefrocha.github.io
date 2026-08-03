@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="627" viewBox="0 0 1200 627" role="img" aria-labelledby="title description">
+  <title id="title">Felipe F. Rocha</title>
+  <desc id="description">Systems engineering, AI architecture, and delivery strategy.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#080d19" />
+      <stop offset="1" stop-color="#111b35" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#60a5fa" />
+      <stop offset="1" stop-color="#2563eb" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#3b82f6" stop-opacity=".38" />
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M 52 0 L 0 0 0 52" fill="none" stroke="#93c5fd" stroke-opacity=".09" stroke-width="1" />
+    </pattern>
+    <clipPath id="portrait">
+      <circle cx="958" cy="293" r="178" />
+    </clipPath>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#020617" flood-opacity=".52" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="627" rx="24" fill="url(#background)" />
+  <rect width="1200" height="627" rx="24" fill="url(#grid)" />
+  <circle cx="995" cy="245" r="365" fill="url(#glow)" />
+
+  <g opacity=".72">
+    <circle cx="1085" cy="98" r="5" fill="#60a5fa" />
+    <circle cx="1118" cy="98" r="5" fill="#60a5fa" />
+    <circle cx="1151" cy="98" r="5" fill="#60a5fa" />
+    <circle cx="1085" cy="131" r="5" fill="#60a5fa" />
+    <circle cx="1118" cy="131" r="5" fill="#60a5fa" />
+    <circle cx="1151" cy="131" r="5" fill="#60a5fa" />
+  </g>
+
+  <g transform="translate(74 72)">
+    <rect width="52" height="8" rx="4" fill="url(#accent)" />
+    <text x="0" y="56" fill="#93c5fd" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">FELIPE F. ROCHA</text>
+    <text x="0" y="154" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="760" letter-spacing="-2">Engineering systems</text>
+    <text x="0" y="232" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="760" letter-spacing="-2">that scale.</text>
+    <text x="0" y="294" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="450">AI architecture · system design · delivery strategy</text>
+
+    <g transform="translate(0 390)">
+      <rect width="345" height="58" rx="29" fill="#172554" stroke="#3b82f6" stroke-opacity=".7" />
+      <circle cx="30" cy="29" r="7" fill="#60a5fa" />
+      <text x="52" y="37" fill="#dbeafe" font-family="JetBrains Mono, Menlo, monospace" font-size="18" font-weight="600">feliperocha.systems</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <circle cx="958" cy="293" r="190" fill="#0f172a" stroke="#60a5fa" stroke-width="4" />
+    <image x="780" y="115" width="356" height="356" xlink:href="avatar.jpg" preserveAspectRatio="xMidYMid slice" clip-path="url(#portrait)" />
+  </g>
+  <path d="M818 484 C867 525 1039 525 1090 484" fill="none" stroke="#60a5fa" stroke-opacity=".42" stroke-width="3" stroke-linecap="round" />
+</svg>

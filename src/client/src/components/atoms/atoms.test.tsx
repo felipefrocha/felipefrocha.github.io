@@ -88,6 +88,12 @@ describe('SEO', () => {
     await waitFor(() => expect(document.title).toContain('The Agentic SDLC'));
     const desc = document.head.querySelector('meta[name="description"]');
     expect(desc?.getAttribute('content')).toBe('A blueprint.');
+    expect(document.head.querySelector('meta[property="og:image:width"]')).toHaveAttribute('content', '1200');
+    expect(document.head.querySelector('meta[property="og:image:height"]')).toHaveAttribute('content', '627');
+    expect(document.head.querySelector('meta[property="og:image:alt"]')).toHaveAttribute(
+      'content',
+      'The Agentic SDLC | Felipe F. Rocha social preview',
+    );
     await waitFor(() => {
       const ld = document.head.querySelector('script[type="application/ld+json"]');
       expect(ld?.textContent).toContain('BlogPosting');

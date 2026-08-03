@@ -10,9 +10,10 @@
   "scripts": {
     "dev": "npm run build:content && npm run dev:vite",
     "dev:vite": "vite",
-    "build": "npm run build:content && vite build",
+    "build": "npm run build:content && vite build && npm run build:social",
     "build:cloudflare": "npm run build",
     "build:content": "tsx scripts/build-content.ts",
+    "build:social": "tsx scripts/generate-social-pages.ts",
     "check": "tsc",
     "test": "vitest run",
     "test:watch": "vitest",

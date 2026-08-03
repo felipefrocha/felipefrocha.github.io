@@ -71,6 +71,8 @@ export default function Blog() {
       <SEO
         title="Blog"
         description="Read articles about software development, systems engineering, architecture, and technology insights."
+        image="/assets/social-card-article.png"
+        imageAlt="Systems Notes by Felipe F. Rocha"
         canonical={blogUrl}
         structuredData={generateCollectionPageSchema(
           'Blog Posts',

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="627" viewBox="0 0 1200 627" role="img" aria-labelledby="title description">
+  <title id="title">Systems Notes by Felipe F. Rocha</title>
+  <desc id="description">Articles about AI architecture, system design, and engineering delivery.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#080d19" />
+      <stop offset="1" stop-color="#111b35" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#60a5fa" />
+      <stop offset="1" stop-color="#2563eb" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#3b82f6" stop-opacity=".34" />
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M 52 0 L 0 0 0 52" fill="none" stroke="#93c5fd" stroke-opacity=".09" stroke-width="1" />
+    </pattern>
+    <clipPath id="portrait">
+      <circle cx="1010" cy="154" r="62" />
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="627" rx="24" fill="url(#background)" />
+  <rect width="1200" height="627" rx="24" fill="url(#grid)" />
+  <circle cx="966" cy="291" r="360" fill="url(#glow)" />
+
+  <g transform="translate(76 68)">
+    <rect width="52" height="8" rx="4" fill="url(#accent)" />
+    <text x="0" y="57" fill="#93c5fd" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">SYSTEMS NOTES</text>
+    <text x="0" y="167" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="760" letter-spacing="-2">Architecture for</text>
+    <text x="0" y="257" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="760" letter-spacing="-2">the AI era.</text>
+    <text x="0" y="325" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="450">Clear thinking for complex systems and delivery.</text>
+
+    <g transform="translate(0 411)">
+      <rect width="455" height="58" rx="29" fill="#172554" stroke="#3b82f6" stroke-opacity=".7" />
+      <circle cx="30" cy="29" r="7" fill="#60a5fa" />
+      <text x="52" y="37" fill="#dbeafe" font-family="JetBrains Mono, Menlo, monospace" font-size="18" font-weight="600">AI · SYSTEMS · ENGINEERING</text>
+    </g>
+  </g>
+
+  <g>
+    <circle cx="1010" cy="154" r="72" fill="#0f172a" stroke="#60a5fa" stroke-width="3" />
+    <image x="948" y="92" width="124" height="124" xlink:href="avatar.jpg" preserveAspectRatio="xMidYMid slice" clip-path="url(#portrait)" />
+    <text x="918" y="259" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Felipe F. Rocha</text>
+    <text x="916" y="289" fill="#93c5fd" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="500">Systems Engineer</text>
+  </g>
+
+  <path d="M813 510 L1124 510" stroke="#60a5fa" stroke-opacity=".35" stroke-width="2" />
+  <text x="813" y="550" fill="#94a3b8" font-family="JetBrains Mono, Menlo, monospace" font-size="17">feliperocha.systems/blog</text>
+</svg>
