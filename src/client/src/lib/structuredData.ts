@@ -2,6 +2,18 @@ import type { BlogPost, ProfileInfo, SocialLink, Project } from '@shared/schema'
 
 const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://www.feliperocha.systems';
 
+/**
+ * Serialize JSON-LD safely for embedding inside a `<script type="application/ld+json">` tag.
+ * Escapes `<`, `>`, and `&` as Unicode sequences so strings containing `</script>` or HTML
+ * entities cannot prematurely close the script element or trigger XSS.
+ */
+export function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+}
+
 export interface StructuredDataOptions {
   profile?: ProfileInfo;
   socialLinks?: SocialLink[];

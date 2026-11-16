@@ -31,7 +31,7 @@ export function MainLayout({ children, pageTitle, profile, socialLinks }: MainLa
           <AppSidebar profile={profile} socialLinks={socialLinks} />
           <SidebarInset className="flex flex-col flex-1">
             <Header title={pageTitle} />
-            <main id="main-content" className="flex-1" role="main">
+            <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
               {children}
             </main>
             <Footer socialLinks={socialLinks} />

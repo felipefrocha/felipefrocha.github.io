@@ -40,7 +40,11 @@ function toAuthor(user: User | null): CommentAuthor | null {
     meta.preferred_username ||
     user.email?.split('@')[0] ||
     'Anonymous';
-  const avatar = meta.avatar_url || meta.picture || null;
+  const rawAvatar = meta.avatar_url || meta.picture || null;
+  const avatar =
+    typeof rawAvatar === 'string' && rawAvatar.startsWith('https://')
+      ? rawAvatar
+      : null;
   return { id: user.id, name, avatar };
 }
 

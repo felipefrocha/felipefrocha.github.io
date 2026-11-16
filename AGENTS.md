@@ -51,6 +51,9 @@ client/src/components/
 - Markdown-based blog (build-time)
 - Sidebar navigation layout
 
+## Browser Support Policy
+- **Browser Support**: Target Baseline Widely Available features by default, and allow Baseline Newly Available progressive enhancements (`content-visibility: auto`, `text-wrap: balance` / `pretty`, `<search>` landmark) that degrade gracefully without external polyfills.
+
 ## Recent Changes
 - Nov 29, 2025: Initial frontend prototype created
   - Implemented all atomic components

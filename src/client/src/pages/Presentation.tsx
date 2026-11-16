@@ -39,12 +39,12 @@ export default function PresentationPage() {
     return (
       <article className="py-16 px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <MonitorPlay className="h-10 w-10 mx-auto mb-4 text-muted-foreground" />
-          <h1 className="text-2xl font-bold mb-4">{t('presentation.notFound')}</h1>
-          <p className="text-muted-foreground mb-6">{t('presentation.notFoundDescription')}</p>
+          <MonitorPlay className="h-10 w-10 mx-auto mb-4 text-muted-foreground" aria-hidden="true" />
+          <h1 className="text-2xl font-bold text-balance mb-4">{t('presentation.notFound')}</h1>
+          <p className="text-muted-foreground text-pretty mb-6">{t('presentation.notFoundDescription')}</p>
           <Button asChild>
             <Link href="/blog">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {t('blog.backToBlog')}
             </Link>
           </Button>
@@ -73,11 +73,11 @@ export default function PresentationPage() {
           <Link href="/" className="hover:text-foreground transition-colors">
             {t('nav.home')}
           </Link>
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
           <Link href="/blog" className="hover:text-foreground transition-colors">
             {t('nav.blog')}
           </Link>
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
           <span className="text-foreground truncate">{presentation.title}</span>
         </nav>
 
@@ -89,23 +89,23 @@ export default function PresentationPage() {
             </Badge>
             <div className="grid gap-8 lg:grid-cols-[1.4fr_.8fr] lg:items-end">
               <div>
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-balance mb-6">
                   {presentation.title}
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty max-w-3xl">
                   {presentation.subtitle}
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Button asChild size="lg">
                   <a href="#presentation-sections">
-                    <MonitorPlay className="h-4 w-4" />
+                    <MonitorPlay className="h-4 w-4" aria-hidden="true" />
                     {t('presentation.start')}
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg">
                   <Link href={articlePath}>
-                    <BookOpen className="h-4 w-4" />
+                    <BookOpen className="h-4 w-4" aria-hidden="true" />
                     {t('presentation.readArticle')}
                   </Link>
                 </Button>
@@ -119,7 +119,7 @@ export default function PresentationPage() {
             <div key={metric.label} className={cn('border bg-background p-5', accent.border)}>
               <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3">{metric.label}</p>
               <p className={cn('text-3xl font-bold tracking-tight mb-2', accent.text)}>{metric.value}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">{metric.note}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed text-pretty">{metric.note}</p>
             </div>
           ))}
         </section>
@@ -134,13 +134,13 @@ export default function PresentationPage() {
                 </p>
               </div>
               <div>
-                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">{section.title}</h2>
-                <p className="text-muted-foreground leading-relaxed mb-6">{section.body}</p>
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-balance mb-4">{section.title}</h2>
+                <p className="text-muted-foreground leading-relaxed text-pretty mb-6">{section.body}</p>
                 <div className="grid gap-3 md:grid-cols-3">
                   {section.points.map((point) => (
                     <div key={point} className="flex gap-3 border border-border bg-background p-4">
-                      <CheckCircle2 className={cn('h-5 w-5 flex-none mt-0.5', accent.text)} />
-                      <p className="text-sm text-muted-foreground leading-relaxed">{point}</p>
+                      <CheckCircle2 className={cn('h-5 w-5 flex-none mt-0.5', accent.text)} aria-hidden="true" />
+                      <p className="text-sm text-muted-foreground leading-relaxed text-pretty">{point}</p>
                     </div>
                   ))}
                 </div>
@@ -152,12 +152,12 @@ export default function PresentationPage() {
         <section className="my-8 md:my-10 border border-border bg-foreground text-background p-6 md:p-8">
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3">{presentation.actionTitle}</h2>
-              <p className="text-background/75 leading-relaxed max-w-3xl">{presentation.actionBody}</p>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-balance mb-3">{presentation.actionTitle}</h2>
+              <p className="text-background/75 leading-relaxed text-pretty max-w-3xl">{presentation.actionBody}</p>
             </div>
             <Button asChild variant="secondary">
               <Link href={articlePath}>
-                <BookOpen className="h-4 w-4" />
+                <BookOpen className="h-4 w-4" aria-hidden="true" />
                 {t('presentation.readArticle')}
               </Link>
             </Button>

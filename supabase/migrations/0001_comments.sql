@@ -16,10 +16,10 @@ create extension if not exists "pgcrypto";
 
 create table if not exists public.comments (
   id            uuid primary key default gen_random_uuid(),
-  post_slug     text not null,
+  post_slug     text not null check (char_length(post_slug) between 1 and 200 and post_slug ~ '^[a-z0-9-]+$'),
   user_id       uuid not null references auth.users (id) on delete cascade,
-  author_name   text not null,
-  author_avatar text,
+  author_name   text not null check (char_length(trim(author_name)) between 1 and 120),
+  author_avatar text check (author_avatar is null or (char_length(author_avatar) <= 500 and author_avatar ~ '^https://')),
   content       text not null check (char_length(content) between 1 and 5000),
   parent_id     uuid references public.comments (id) on delete set null,
   is_deleted    boolean not null default false,
@@ -35,7 +35,43 @@ create index if not exists comments_post_slug_created_at_idx
 create index if not exists comments_parent_id_idx
   on public.comments (parent_id);
 
--- Keep updated_at fresh on every write (e.g. the soft-delete update).
+-- Keep updated_at fresh on every write (e.g. the soft-delete update) and
+-- prevent updates to immutable columns.
+create or replace function public.prevent_comment_immutable_columns_update()
+returns trigger
+language plpgsql
+as $$
+begin
+  if new.id is distinct from old.id then
+    raise exception 'Modifying comment id is not allowed';
+  end if;
+  if new.user_id is distinct from old.user_id then
+    raise exception 'Modifying comment user_id is not allowed';
+  end if;
+  if new.post_slug is distinct from old.post_slug then
+    raise exception 'Modifying comment post_slug is not allowed';
+  end if;
+  if new.created_at is distinct from old.created_at then
+    raise exception 'Modifying comment created_at is not allowed';
+  end if;
+  if new.author_name is distinct from old.author_name then
+    raise exception 'Modifying comment author_name is not allowed';
+  end if;
+  if new.author_avatar is distinct from old.author_avatar then
+    raise exception 'Modifying comment author_avatar is not allowed';
+  end if;
+
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists comments_prevent_immutable_update on public.comments;
+create trigger comments_prevent_immutable_update
+  before update on public.comments
+  for each row
+  execute function public.prevent_comment_immutable_columns_update();
+
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql

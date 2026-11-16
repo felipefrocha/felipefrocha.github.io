@@ -90,4 +90,38 @@ describe('contact onRequest', () => {
     const res = await onRequest({ request, env: { TURNSTILE_SECRET_KEY: 'secret' } });
     expect(res.status).toBe(400);
   });
+
+  it('rejects cross-site requests via Sec-Fetch-Site with 403 before reading body or hitting Turnstile', async () => {
+    const fetchMock = stubTurnstile(true);
+    const res = await onRequest(makeContext(validBody, 'POST', { 'Sec-Fetch-Site': 'cross-site' }));
+    expect(res.status).toBe(403);
+    expect(res.headers.get('Vary')).toBe('Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site');
+    expect(res.headers.get('Cache-Control')).toBe('no-store');
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    const json = await res.json();
+    expect(json.error).toBe('Cross-site requests are not allowed');
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('allows same-origin requests with Sec-Fetch-Site: same-origin', async () => {
+    const fetchMock = stubTurnstile(true);
+    const res = await onRequest(makeContext(validBody, 'POST', { 'Sec-Fetch-Site': 'same-origin' }));
+    expect(res.status).toBe(200);
+    expect(res.headers.get('Vary')).toBe('Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site');
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('rejects requests without application/json Content-Type with 415', async () => {
+    const fetchMock = stubTurnstile(true);
+    const request = new Request('https://site/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(validBody),
+    });
+    const res = await onRequest({ request, env: { TURNSTILE_SECRET_KEY: 'secret' } });
+    expect(res.status).toBe(415);
+    const json = await res.json();
+    expect(json.error).toBe('Unsupported Content-Type.');
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
 });

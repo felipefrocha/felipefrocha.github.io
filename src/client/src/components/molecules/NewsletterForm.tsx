@@ -33,11 +33,20 @@ export function NewsletterForm() {
       className="flex gap-2 w-full max-w-md"
       data-testid="form-newsletter"
     >
+      <label htmlFor="newsletter-email" className="sr-only">
+        Email address
+      </label>
       <Input
+        id="newsletter-email"
+        name="email"
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        autoComplete="email"
+        autoCorrect="off"
+        autoCapitalize="none"
+        spellCheck={false}
         required
         className="flex-1"
         data-testid="input-newsletter-email"
@@ -47,7 +56,7 @@ export function NewsletterForm() {
           <span className="animate-spin">...</span>
         ) : (
           <>
-            <Send className="h-4 w-4 mr-2" />
+            <Send className="h-4 w-4 mr-2" aria-hidden="true" />
             Subscribe
           </>
         )}

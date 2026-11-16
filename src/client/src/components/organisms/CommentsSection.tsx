@@ -25,10 +25,10 @@ export function CommentsSection({ slug }: CommentsSectionProps) {
   const count = comments.length;
 
   return (
-    <section className="mt-16" aria-labelledby="comments-heading" data-testid="comments-section">
+    <section className="mt-16 defer-render" aria-labelledby="comments-heading" data-testid="comments-section">
       <Separator className="mb-8" />
       <h2 id="comments-heading" className="text-2xl font-semibold mb-6 flex items-center gap-2">
-        <MessageCircle className="h-6 w-6" />
+        <MessageCircle className="h-6 w-6" aria-hidden="true" />
         {t('comments.title')}
         {count > 0 && <span className="text-muted-foreground font-normal">({count})</span>}
       </h2>
@@ -49,7 +49,7 @@ export function CommentsSection({ slug }: CommentsSectionProps) {
                 onClick={() => signOut()}
                 data-testid="button-signout"
               >
-                <LogOut className="h-3.5 w-3.5 mr-1.5" />
+                <LogOut className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
                 {t('comments.signOut')}
               </Button>
             </div>
@@ -60,11 +60,11 @@ export function CommentsSection({ slug }: CommentsSectionProps) {
             <p className="text-sm text-muted-foreground mb-4">{t('comments.signInPrompt')}</p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Button variant="outline" onClick={() => signIn('github')} data-testid="button-signin-github">
-                <FaGithub className="h-4 w-4 mr-2" />
+                <FaGithub className="h-4 w-4 mr-2" aria-hidden="true" />
                 {t('comments.signInWithGithub')}
               </Button>
               <Button variant="outline" onClick={() => signIn('google')} data-testid="button-signin-google">
-                <FaGoogle className="h-4 w-4 mr-2" />
+                <FaGoogle className="h-4 w-4 mr-2" aria-hidden="true" />
                 {t('comments.signInWithGoogle')}
               </Button>
             </div>

@@ -1,7 +1,8 @@
+import { lazy, Suspense } from "react";
 import { Switch, Route } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, QueryClientProvider } from "@tanstack/react-query";
+import { MotionConfig } from "framer-motion";
 import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MainLayout } from "@/components/templates/MainLayout";
@@ -11,66 +12,67 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { useTranslation } from "react-i18next";
 
 import Home from "@/pages/Home";
-import Blog from "@/pages/Blog";
-import BlogPost from "@/pages/BlogPost";
-import Portfolio from "@/pages/Portfolio";
-import About from "@/pages/About";
-import Contact from "@/pages/Contact";
-import Presentation from "@/pages/Presentation";
-import NotFound from "@/pages/not-found";
 
-import type { ProfileInfo, BlogPost as BlogPostType, SocialLink, Project } from '@shared/schema';
+const Blog = lazy(() => import("@/pages/Blog"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
+const Portfolio = lazy(() => import("@/pages/Portfolio"));
+const About = lazy(() => import("@/pages/About"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const Presentation = lazy(() => import("@/pages/Presentation"));
+const NotFound = lazy(() => import("@/pages/not-found"));
+
+import type { SocialLink } from '@shared/schema';
+
+function RouteFallback() {
+  return (
+    <div className="py-12 px-6 md:px-8 max-w-6xl mx-auto space-y-4">
+      <Skeleton className="h-10 w-48" />
+      <Skeleton className="h-6 w-96 max-w-full" />
+      <Skeleton className="h-64 w-full" />
+    </div>
+  );
+}
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/blog/:slug" component={BlogPost} />
-      <Route path="/portfolio" component={Portfolio} />
-      <Route path="/presentations/:slug" component={Presentation} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<RouteFallback />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogPost} />
+        <Route path="/portfolio" component={Portfolio} />
+        <Route path="/presentations/:slug" component={Presentation} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
 // Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
+const defaultProfile = {
+  name: 'Felipe F. Rocha',
+  tagline: 'Systems Engineer',
+};
+
+const defaultSocials: SocialLink[] = [
+  { platform: 'github', url: 'https://github.com', handle: 'felipefrocha'},
+  { platform: 'linkedin', url: 'https://linkedin.com/in', handle: 'felipefonsecarocha' },
+  { platform: 'instagram', url: 'https://instagram.com', handle: '_felipefrocha' },
+];
+
 function AppContent() {
   const { i18n } = useTranslation();
 
-  const { data: siteData, isLoading } = useQuery<SiteData>({
+  const { data: siteData } = useQuery<SiteData>({
     queryKey: ['/api/site-data', i18n.language],
     queryFn: fetchSiteData,
     staleTime: isDevelopment ? 0 : 5 * 60 * 1000,
     refetchInterval: isDevelopment ? 2000 : false,
   });
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="space-y-4 text-center">
-          <Skeleton className="h-16 w-16 rounded-full mx-auto" />
-          <Skeleton className="h-4 w-32 mx-auto" />
-          <Skeleton className="h-3 w-24 mx-auto" />
-        </div>
-      </div>
-    );
-  }
-
-  const defaultProfile = {
-    name: 'Felipe F. Rocha',
-    tagline: 'Systems Engineer',
-  };
-
-  const defaultSocials: SocialLink[] = [
-    { platform: 'github', url: 'https://github.com', handle: 'felipefrocha'},
-    { platform: 'linkedin', url: 'https://linkedin.com/in', handle: 'felipefonsecarocha' },
-    { platform: 'instagram', url: 'https://instagram.com', handle: '_felipefrocha' },
-  ];
 
   const profile = siteData?.profile;
   const socialLinks = siteData?.socials;
@@ -91,14 +93,16 @@ function AppContent() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <AppContent />
-          <Toaster />
-        </TooltipProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+    <MotionConfig reducedMotion="user">
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <TooltipProvider>
+            <AppContent />
+            <Toaster />
+          </TooltipProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </MotionConfig>
   );
 }
 

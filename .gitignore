@@ -14,3 +14,12 @@ coverage
 playwright-report
 test-results
 .playwright
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+.dev.vars
+
+# Scratch / temporary files
+temp/

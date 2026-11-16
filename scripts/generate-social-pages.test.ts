@@ -6,6 +6,7 @@ import {
   generateSocialPages,
   injectSocialMetadata,
   renderSocialMetadata,
+  serializeJsonLd,
 } from './generate-social-pages';
 
 const tempDirectories: string[] = [];
@@ -36,6 +37,32 @@ describe('social metadata generation', () => {
     expect(metadata).toContain('property="article:tag" content="AI &amp; systems"');
   });
 
+  it('escapes <, >, and & when serializing JSON-LD structured data', () => {
+    const jsonLd = serializeJsonLd({
+      '@context': 'https://schema.org',
+      headline: 'Breaking </script><script>alert(1)</script> & more',
+    });
+
+    expect(jsonLd).not.toContain('</script>');
+    expect(jsonLd).toContain('\\u003c/script\\u003e');
+    expect(jsonLd).toContain('\\u0026');
+
+    const metadata = renderSocialMetadata({
+      title: 'Post',
+      description: 'Desc',
+      canonicalUrl: 'https://example.com/blog/post',
+      imageUrl: 'https://example.com/social.png',
+      imageAlt: 'Alt',
+      structuredData: {
+        '@context': 'https://schema.org',
+        headline: '</script>',
+      },
+    });
+    expect(metadata).toContain('<script type="application/ld+json">');
+    expect(metadata).not.toContain('</script></script>');
+    expect(metadata).toContain('\\u003c/script\\u003e');
+  });
+
   it('injects metadata and the document title into the crawler-facing HTML', () => {
     const html = '<head><!-- social-meta:start --><meta name="old" /><!-- social-meta:end --><title>Old</title></head>';
     const output = injectSocialMetadata(html, {
@@ -49,6 +76,20 @@ describe('social metadata generation', () => {
     expect(output).toContain('<title>A crawler-ready page</title>');
     expect(output).toContain('property="og:url" content="https://example.com/page"');
     expect(output).not.toContain('name="old"');
+  });
+
+  it('preserves $ replacement patterns ($&, $\', $`, $1) verbatim in titles and descriptions', () => {
+    const html = '<head><!-- social-meta:start --><meta name="old" /><!-- social-meta:end --><title>Old</title></head>';
+    const output = injectSocialMetadata(html, {
+      title: 'Cost is $& and $\' or $100',
+      description: 'Shell vars $` and $& are preserved',
+      canonicalUrl: 'https://example.com/page',
+      imageUrl: 'https://example.com/social.png',
+      imageAlt: 'Alt $&',
+    });
+
+    expect(output).toContain('<title>Cost is $&amp; and $&#39; or $100</title>');
+    expect(output).toContain('content="Shell vars $` and $&amp; are preserved"');
   });
 
   it('writes a dedicated initial HTML document for each shareable route', () => {

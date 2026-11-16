@@ -82,51 +82,75 @@ export default function Blog() {
       />
       <div className="max-w-6xl mx-auto">
         <header className="mb-8">
-          <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-blog-title">
+          <h1 className="text-4xl font-bold tracking-tight text-balance mb-4" data-testid="text-blog-title">
             {t('blog.title')}
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground text-pretty">
             {t('blog.description')}
           </p>
         </header>
 
-        <div className="sticky top-14 z-30 bg-background/95 backdrop-blur py-4 -mx-6 px-6 md:-mx-8 md:px-8 border-b mb-8">
+        <search
+          aria-label={t('blog.title')}
+          className="sticky top-14 z-30 bg-background/95 backdrop-blur py-4 -mx-6 px-6 md:-mx-8 md:px-8 border-b mb-8 block"
+        >
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
             <div className="relative w-full sm:max-w-xs">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <label htmlFor="blog-search" className="sr-only">
+                {t('blog.searchPlaceholder')}
+              </label>
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
               <Input
+                id="blog-search"
+                name="q"
                 type="search"
                 placeholder={t('blog.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="none"
+                spellCheck={false}
                 className="pl-9"
                 data-testid="input-search-posts"
               />
             </div>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
               <Badge
+                asChild
                 variant={selectedCategory === null ? 'default' : 'outline'}
                 className="cursor-pointer"
-                onClick={() => setSelectedCategory(null)}
-                data-testid="badge-category-all"
               >
-                {t('common.all')}
+                <button
+                  type="button"
+                  aria-pressed={selectedCategory === null}
+                  onClick={() => setSelectedCategory(null)}
+                  data-testid="badge-category-all"
+                >
+                  {t('common.all')}
+                </button>
               </Badge>
               {categories.map((category) => (
                 <Badge
                   key={category}
+                  asChild
                   variant={selectedCategory === category ? 'default' : 'outline'}
                   className="cursor-pointer"
-                  onClick={() => setSelectedCategory(category)}
-                  data-testid={`badge-category-${category.toLowerCase()}`}
                 >
-                  {category}
+                  <button
+                    type="button"
+                    aria-pressed={selectedCategory === category}
+                    onClick={() => setSelectedCategory(category)}
+                    data-testid={`badge-category-${category.toLowerCase()}`}
+                  >
+                    {category}
+                  </button>
                 </Badge>
               ))}
             </div>
           </div>
-        </div>
+        </search>
 
         {filteredPosts.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

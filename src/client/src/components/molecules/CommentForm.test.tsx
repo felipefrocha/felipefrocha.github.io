@@ -72,4 +72,18 @@ describe('CommentForm', () => {
     await userEvent.click(cancel);
     expect(onCancel).toHaveBeenCalled();
   });
+
+  it('submits on Ctrl+Enter when not composing', async () => {
+    render(<CommentForm slug="agentic-sdlc" />);
+    const textarea = screen.getByTestId('input-comment');
+    await userEvent.type(textarea, 'ctrl enter submit');
+    await userEvent.keyboard('{Control>}{Enter}{/Control}');
+    await waitFor(() =>
+      expect(state.mutateAsync).toHaveBeenCalledWith({
+        content: 'ctrl enter submit',
+        author: state.author,
+        parentId: null,
+      }),
+    );
+  });
 });

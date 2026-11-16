@@ -35,8 +35,35 @@ export function useThemeProvider() {
     } else {
       root.classList.remove('dark');
     }
+    const meta = document.querySelector('meta[name="color-scheme"]');
+    if (meta) {
+      meta.setAttribute('content', theme === 'dark' ? 'dark light' : 'light dark');
+    }
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia?.('(prefers-color-scheme: dark)');
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setThemeState(e.matches ? 'dark' : 'light');
+    };
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'theme' && (e.newValue === 'light' || e.newValue === 'dark')) {
+        setThemeState(e.newValue);
+      }
+    };
+
+    mediaQuery?.addEventListener?.('change', handleMediaChange);
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      mediaQuery?.removeEventListener?.('change', handleMediaChange);
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const toggleTheme = () => {
     setThemeState(prev => prev === 'dark' ? 'light' : 'dark');

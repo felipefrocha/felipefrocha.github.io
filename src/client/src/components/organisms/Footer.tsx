@@ -21,7 +21,6 @@ export function Footer({ socialLinks }: FooterProps) {
   return (
     <footer 
       className="border-t border-border bg-muted/20"
-      role="contentinfo"
       data-testid="footer"
     >
       <div className="max-w-6xl mx-auto px-6 md:px-8 py-12">

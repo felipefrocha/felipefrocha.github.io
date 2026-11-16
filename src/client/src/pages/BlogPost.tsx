@@ -70,7 +70,7 @@ export default function BlogPostPage() {
           </p>
           <Button asChild>
             <Link href="/blog">
-              <ArrowLeft className="h-4 w-4 mr-2" />
+              <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
               {t('blog.backToBlog')}
             </Link>
           </Button>
@@ -117,40 +117,40 @@ export default function BlogPostPage() {
           <Link href="/" className="hover:text-foreground transition-colors">
             {t('nav.home')}
           </Link>
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
           <Link href="/blog" className="hover:text-foreground transition-colors">
             {t('nav.blog')}
           </Link>
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" aria-hidden="true" />
           <span className="text-foreground truncate">{post.title}</span>
         </nav>
 
         <header className="mb-8">
           <Badge variant="outline" className="mb-4">{post.category}</Badge>
           <h1 
-            className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+            className="text-4xl md:text-5xl font-bold tracking-tight text-balance mb-4"
             data-testid="text-post-title"
           >
             {post.title}
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-1">
-              <Calendar className="h-4 w-4" />
+              <Calendar className="h-4 w-4" aria-hidden="true" />
               {post.date}
             </span>
             <span className="flex items-center gap-1">
-              <Clock className="h-4 w-4" />
+              <Clock className="h-4 w-4" aria-hidden="true" />
               {post.readTime}
             </span>
             <span className="flex items-center gap-1">
-              <UserRound className="h-4 w-4" />
+              <UserRound className="h-4 w-4" aria-hidden="true" />
               {author}
             </span>
           </div>
         </header>
 
-        <div className="prose prose-neutral dark:prose-invert max-w-none mb-12">
-          <p className="text-lg text-muted-foreground leading-relaxed">
+        <div className="prose prose-neutral dark:prose-invert max-w-none text-pretty mb-12">
+          <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
             {post.excerpt}
           </p>
           
@@ -161,13 +161,13 @@ export default function BlogPostPage() {
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="font-medium">{t('presentation.articleCtaTitle')}</p>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="text-sm text-muted-foreground mt-1 text-pretty">
                     {t('presentation.articleCtaDescription')}
                   </p>
                 </div>
                 <Button asChild>
                   <Link href={`/presentations/${post.presentationSlug}`}>
-                    <MonitorPlay className="h-4 w-4 mr-2" />
+                    <MonitorPlay className="h-4 w-4 mr-2" aria-hidden="true" />
                     {t('presentation.viewPresentation')}
                   </Link>
                 </Button>
@@ -193,8 +193,8 @@ export default function BlogPostPage() {
         {relatedPosts.length > 0 && (
           <>
             <Separator className="mb-12" />
-            <section>
-              <h2 className="text-2xl font-semibold mb-6">{t('blog.relatedPosts')}</h2>
+            <section className="defer-render">
+              <h2 className="text-2xl font-semibold text-balance mb-6">{t('blog.relatedPosts')}</h2>
               <div className="grid gap-4 md:grid-cols-3">
                 {relatedPosts.map((relatedPost) => (
                   <Link 

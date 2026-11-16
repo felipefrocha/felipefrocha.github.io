@@ -67,10 +67,10 @@ export const profileSchema = z.object({
 export type ProfileInfo = z.infer<typeof profileSchema>;
 
 export const contactMessageSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(1, "Subject is required"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string().min(1, "Name is required").max(120, "Name must be at most 120 characters"),
+  email: z.string().email("Invalid email address").max(254, "Email must be at most 254 characters"),
+  subject: z.string().min(1, "Subject is required").max(200, "Subject must be at most 200 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters").max(5000, "Message must be at most 5000 characters"),
   turnstileToken: z.string().min(1, "Please complete the CAPTCHA"),
 });
 

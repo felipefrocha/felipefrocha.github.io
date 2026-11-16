@@ -38,11 +38,22 @@ describe('useAuth', () => {
   });
 
   it('derives the display name from full_name and avatar_url', async () => {
-    holder.client = createSupabaseMock({ session: sessionWith({ full_name: 'Ada Lovelace', avatar_url: 'a.png' }) });
+    holder.client = createSupabaseMock({
+      session: sessionWith({ full_name: 'Ada Lovelace', avatar_url: 'https://example.com/a.png' }),
+    });
     const { result } = renderHook(() => useAuth(), { wrapper });
     await waitFor(() => expect(result.current.author).not.toBeNull());
     expect(result.current.author?.name).toBe('Ada Lovelace');
-    expect(result.current.author?.avatar).toBe('a.png');
+    expect(result.current.author?.avatar).toBe('https://example.com/a.png');
+  });
+
+  it('rejects non-https avatar URLs in user metadata', async () => {
+    holder.client = createSupabaseMock({
+      session: sessionWith({ full_name: 'Ada Lovelace', avatar_url: 'http://insecure.example.com/a.png' }),
+    });
+    const { result } = renderHook(() => useAuth(), { wrapper });
+    await waitFor(() => expect(result.current.author).not.toBeNull());
+    expect(result.current.author?.avatar).toBeNull();
   });
 
   it('falls back to the email prefix when no name metadata exists', async () => {

@@ -1,5 +1,8 @@
 const CACHE_NAME = 'portfolio-v1';
+const ASSETS_CACHE = 'assets-v1';
 const RUNTIME_CACHE = 'runtime-v1';
+const MAX_RUNTIME_ENTRIES = 60;
+const MAX_ASSETS_ENTRIES = 100;
 
 const PRECACHE_ASSETS = [
   '/',
@@ -8,6 +11,16 @@ const PRECACHE_ASSETS = [
 
 /// <reference lib="webworker" />
 const sw = self as unknown as ServiceWorkerGlobalScope;
+
+async function trimCache(cacheName: string, maxItems: number): Promise<void> {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length > maxItems) {
+    await Promise.all(
+      keys.slice(0, keys.length - maxItems).map((key) => cache.delete(key))
+    );
+  }
+}
 
 sw.addEventListener('install', (event: ExtendableEvent) => {
   event.waitUntil(
@@ -24,7 +37,7 @@ sw.addEventListener('activate', (event: ExtendableEvent) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter((name) => name !== CACHE_NAME && name !== RUNTIME_CACHE)
+          .filter((name) => name !== CACHE_NAME && name !== ASSETS_CACHE && name !== RUNTIME_CACHE)
           .map((name) => caches.delete(name))
       );
     }).then(() => {
@@ -53,7 +66,7 @@ sw.addEventListener('fetch', (event: FetchEvent) => {
           if (response.ok) {
             const responseClone = response.clone();
             caches.open(RUNTIME_CACHE).then((cache) => {
-              cache.put(request, responseClone);
+              cache.put(request, responseClone).then(() => trimCache(RUNTIME_CACHE, MAX_RUNTIME_ENTRIES));
             });
           }
           return response;
@@ -70,6 +83,26 @@ sw.addEventListener('fetch', (event: FetchEvent) => {
     return;
   }
 
+  // Immutable hashed build assets (/assets/*) use Cache-First with bounded quota
+  if (url.origin === sw.location.origin && url.pathname.startsWith('/assets/')) {
+    event.respondWith(
+      caches.open(ASSETS_CACHE).then((cache) => {
+        return cache.match(request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          return fetch(request).then((networkResponse) => {
+            if (networkResponse.ok) {
+              cache.put(request, networkResponse.clone()).then(() => trimCache(ASSETS_CACHE, MAX_ASSETS_ENTRIES));
+            }
+            return networkResponse;
+          });
+        });
+      })
+    );
+    return;
+  }
+
   if (
     request.destination === 'image' ||
     request.destination === 'style' ||
@@ -82,7 +115,7 @@ sw.addEventListener('fetch', (event: FetchEvent) => {
           if (cachedResponse) {
             fetch(request).then((networkResponse) => {
               if (networkResponse.ok) {
-                cache.put(request, networkResponse.clone());
+                cache.put(request, networkResponse.clone()).then(() => trimCache(RUNTIME_CACHE, MAX_RUNTIME_ENTRIES));
               }
             }).catch(() => {});
             return cachedResponse;
@@ -90,7 +123,7 @@ sw.addEventListener('fetch', (event: FetchEvent) => {
           
           return fetch(request).then((networkResponse) => {
             if (networkResponse.ok) {
-              cache.put(request, networkResponse.clone());
+              cache.put(request, networkResponse.clone()).then(() => trimCache(RUNTIME_CACHE, MAX_RUNTIME_ENTRIES));
             }
             return networkResponse;
           }).catch(() => {

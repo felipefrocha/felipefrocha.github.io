@@ -33,6 +33,10 @@ export function CommentItem({ comment, slug, isReply = false }: CommentItemProps
   });
   const wasEdited = comment.updated_at !== comment.created_at;
   const initials = comment.author_name.slice(0, 2).toUpperCase();
+  const safeAvatarUrl =
+    comment.author_avatar && comment.author_avatar.startsWith('https://')
+      ? comment.author_avatar
+      : null;
 
   const handleDelete = async () => {
     try {
@@ -49,7 +53,7 @@ export function CommentItem({ comment, slug, isReply = false }: CommentItemProps
   return (
     <div className="flex gap-3" data-testid={`comment-${comment.id}`}>
       <Avatar className="h-9 w-9 shrink-0">
-        {comment.author_avatar && <AvatarImage src={comment.author_avatar} alt={comment.author_name} />}
+        {safeAvatarUrl && <AvatarImage src={safeAvatarUrl} alt={comment.author_name} />}
         <AvatarFallback className="text-xs">{initials}</AvatarFallback>
       </Avatar>
 
@@ -76,7 +80,7 @@ export function CommentItem({ comment, slug, isReply = false }: CommentItemProps
               onClick={() => setReplying((v) => !v)}
               data-testid={`button-reply-${comment.id}`}
             >
-              <MessageSquare className="h-3.5 w-3.5 mr-1.5" />
+              <MessageSquare className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
               {t('comments.reply')}
             </Button>
           )}
@@ -90,7 +94,7 @@ export function CommentItem({ comment, slug, isReply = false }: CommentItemProps
               disabled={deleteComment.isPending}
               data-testid={`button-delete-${comment.id}`}
             >
-              <Trash2 className="h-3.5 w-3.5 mr-1.5" />
+              <Trash2 className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
               {t('comments.delete')}
             </Button>
           )}

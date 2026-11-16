@@ -38,6 +38,15 @@ describe('useThemeProvider', () => {
     act(() => result.current.setTheme('dark'));
     expect(result.current.theme).toBe('dark');
   });
+
+  it('syncs theme across tabs via storage events', () => {
+    const { result } = renderHook(() => useThemeProvider());
+    act(() => {
+      window.dispatchEvent(new StorageEvent('storage', { key: 'theme', newValue: 'dark' }));
+    });
+    expect(result.current.theme).toBe('dark');
+    expect(document.documentElement.classList.contains('dark')).toBe(true);
+  });
 });
 
 describe('useTheme', () => {

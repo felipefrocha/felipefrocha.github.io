@@ -115,16 +115,17 @@ export default function Contact() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={(e) => { e.preventDefault(); }} className="space-y-4" data-testid="form-contact">
+              <form onSubmit={handleSubmit} className="space-y-4" data-testid="form-contact">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">{t('contact.name')}</Label>
                     <Input 
                       id="name" 
                       name="name"
+                      autoComplete="name"
                       placeholder={t('contact.namePlaceholder')} 
                       required 
-                      disabled
+                      disabled={contactMutation.isPending}
                       value={formData.name}
                       onChange={handleChange}
                       data-testid="input-contact-name"
@@ -136,9 +137,13 @@ export default function Contact() {
                       id="email" 
                       name="email"
                       type="email" 
+                      autoComplete="email"
+                      autoCorrect="off"
+                      autoCapitalize="none"
+                      spellCheck={false}
                       placeholder={t('contact.emailPlaceholder')} 
                       required 
-                      disabled
+                      disabled={contactMutation.isPending}
                       value={formData.email}
                       onChange={handleChange}
                       data-testid="input-contact-email"
@@ -151,9 +156,10 @@ export default function Contact() {
                   <Input 
                     id="subject" 
                     name="subject"
+                    autoComplete="off"
                     placeholder={t('contact.subjectPlaceholder')} 
                     required 
-                    disabled
+                    disabled={contactMutation.isPending}
                     value={formData.subject}
                     onChange={handleChange}
                     data-testid="input-contact-subject"
@@ -168,7 +174,7 @@ export default function Contact() {
                     placeholder={t('contact.messagePlaceholder')}
                     rows={5}
                     required
-                    disabled
+                    disabled={contactMutation.isPending}
                     value={formData.message}
                     onChange={handleChange}
                     data-testid="input-contact-message"
@@ -188,7 +194,7 @@ export default function Contact() {
                   className="w-full"
                   data-testid="button-contact-submit"
                 >
-                  <Send className="h-4 w-4 mr-2" />
+                  <Send className="h-4 w-4 mr-2" aria-hidden="true" />
                   {t('contact.sendButton')}
                 </Button>
               </form>
@@ -203,7 +209,7 @@ export default function Contact() {
                   {profile?.email && (
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-md bg-muted">
-                        <Mail className="h-4 w-4" />
+                        <Mail className="h-4 w-4" aria-hidden="true" />
                       </div>
                       <div>
                         <p className="text-sm font-medium">{t('contact.email')}</p>
@@ -220,7 +226,7 @@ export default function Contact() {
                   {profile?.location && (
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-md bg-muted">
-                        <MapPin className="h-4 w-4" />
+                        <MapPin className="h-4 w-4" aria-hidden="true" />
                       </div>
                       <div>
                         <p className="text-sm font-medium">{t('contact.location')}</p>

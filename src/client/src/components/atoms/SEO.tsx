@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { serializeJsonLd } from '@/lib/structuredData';
 
 export interface SEOProps {
   title?: string;
@@ -46,7 +47,7 @@ export function SEO({
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.dataset.seoStructuredData = 'true';
-    script.textContent = JSON.stringify(
+    script.textContent = serializeJsonLd(
       Array.isArray(structuredData) ? structuredData : [structuredData]
     );
     document.head.appendChild(script);

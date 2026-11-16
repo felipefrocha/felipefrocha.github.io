@@ -92,14 +92,14 @@ export default function About() {
 
                   {profile.location && (
                     <p className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
-                      <MapPin className="h-4 w-4" />
+                      <MapPin className="h-4 w-4" aria-hidden="true" />
                       {profile.location}
                     </p>
                   )}
                   
                   {profile.email && (
                     <p className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
-                      <Mail className="h-4 w-4" />
+                      <Mail className="h-4 w-4" aria-hidden="true" />
                       {profile.email}
                     </p>
                   )}
@@ -175,7 +175,7 @@ export default function About() {
               </section>
             )}
 
-            <section>
+            <section className="defer-render">
               <h2 className="text-2xl font-semibold mb-4">{t('about.experience')}</h2>
               <div className="space-y-6">
                 <div className="border-l-2 border-primary pl-4">

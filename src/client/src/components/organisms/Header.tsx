@@ -11,7 +11,6 @@ export function Header({ title }: HeaderProps) {
   return (
     <header 
       className="sticky top-0 z-40 flex h-14 items-center justify-between gap-4 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4"
-      role="banner"
       data-testid="header"
     >
       <div className="flex items-center gap-2">

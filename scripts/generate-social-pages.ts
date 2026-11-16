@@ -16,6 +16,7 @@ export interface SocialMetadata {
   publishedTime?: string;
   author?: string;
   tags?: string[];
+  structuredData?: object | object[];
 }
 
 interface BlogPostMetadata {
@@ -45,6 +46,13 @@ function escapeHtml(value: string): string {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
+}
+
+export function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
 }
 
 function absoluteUrl(siteUrl: string, value: string): string {
@@ -112,6 +120,9 @@ export function renderSocialMetadata(metadata: SocialMetadata): string {
     `    <meta name="twitter:image" content="${imageUrl}" />`,
     `    <meta name="twitter:image:alt" content="${imageAlt}" />`,
     '    <meta name="twitter:creator" content="@_felipefrocha" />',
+    ...(metadata.structuredData
+      ? [`    <script type="application/ld+json">${serializeJsonLd(metadata.structuredData)}</script>`]
+      : []),
     '    <!-- social-meta:end -->',
   ].join('\n');
 }
@@ -121,16 +132,23 @@ export function injectSocialMetadata(html: string, metadata: SocialMetadata): st
     throw new Error('The built index.html is missing the social metadata markers.');
   }
 
+  const socialMeta = renderSocialMetadata(metadata);
+  const titleTag = `<title>${escapeHtml(metadata.title)}</title>`;
+
   return html
-    .replace(SOCIAL_META_PATTERN, renderSocialMetadata(metadata))
-    .replace(TITLE_PATTERN, `<title>${escapeHtml(metadata.title)}</title>`);
+    .replace(SOCIAL_META_PATTERN, () => socialMeta)
+    .replace(TITLE_PATTERN, () => titleTag);
 }
 
 function writeRouteHtml(buildDir: string, route: string, html: string): void {
+  const resolvedBuildDir = path.resolve(buildDir);
   const relativeRoute = route.replace(/^\/+|\/+$/g, '');
-  const outputPath = relativeRoute
-    ? path.join(buildDir, `${relativeRoute}.html`)
-    : path.join(buildDir, 'index.html');
+  const routeRelativePath = relativeRoute ? `${relativeRoute}.html` : 'index.html';
+  const outputPath = path.resolve(resolvedBuildDir, routeRelativePath);
+
+  if (!outputPath.startsWith(resolvedBuildDir + path.sep)) {
+    throw new Error(`Invalid route path traversal detected: ${route}`);
+  }
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, html, 'utf8');
@@ -214,16 +232,38 @@ export function generateSocialPages(options: GenerateSocialPagesOptions = {}): n
 
   for (const post of posts) {
     const canonicalUrl = `${siteUrl}/blog/${post.slug}`;
+    const imageUrl = post.image ? absoluteUrl(siteUrl, post.image) : articleImage;
+    const authorName = post.author || profile.name || 'Felipe F. Rocha';
+    const publishedTime = isoDate(post.date);
     writeRouteHtml(buildDir, `/blog/${post.slug}`, injectSocialMetadata(template, {
       title: `${post.title} | Felipe F. Rocha`,
       description: post.excerpt,
       canonicalUrl,
-      imageUrl: post.image ? absoluteUrl(siteUrl, post.image) : articleImage,
+      imageUrl,
       imageAlt: post.title,
       type: 'article',
-      publishedTime: isoDate(post.date),
-      author: post.author || profile.name || 'Felipe F. Rocha',
+      publishedTime,
+      author: authorName,
       tags: post.tags,
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.excerpt,
+        image: imageUrl,
+        ...(publishedTime ? { datePublished: publishedTime, dateModified: publishedTime } : {}),
+        author: {
+          '@type': 'Person',
+          name: authorName,
+          url: siteUrl,
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': canonicalUrl,
+        },
+        url: canonicalUrl,
+        ...(post.tags?.length ? { keywords: post.tags.join(', ') } : {}),
+      },
     }));
   }
 

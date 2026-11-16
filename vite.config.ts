@@ -50,6 +50,48 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) {
+            return undefined;
+          }
+          if (
+            id.includes("/node_modules/react/") ||
+            id.includes("/node_modules/react-dom/") ||
+            id.includes("/node_modules/scheduler/") ||
+            id.includes("/node_modules/wouter/")
+          ) {
+            return "react-vendor";
+          }
+          if (
+            id.includes("/node_modules/framer-motion/") ||
+            id.includes("/node_modules/motion-dom/") ||
+            id.includes("/node_modules/motion-utils/") ||
+            id.includes("/node_modules/lucide-react/") ||
+            id.includes("/node_modules/@radix-ui/")
+          ) {
+            return "ui-vendor";
+          }
+          if (
+            id.includes("/node_modules/marked/") ||
+            id.includes("/node_modules/dompurify/")
+          ) {
+            return "markdown-vendor";
+          }
+          if (id.includes("/node_modules/@tanstack/")) {
+            return "query-vendor";
+          }
+          if (
+            id.includes("/node_modules/i18next") ||
+            id.includes("/node_modules/react-i18next/")
+          ) {
+            return "i18n-vendor";
+          }
+          return undefined;
+        },
+      },
+    },
   },
   server: {
     fs: {

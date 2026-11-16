@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -23,12 +23,12 @@ export function CommentForm({ slug, parentId = null, autoFocus, onSubmitted, onC
   const { toast } = useToast();
   const addComment = useAddComment(slug);
   const [content, setContent] = useState('');
+  const textareaId = useId();
 
   const trimmed = content.trim();
   const canSubmit = trimmed.length > 0 && trimmed.length <= MAX_LENGTH && !addComment.isPending;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const submitComment = async () => {
     if (!author || !canSubmit) return;
 
     try {
@@ -44,12 +44,32 @@ export function CommentForm({ slug, parentId = null, autoFocus, onSubmitted, onC
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await submitComment();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && !e.nativeEvent.isComposing) {
+      e.preventDefault();
+      void submitComment();
+    }
+  };
+
+  const labelText = parentId ? t('comments.replyPlaceholder') : t('comments.placeholder');
+
   return (
     <form onSubmit={handleSubmit} className="space-y-3" data-testid="form-comment">
+      <label htmlFor={textareaId} className="sr-only">
+        {labelText}
+      </label>
       <Textarea
+        id={textareaId}
+        name="comment"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder={parentId ? t('comments.replyPlaceholder') : t('comments.placeholder')}
+        onKeyDown={handleKeyDown}
+        placeholder={labelText}
         rows={parentId ? 3 : 4}
         maxLength={MAX_LENGTH}
         autoFocus={autoFocus}
@@ -67,7 +87,7 @@ export function CommentForm({ slug, parentId = null, autoFocus, onSubmitted, onC
             </Button>
           )}
           <Button type="submit" size="sm" disabled={!canSubmit} data-testid="button-comment-submit">
-            <Send className="h-4 w-4 mr-2" />
+            <Send className="h-4 w-4 mr-2" aria-hidden="true" />
             {addComment.isPending ? t('comments.submitting') : parentId ? t('comments.reply') : t('comments.submit')}
           </Button>
         </div>

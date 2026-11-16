@@ -9,15 +9,15 @@ interface AboutSectionProps {
 export function AboutSection({ bio, skills }: AboutSectionProps) {
   const { t } = useTranslation();
   return (
-    <section className="py-16 md:py-20 px-6 md:px-8" data-testid="section-about">
+    <section className="py-16 md:py-20 px-6 md:px-8 defer-render" data-testid="section-about">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-8">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance mb-8">
           {t('sections.about')}
         </h2>
         
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="prose prose-neutral dark:prose-invert max-w-prose">
-            <p className="text-lg leading-relaxed text-muted-foreground">
+            <p className="text-lg leading-relaxed text-muted-foreground text-pretty">
               {bio}
             </p>
           </div>

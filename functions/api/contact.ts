@@ -7,17 +7,33 @@ interface Env {
 }
 
 const MAX_REQUEST_BYTES = 16 * 1024;
+const ALLOWED_FETCH_SITES = new Set(['same-origin', 'same-site', 'none']);
 
 function jsonResponse(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff',
+      'Vary': 'Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site',
+    },
   });
 }
 
 export async function onRequest(context: { request: Request; env: Env }): Promise<Response> {
   if (context.request.method !== 'POST') {
     return jsonResponse({ error: 'Method not allowed' }, 405);
+  }
+
+  const secFetchSite = context.request.headers.get('Sec-Fetch-Site');
+  if (secFetchSite && !ALLOWED_FETCH_SITES.has(secFetchSite.toLowerCase())) {
+    return jsonResponse({ error: 'Cross-site requests are not allowed' }, 403);
+  }
+
+  const contentType = context.request.headers.get('Content-Type') || '';
+  if (!contentType.toLowerCase().includes('application/json')) {
+    return jsonResponse({ error: 'Unsupported Content-Type.' }, 415);
   }
 
   try {

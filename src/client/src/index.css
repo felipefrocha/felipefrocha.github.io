@@ -3,6 +3,7 @@
 
 /* LIGHT MODE */
 :root {
+  color-scheme: light;
   --button-outline: rgba(0,0,0, .10);
   --badge-outline: rgba(0,0,0, .05);
   --opaque-button-border-intensity: -8;
@@ -87,6 +88,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --button-outline: rgba(255,255,255, .10);
   --badge-outline: rgba(255,255,255, .05);
   --opaque-button-border-intensity: 9;
@@ -165,7 +167,7 @@
 }
 
 @layer base {
-  * {
+  :where(*) {
     @apply border-border;
   }
 
@@ -195,10 +197,9 @@
  * need to be distinguished from eachother visually.
  */
 @layer utilities {
-
-  /* Hide ugly search cancel button in Chrome until we can style it properly */
-  input[type="search"]::-webkit-search-cancel-button {
-    @apply hidden;
+  .defer-render {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
   }
 
   /* Placeholder styling for contentEditable div */

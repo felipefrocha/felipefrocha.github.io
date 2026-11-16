@@ -38,6 +38,15 @@ i18n
     },
   });
 
+const syncDocumentLang = (lng?: string) => {
+  if (typeof document !== 'undefined' && lng) {
+    document.documentElement.lang = lng.split('-')[0];
+  }
+};
+
+syncDocumentLang(i18n.resolvedLanguage || i18n.language || 'en');
+i18n.on('languageChanged', syncDocumentLang);
+
 export default i18n;
 
 
