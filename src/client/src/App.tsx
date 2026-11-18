@@ -25,7 +25,9 @@ import type { SocialLink } from '@shared/schema';
 
 function RouteFallback() {
   return (
-    <div className="py-12 px-6 md:px-8 max-w-6xl mx-auto space-y-4">
+    // min-h-screen keeps the footer below the fold until the lazy route loads,
+    // avoiding a layout shift (CLS) when the real page replaces this fallback.
+    <div className="min-h-screen py-12 px-6 md:px-8 max-w-6xl mx-auto space-y-4" aria-busy="true">
       <Skeleton className="h-10 w-48" />
       <Skeleton className="h-6 w-96 max-w-full" />
       <Skeleton className="h-64 w-full" />
