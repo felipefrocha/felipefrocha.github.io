@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { SocialCard } from '@/components/molecules/SocialCard';
-import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
+import type { SocialLink } from '@shared/schema';
 
 interface ConnectSectionProps {
   socialLinks: SocialLink[];
@@ -8,14 +8,22 @@ interface ConnectSectionProps {
 
 export function ConnectSection({ socialLinks }: ConnectSectionProps) {
   const { t } = useTranslation();
+
+  if (!socialLinks || socialLinks.length === 0) {
+    return null;
+  }
+
   return (
-    <section className="py-16 md:py-20 px-6 md:px-8 defer-render" data-testid="section-connect">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-balance mb-8 text-center">
+    <section
+      className="section-spacing py-12 md:py-16 defer-render"
+      data-testid="section-connect"
+    >
+      <div className="container-default max-w-5xl mx-auto px-4 sm:px-6">
+        <h2 className="text-h2 text-2xl sm:text-3xl font-semibold tracking-tight text-balance mb-6">
           {t('sections.connect')}
         </h2>
-        
-        <div className="grid gap-4 sm:grid-cols-2">
+
+        <div className="grid gap-3 sm:grid-cols-3">
           {socialLinks.map((link) => (
             <SocialCard
               key={link.platform}

@@ -78,7 +78,7 @@
     "title": "Entre em Contato",
     "description": "Tem uma pergunta ou quer trabalhar junto? Adoraria ouvir de você.",
     "sendMessage": "Enviar Mensagem",
-    "formDisabled": "O formulário de contato está atualmente desabilitado. Por favor, entre em contato por e-mail ou redes sociais.",
+    "formIntro": "Preencha o formulário abaixo e eu retornarei o mais breve possível.",
     "name": "Nome",
     "namePlaceholder": "Seu nome",
     "email": "E-mail",

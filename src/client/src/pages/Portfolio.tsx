@@ -5,9 +5,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { SEO } from '@/components/atoms/SEO';
 import { generateCollectionPageSchema } from '@/lib/structuredData';
 import { fetchProjects } from '@/lib/api';
-import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
+import type { Project } from '@shared/schema';
 
-// Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
 export default function Portfolio() {
@@ -21,14 +20,13 @@ export default function Portfolio() {
 
   if (isLoading) {
     return (
-      <article className="py-8 md:py-12 px-6 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <Skeleton className="h-10 w-40 mb-4" />
-          <Skeleton className="h-6 w-96 mb-8" />
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Skeleton className="h-64" />
-            <Skeleton className="h-64" />
-            <Skeleton className="h-64" />
+      <article className="py-10 md:py-14">
+        <div className="container-default max-w-5xl mx-auto px-4 sm:px-6">
+          <Skeleton className="h-9 w-40 mb-3" />
+          <Skeleton className="h-5 w-96 max-w-full mb-8" />
+          <div className="grid gap-5 md:grid-cols-2">
+            <Skeleton className="h-56 rounded-xl" />
+            <Skeleton className="h-56 rounded-xl" />
           </div>
         </div>
       </article>
@@ -51,7 +49,7 @@ export default function Portfolio() {
   }));
 
   return (
-    <article className="py-8 md:py-12 px-6 md:px-8">
+    <article className="py-10 md:py-14">
       <SEO
         title="Portfolio"
         description="Explore my projects and work. Showcase of software engineering projects, systems architecture, and technical solutions."
@@ -62,17 +60,20 @@ export default function Portfolio() {
           collectionItems
         )}
       />
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-portfolio-title">
+      <div className="container-default max-w-5xl mx-auto px-4 sm:px-6">
+        <header className="mb-8 max-w-2xl">
+          <h1
+            className="text-h1 text-3xl sm:text-4xl font-bold tracking-tight mb-3"
+            data-testid="text-portfolio-title"
+          >
             {t('portfolio.title')}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
+          <p className="text-base sm:text-lg text-muted-foreground text-pretty">
             {t('portfolio.description')}
           </p>
         </header>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

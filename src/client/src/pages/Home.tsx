@@ -11,7 +11,6 @@ import { SEO } from '@/components/atoms/SEO';
 import { generateWebsiteSchema } from '@/lib/structuredData';
 import { fetchSiteData, type SiteData } from '@/lib/api';
 
-// Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
 export default function Home() {
@@ -25,19 +24,19 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <article className="space-y-16 py-8">
-        <div className="min-h-[80vh] flex items-center justify-center">
-          <div className="text-center space-y-4">
-            <Skeleton className="h-16 w-96 mx-auto" />
-            <Skeleton className="h-6 w-64 mx-auto" />
+      <article className="py-12">
+        <div className="container-default max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
+          <div className="py-12 space-y-4">
+            <Skeleton className="h-4 w-48" />
+            <Skeleton className="h-14 w-96 max-w-full" />
+            <Skeleton className="h-6 w-72 max-w-full" />
           </div>
-        </div>
-        <div className="px-6 md:px-8 max-w-6xl mx-auto space-y-4">
-          <Skeleton className="h-8 w-48" />
-          <div className="grid gap-6 md:grid-cols-3">
-            <Skeleton className="h-48" />
-            <Skeleton className="h-48" />
-            <Skeleton className="h-48" />
+          <div className="space-y-4">
+            <Skeleton className="h-8 w-40" />
+            <div className="grid gap-5 md:grid-cols-2">
+              <Skeleton className="h-48 rounded-xl" />
+              <Skeleton className="h-48 rounded-xl" />
+            </div>
           </div>
         </div>
       </article>
@@ -53,7 +52,7 @@ export default function Home() {
   }
 
   const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
-  
+
   return (
     <article>
       <SEO
@@ -65,20 +64,20 @@ export default function Home() {
           socialLinks: data.socials,
         })}
       />
-      
-      <HeroSection 
+
+      <HeroSection
         headline={t('hero.headline')}
         subheadline={t('hero.subheadline')}
       />
-      
+
       <FeaturedWorkSection projects={data.projects} />
-      
+
       <RecentPostsSection posts={data.featuredPosts} />
-      
+
       <AboutSection bio={data.profile.bio} skills={data.skills} />
-      
+
       <StatsSection stats={data.stats} />
-      
+
       <ConnectSection socialLinks={data.socials} />
     </article>
   );

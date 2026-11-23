@@ -23,7 +23,6 @@ const labels = {
 };
 
 const getProfileUrl = (platform: 'github' | 'linkedin' | 'instagram', handle?: string, url?: string): string => {
-  // If handle is provided, construct the full profile URL
   if (handle) {
     switch (platform) {
       case 'github':
@@ -34,7 +33,6 @@ const getProfileUrl = (platform: 'github' | 'linkedin' | 'instagram', handle?: s
         return `https://instagram.com/${handle}`;
     }
   }
-  // Fallback to provided URL if no handle
   return url || '#';
 };
 
@@ -50,7 +48,7 @@ export function SocialIcon({ platform, url, handle, size = 'default' }: SocialIc
           variant="ghost"
           size="icon"
           asChild
-          className={size === 'sm' ? 'h-8 w-8' : undefined}
+          className={size === 'sm' ? 'h-8 w-8 text-muted-foreground hover:text-foreground' : 'text-muted-foreground hover:text-foreground'}
           data-testid={`link-social-${platform}`}
         >
           <a
@@ -59,7 +57,7 @@ export function SocialIcon({ platform, url, handle, size = 'default' }: SocialIc
             rel="noopener noreferrer"
             aria-label={`Visit ${label} profile`}
           >
-            <Icon className={size === 'sm' ? 'h-4 w-4' : 'h-5 w-5'} />
+            <Icon className="h-4 w-4" />
           </a>
         </Button>
       </TooltipTrigger>

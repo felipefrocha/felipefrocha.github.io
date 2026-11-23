@@ -1,7 +1,7 @@
 import { NewsletterForm } from '@/components/molecules/NewsletterForm';
 import { SocialIcon } from '@/components/atoms/SocialIcon';
 import { Link } from 'wouter';
-import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
+import type { SocialLink } from '@shared/schema';
 
 interface FooterProps {
   socialLinks: SocialLink[];
@@ -19,26 +19,30 @@ export function Footer({ socialLinks }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer 
-      className="border-t border-border bg-muted/20"
+    <footer
+      className="border-t border-border/60 bg-background mt-12"
       data-testid="footer"
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-8 py-12">
-        <div className="grid gap-12 md:grid-cols-3">
+      <div className="container-default max-w-5xl mx-auto px-4 sm:px-6 py-10">
+        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_auto] items-start">
           <div>
-            <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-            <p className="text-sm text-muted-foreground mb-4">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">
+              Newsletter
+            </h3>
+            <p className="text-sm text-muted-foreground mb-3 max-w-xs">
               Subscribe to get updates on new posts and projects.
             </p>
             <NewsletterForm />
           </div>
-          
+
           <nav aria-label="Quick links">
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">
+              Quick Links
+            </h3>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     data-testid={`link-footer-${link.label.toLowerCase()}`}
@@ -49,24 +53,27 @@ export function Footer({ socialLinks }: FooterProps) {
               ))}
             </ul>
           </nav>
-          
+
           <div>
-            <h3 className="text-lg font-semibold mb-4">Social</h3>
-            <div className="flex items-center gap-1">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">
+              Social
+            </h3>
+            <div className="flex items-center gap-0.5 -ml-2">
               {socialLinks.map((link) => (
                 <SocialIcon
                   key={link.platform}
                   platform={link.platform}
                   handle={link.handle}
                   url={link.url}
+                  size="sm"
                 />
               ))}
             </div>
           </div>
         </div>
-        
-        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
+
+        <div className="mt-8 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-muted-foreground">
             &copy; {currentYear} All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground font-mono">

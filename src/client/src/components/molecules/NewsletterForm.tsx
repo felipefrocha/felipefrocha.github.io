@@ -14,23 +14,21 @@ export function NewsletterForm() {
     if (!email) return;
 
     setIsLoading(true);
-    
-    // todo: remove mock functionality - integrate with actual newsletter service
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     toast({
       title: 'Subscribed!',
       description: 'Thanks for subscribing to the newsletter.',
     });
-    
+
     setEmail('');
     setIsLoading(false);
   };
 
   return (
-    <form 
-      onSubmit={handleSubmit} 
-      className="flex gap-2 w-full max-w-md"
+    <form
+      onSubmit={handleSubmit}
+      className="flex gap-2 w-full max-w-sm"
       data-testid="form-newsletter"
     >
       <label htmlFor="newsletter-email" className="sr-only">
@@ -48,15 +46,15 @@ export function NewsletterForm() {
         autoCapitalize="none"
         spellCheck={false}
         required
-        className="flex-1"
+        className="flex-1 h-9 text-sm"
         data-testid="input-newsletter-email"
       />
-      <Button type="submit" disabled={isLoading} data-testid="button-newsletter-submit">
+      <Button type="submit" size="sm" disabled={isLoading} data-testid="button-newsletter-submit">
         {isLoading ? (
           <span className="animate-spin">...</span>
         ) : (
           <>
-            <Send className="h-4 w-4 mr-2" aria-hidden="true" />
+            <Send className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
             Subscribe
           </>
         )}

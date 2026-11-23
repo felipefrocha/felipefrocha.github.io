@@ -15,14 +15,18 @@ export function ProfileCard({ name, tagline, avatar }: ProfileCardProps) {
     .slice(0, 2);
 
   return (
-    <div className="flex flex-col items-center gap-3 p-4" data-testid="profile-card">
-      <Avatar className="h-16 w-16">
+    <div className="flex items-center gap-3 px-2 py-2.5" data-testid="profile-card">
+      <Avatar className="h-9 w-9 shrink-0 ring-1 ring-border/70">
         <AvatarImage src={avatar} alt={name} />
-        <AvatarFallback className="text-lg font-semibold">{initials}</AvatarFallback>
+        <AvatarFallback className="text-xs font-semibold">{initials}</AvatarFallback>
       </Avatar>
-      <div className="text-center">
-        <h2 className="text-lg font-semibold" data-testid="text-profile-name">{name}</h2>
-        <p className="text-sm text-muted-foreground" data-testid="text-profile-tagline">{tagline}</p>
+      <div className="min-w-0">
+        <h2 className="text-sm font-semibold tracking-tight truncate" data-testid="text-profile-name">
+          {name}
+        </h2>
+        <p className="text-xs text-muted-foreground truncate" data-testid="text-profile-tagline">
+          {tagline}
+        </p>
       </div>
     </div>
   );

@@ -1,8 +1,7 @@
 import { Link } from 'wouter';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Calendar, Clock } from 'lucide-react';
-import type { BlogPost, ProfileInfo, SocialLink, Project } from '@shared/schema';
+import { ArrowUpRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import type { BlogPost } from '@shared/schema';
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -11,46 +10,47 @@ interface BlogPostCardProps {
 
 export function BlogPostCard({ post, featured }: BlogPostCardProps) {
   return (
-    <Link 
+    <Link
       href={`/blog/${post.slug}`}
-      className="block group"
+      className={cn(
+        'group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card/60 p-5 sm:p-6 transition-colors hover:border-foreground/25 hover:bg-card @container',
+        featured && 'md:col-span-2 bg-card'
+      )}
       data-testid={`card-blog-${post.slug}`}
     >
-      <Card className={cn(
-        'h-full transition-all hover-elevate',
-        featured && 'md:col-span-2'
-      )}>
-        <CardHeader className="flex flex-row items-start justify-between gap-2 pb-2">
-          <Badge variant="outline" className="font-mono text-xs">
-            {post.category}
-          </Badge>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <h3 className={cn(
-            'font-semibold tracking-tight group-hover:text-primary transition-colors',
-            featured ? 'text-xl md:text-2xl' : 'text-lg'
-          )}>
-            {post.title}
-          </h3>
-          <p className="text-sm text-muted-foreground line-clamp-2">
-            {post.excerpt}
-          </p>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Calendar className="h-3 w-3" aria-hidden="true" />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock className="h-3 w-3" aria-hidden="true" />
-              {post.readTime}
-            </span>
+      <div className="space-y-2.5">
+        <div className="flex items-center justify-between gap-2 text-xs font-mono text-muted-foreground">
+          <span className="text-primary font-medium">{post.category}</span>
+          <div className="flex items-center gap-2">
+            <span>{post.date}</span>
+            <span aria-hidden="true">·</span>
+            <span>{post.readTime}</span>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+
+        <h3
+          className={cn(
+            'font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors text-balance',
+            featured ? 'text-xl @md:text-2xl' : 'text-base sm:text-lg'
+          )}
+        >
+          {post.title}
+        </h3>
+
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 text-pretty max-w-2xl">
+          {post.excerpt}
+        </p>
+      </div>
+
+      <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
+        <span className="font-mono group-hover:text-foreground transition-colors">
+          Read article
+        </span>
+        <ArrowUpRight
+          className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+          aria-hidden="true"
+        />
+      </div>
     </Link>
   );
-}
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(' ');
 }

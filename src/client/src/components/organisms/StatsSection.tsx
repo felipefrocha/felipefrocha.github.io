@@ -10,14 +10,17 @@ interface StatsSectionProps {
 }
 
 export function StatsSection({ stats }: StatsSectionProps) {
-  if (!stats || !Array.isArray(stats)) {
+  if (!stats || !Array.isArray(stats) || stats.length === 0) {
     return null;
   }
 
   return (
-    <section className="py-16 md:py-20 px-6 md:px-8 bg-muted/30 defer-render" data-testid="section-stats">
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+    <section
+      className="section-spacing py-12 md:py-14 border-b border-border/50 defer-render"
+      data-testid="section-stats"
+    >
+      <div className="container-default max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((stat) => (
             <StatNumber key={stat.label} value={stat.value} label={stat.label} />
           ))}

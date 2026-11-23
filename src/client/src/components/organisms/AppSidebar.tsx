@@ -15,7 +15,7 @@ import {
 import { ProfileCard } from '@/components/molecules/ProfileCard';
 import { SocialIcon } from '@/components/atoms/SocialIcon';
 import { Link, useLocation } from 'wouter';
-import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
+import type { SocialLink } from '@shared/schema';
 
 interface AppSidebarProps {
   profile: {
@@ -41,31 +41,33 @@ export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
   ];
 
   return (
-    <Sidebar collapsible="icon">
-      <SidebarHeader className="border-b border-sidebar-border">
+    <Sidebar collapsible="icon" className="border-r border-sidebar-border/60">
+      <SidebarHeader className="px-2 pt-3 pb-1">
         {!isCollapsed && <ProfileCard {...profile} />}
       </SidebarHeader>
-      
-      <SidebarContent>
+
+      <SidebarContent className="px-1">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="gap-0.5">
               {navItems.map((item) => {
-                const isActive = location === item.href || 
+                const isActive =
+                  location === item.href ||
                   (item.href !== '/' && location.startsWith(item.href));
-                
+
                 return (
                   <SidebarMenuItem key={item.href}>
                     <SidebarMenuButton
                       asChild
                       isActive={isActive}
                       tooltip={item.label}
+                      className="h-9 text-sm font-normal data-[active=true]:font-medium"
                     >
-                      <Link 
+                      <Link
                         href={item.href}
                         data-testid={`link-nav-${item.label.toLowerCase()}`}
                       >
-                        <item.icon className="h-5 w-5" />
+                        <item.icon className="h-4 w-4 opacity-75" />
                         <span>{item.label}</span>
                       </Link>
                     </SidebarMenuButton>
@@ -77,22 +79,24 @@ export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-sidebar-border">
-        <nav 
-          className={`flex items-center justify-center gap-1 py-2 ${
-            isCollapsed ? 'flex-col' : 'flex-row'
+      <SidebarFooter className="border-t border-sidebar-border/50 px-2 py-2">
+        <nav
+          className={`flex items-center gap-0.5 ${
+            isCollapsed ? 'flex-col justify-center' : 'flex-row justify-start px-1'
           }`}
           aria-label="Social media links"
         >
-          {Array.isArray(socialLinks) ? socialLinks.map((link) => (
-            <SocialIcon
-              key={link.platform}
-              platform={link.platform}
-              handle={link.handle}
-              url={link.url}
-              size="sm"
-            />
-          )) : null}
+          {Array.isArray(socialLinks)
+            ? socialLinks.map((link) => (
+                <SocialIcon
+                  key={link.platform}
+                  platform={link.platform}
+                  handle={link.handle}
+                  url={link.url}
+                  size="sm"
+                />
+              ))
+            : null}
         </nav>
       </SidebarFooter>
     </Sidebar>

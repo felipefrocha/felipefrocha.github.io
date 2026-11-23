@@ -1,15 +1,124 @@
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SkillTag } from '@/components/atoms/SkillTag';
 import { SocialIcon } from '@/components/atoms/SocialIcon';
 import { SEO } from '@/components/atoms/SEO';
 import { generatePersonSchema } from '@/lib/structuredData';
 import { MapPin, Mail } from 'lucide-react';
-import type { ProfileInfo, BlogPost, SocialLink, Project } from '@shared/schema';
+import type { ProfileInfo, SocialLink } from '@shared/schema';
 import { fetchProfile, fetchSkills, fetchSocials } from '@/lib/api';
+
+const experienceItems = [
+  {
+    role: 'Senior Manager, Software Engineer',
+    company: 'BCG-Global IT',
+    period: 'Since 01/2025',
+    current: true,
+    description:
+      'Led a team in building strategic AI products and maintained platforms for Global IT Services.',
+  },
+  {
+    role: 'Senior AI Engineer',
+    company: 'BCG',
+    period: '01/2024 to 01/2025',
+    description:
+      'GenAI application developer with OpenAI and Articul8; lead developer for offshore teams.',
+  },
+  {
+    role: 'Lead DevOps',
+    company: 'BCG',
+    period: '11/2022 to 12/2023',
+    description:
+      'Built DevOps teams, defined interview processes, and led Case projects in Platform and DevOps subjects.',
+  },
+  {
+    role: 'Master SRE/DevOps',
+    company: 'CI&T',
+    period: '08/2022 to 11/2022',
+    description: 'Defined IaC Architecture and multi-tenant/multi-region strategies.',
+  },
+  {
+    role: 'Senior SRE/DevOps',
+    company: 'CI&T',
+    period: '02/2022 to 08/2022',
+    description:
+      'Managed AWS, cost optimization, HA configuration, and monitoring/observability.',
+  },
+  {
+    role: 'Cloud DevOps',
+    company: 'Queima Diaria',
+    period: '08/2021 to 02/2022',
+    description:
+      'Built a DevOps team, mentored developers, and developed Platform Engineer Strategy (IDP).',
+  },
+  {
+    role: 'Cloud Architect',
+    company: 'Queima Diaria',
+    period: '04/2021 to 08/2021',
+    description:
+      'Infrastructure as Code (Terraform), 12 Factor applications, and CI/CD pipelines with Github Actions.',
+  },
+  {
+    role: 'Cloud SRE',
+    company: 'Banco Inter',
+    period: '01/2021 to 04/2021',
+    description:
+      'Infrastructure as Code, systems reliability, and cluster administration.',
+  },
+  {
+    role: 'Junior Solutions Architect',
+    company: 'DIT Digital',
+    period: '01/2020 to 01/2021',
+    description:
+      'Project definitions, technology evaluation, and AWS/Azure solution definition.',
+  },
+  {
+    role: 'Software Developer Analyst',
+    company: 'DIT Digital',
+    period: '04/2019 to 01/2020',
+    description:
+      'Angular/React front-end development and Spring Boot/.NET Core back-end development.',
+  },
+  {
+    role: 'Full-Stack Developer Jr.',
+    company: 'Strider Ag.',
+    period: '12/2018 to 04/2019',
+    description:
+      'React.js/Angular front-end, Spring Boot/JavaEE back-end, and mobile development.',
+  },
+  {
+    role: 'Application Technician Pl',
+    company: 'Schneider Electric',
+    period: '02/2018 to 12/2018',
+  },
+  {
+    role: 'Technical Coordinator',
+    company: 'Solution Automation Engineering',
+    period: '06/2016 to 01/2018',
+  },
+  {
+    role: 'Automation Technician Pl',
+    company: 'Solution Automation Engineering',
+    period: '05/2015 to 06/2016',
+  },
+  {
+    role: 'Automation Technician II',
+    company: 'FGL Controls and Automation',
+    period: '07/2012 to 05/2015',
+  },
+  {
+    role: 'Trainee',
+    company: 'Fiat Auto',
+    period: '03/2010 to 03/2011',
+  },
+  {
+    role: 'Instrumentation Technician',
+    company: 'W. Bachur Industrial Automation',
+    period: '08/2007 to 06/2008',
+  },
+];
 
 export default function About() {
   const { t } = useTranslation();
@@ -33,14 +142,14 @@ export default function About() {
 
   if (profileLoading || !profile) {
     return (
-      <article className="py-8 md:py-12 px-6 md:px-8">
-        <div className="max-w-4xl mx-auto">
-          <Skeleton className="h-10 w-40 mb-12" />
-          <div className="grid gap-12 lg:grid-cols-3">
-            <Skeleton className="h-64" />
-            <div className="lg:col-span-2 space-y-8">
-              <Skeleton className="h-32" />
-              <Skeleton className="h-24" />
+      <article className="py-10 md:py-14">
+        <div className="container-default max-w-5xl mx-auto px-4 sm:px-6">
+          <Skeleton className="h-9 w-40 mb-10" />
+          <div className="grid gap-10 lg:grid-cols-[240px_1fr]">
+            <Skeleton className="h-56 rounded-xl" />
+            <div className="space-y-8">
+              <Skeleton className="h-32 rounded-xl" />
+              <Skeleton className="h-24 rounded-xl" />
             </div>
           </div>
         </div>
@@ -57,8 +166,27 @@ export default function About() {
   const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.feliperocha.systems';
   const aboutUrl = `${siteUrl}/about`;
 
+  const journeyStages = [
+    {
+      title: t('about.journey.foundation.title'),
+      content: t('about.journey.foundation.content'),
+    },
+    {
+      title: t('about.journey.pivot.title'),
+      content: t('about.journey.pivot.content'),
+    },
+    {
+      title: t('about.journey.scale.title'),
+      content: t('about.journey.scale.content'),
+    },
+    {
+      title: t('about.journey.present.title'),
+      content: t('about.journey.present.content'),
+    },
+  ];
+
   return (
-    <article className="py-8 md:py-12 px-6 md:px-8">
+    <article className="py-10 md:py-14">
       <SEO
         title="About"
         description={profile.bio}
@@ -66,108 +194,94 @@ export default function About() {
         canonical={aboutUrl}
         structuredData={generatePersonSchema(profile, socialLinks || [])}
       />
-      <div className="max-w-4xl mx-auto">
-        <header className="mb-12">
-          <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-about-title">
+      <div className="container-default max-w-5xl mx-auto px-4 sm:px-6">
+        <header className="mb-10">
+          <h1
+            className="text-h1 text-3xl sm:text-4xl font-bold tracking-tight"
+            data-testid="text-about-title"
+          >
             {t('about.title')}
           </h1>
         </header>
 
-        <div className="grid gap-12 lg:grid-cols-3">
-          <aside className="lg:col-span-1">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex flex-col items-center text-center">
-                  <Avatar className="h-24 w-24 mb-4">
-                    <AvatarImage src={profile.avatar} alt={profile.name} />
-                    <AvatarFallback className="text-2xl font-semibold">{initials}</AvatarFallback>
-                  </Avatar>
-                  
-                  <h2 className="text-xl font-semibold" data-testid="text-about-name">
-                    {profile.name}
-                  </h2>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {profile.tagline}
+        <div className="grid gap-10 lg:grid-cols-[240px_1fr] items-start">
+          <aside className="lg:sticky lg:top-20 rounded-xl border border-border/70 bg-card/60 p-5">
+            <div className="flex flex-col items-start">
+              <Avatar className="h-16 w-16 mb-3 ring-1 ring-border/70">
+                <AvatarImage src={profile.avatar} alt={profile.name} />
+                <AvatarFallback className="text-lg font-semibold">{initials}</AvatarFallback>
+              </Avatar>
+
+              <h2 className="text-base font-semibold tracking-tight" data-testid="text-about-name">
+                {profile.name}
+              </h2>
+              <p className="text-xs font-mono text-muted-foreground mb-4">
+                {profile.tagline}
+              </p>
+
+              <div className="space-y-1.5 text-xs text-muted-foreground mb-4 w-full">
+                {profile.location && (
+                  <p className="flex items-center gap-2">
+                    <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <span>{profile.location}</span>
                   </p>
+                )}
 
-                  {profile.location && (
-                    <p className="flex items-center gap-1 text-sm text-muted-foreground mb-2">
-                      <MapPin className="h-4 w-4" aria-hidden="true" />
-                      {profile.location}
-                    </p>
-                  )}
-                  
-                  {profile.email && (
-                    <p className="flex items-center gap-1 text-sm text-muted-foreground mb-4">
-                      <Mail className="h-4 w-4" aria-hidden="true" />
-                      {profile.email}
-                    </p>
-                  )}
+                {profile.email && (
+                  <p className="flex items-center gap-2 break-all">
+                    <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <span>{profile.email}</span>
+                  </p>
+                )}
+              </div>
 
-                  {socialLinks && (
-                    <div className="flex items-center gap-1">
-                      {socialLinks.map((link) => (
-                        <SocialIcon
-                          key={link.platform}
-                          platform={link.platform}
-                          handle={link.handle}
-                          url={link.url}
-                          size="sm"
-                        />
-                      ))}
-                    </div>
-                  )}
+              {socialLinks && (
+                <div className="flex items-center gap-0.5 -ml-2 pt-2 border-t border-border/50 w-full">
+                  {socialLinks.map((link) => (
+                    <SocialIcon
+                      key={link.platform}
+                      platform={link.platform}
+                      handle={link.handle}
+                      url={link.url}
+                      size="sm"
+                    />
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+              )}
+            </div>
           </aside>
 
-          <div className="lg:col-span-2 space-y-8">
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">{t('about.background')}</h2>
-              <div className="prose prose-neutral dark:prose-invert max-w-none">
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {profile.bio}
-                </p>
-                
-                <h3 className="text-xl font-semibold mt-8 mb-4">{t('about.journey.title')}</h3>
-                
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.foundation.title')}</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t('about.journey.foundation.content')}
-                    </p>
-                  </div>
+          <div className="space-y-12 min-w-0">
+            <section className="prose-measure max-w-[68ch]">
+              <h2 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">
+                {t('about.background')}
+              </h2>
+              <p className="text-base sm:text-lg text-foreground/90 leading-relaxed mb-8 text-pretty">
+                {profile.bio}
+              </p>
 
-                  <div>
-                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.pivot.title')}</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t('about.journey.pivot.content')}
-                    </p>
-                  </div>
+              <h3 className="text-lg font-semibold tracking-tight mb-5">
+                {t('about.journey.title')}
+              </h3>
 
-                  <div>
-                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.scale.title')}</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t('about.journey.scale.content')}
+              <div className="space-y-6">
+                {journeyStages.map((stage) => (
+                  <div key={stage.title} className="space-y-1.5">
+                    <h4 className="text-sm font-semibold text-foreground">{stage.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
+                      {stage.content}
                     </p>
                   </div>
-
-                  <div>
-                    <h4 className="text-lg font-semibold mb-2">{t('about.journey.present.title')}</h4>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {t('about.journey.present.content')}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </section>
 
             {skills && skills.length > 0 && (
-              <section>
-                <h2 className="text-2xl font-semibold mb-4">{t('about.skills')}</h2>
-                <div className="flex flex-wrap gap-2">
+              <section className="pt-8 border-t border-border/60">
+                <h2 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-4">
+                  {t('about.skills')}
+                </h2>
+                <div className="flex flex-wrap gap-1.5">
                   {skills.map((skill) => (
                     <SkillTag key={skill} skill={skill} />
                   ))}
@@ -175,126 +289,36 @@ export default function About() {
               </section>
             )}
 
-            <section className="defer-render">
-              <h2 className="text-2xl font-semibold mb-4">{t('about.experience')}</h2>
-              <div className="space-y-6">
-                <div className="border-l-2 border-primary pl-4">
-                  <h3 className="font-medium">Senior Manager, Software Engineer</h3>
-                  <p className="text-sm text-muted-foreground">BCG-Global IT - Since 01/2025 </p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Led a team in building strategic AI products and maintained platforms for Global IT Services.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Senior AI Engineer</h3>
-                  <p className="text-sm text-muted-foreground">BCG - 01/2024 to 01/2025 </p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    GenAI application developer with OpenAI and Articul8; lead developer for offshore teams.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Lead DevOps</h3>
-                  <p className="text-sm text-muted-foreground">BCG - 11/2022 to 12/2023</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Built DevOps teams, defined interview processes, and led Case projects in Platform and DevOps subjects.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Master SRE/DevOps</h3>
-                  <p className="text-sm text-muted-foreground">CI&T - 08/2022 to 11/2022</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Defined IaC Architecture and multi-tenant/multi-region strategies.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Senior SRE/DevOps</h3>
-                  <p className="text-sm text-muted-foreground">CI&T - 02/2022 to 08/2022</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Managed AWS, cost optimization, HA configuration, and monitoring/observability.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Cloud DevOps</h3>
-                  <p className="text-sm text-muted-foreground">Queima Diaria - 08/2021 to 02/2022</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Built a DevOps team, mentored developers, and developed Platform Engineer Strategy (IDP).
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Cloud Architect</h3>
-                  <p className="text-sm text-muted-foreground">Queima Diaria - 04/2021 to 08/2021</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Infrastructure as Code (Terraform), 12 Factor applications, and CI/CD pipelines with Github Actions.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Cloud SRE</h3>
-                  <p className="text-sm text-muted-foreground">Banco Inter - 01/2021 to 04/2021</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Infrastructure as Code, systems reliability, and cluster administration.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Junior Solutions Architect</h3>
-                  <p className="text-sm text-muted-foreground">DIT Digital - 01/2020 to 01/2021</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Project definitions, technology evaluation, and AWS/Azure solution definition.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Software Developer Analyst</h3>
-                  <p className="text-sm text-muted-foreground">DIT Digital - 04/2019 to 01/2020</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Angular/React front-end development and Spring Boot/.NET Core back-end development.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Full-Stack Developer Jr.</h3>
-                  <p className="text-sm text-muted-foreground">Strider Ag. - 12/2018 to 04/2019</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    React.js/Angular front-end, Spring Boot/JavaEE back-end, and mobile development.
-                  </p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Application Technician Pl</h3>
-                  <p className="text-sm text-muted-foreground">Schneider Electric - 02/2018 to 12/2018</p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Technical Coordinator</h3>
-                  <p className="text-sm text-muted-foreground">Solution Automation Engineering - 06/2016 to 01/2018</p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Automation Technician Pl</h3>
-                  <p className="text-sm text-muted-foreground">Solution Automation Engineering - 05/2015 to 06/2016</p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Automation Technician II</h3>
-                  <p className="text-sm text-muted-foreground">FGL Controls and Automation - 07/2012 to 05/2015</p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Trainee</h3>
-                  <p className="text-sm text-muted-foreground">Fiat Auto - 03/2010 to 03/2011</p>
-                </div>
-
-                <div className="border-l-2 border-muted pl-4">
-                  <h3 className="font-medium">Instrumentation Technician</h3>
-                  <p className="text-sm text-muted-foreground">W. Bachur Industrial Automation - 08/2007 to 06/2008 </p>
-                </div>
+            <section className="pt-8 border-t border-border/60 defer-render">
+              <h2 className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-6">
+                {t('about.experience')}
+              </h2>
+              <div className="divide-y divide-border/50">
+                {experienceItems.map((item) => (
+                  <div
+                    key={`${item.role}-${item.period}`}
+                    className="py-4 first:pt-0 last:pb-0 grid gap-1 sm:grid-cols-[180px_1fr] sm:gap-6 items-baseline"
+                  >
+                    <p className="text-xs font-mono text-muted-foreground">
+                      {item.period}
+                    </p>
+                    <div>
+                      <div className="flex flex-wrap items-baseline gap-x-2">
+                        <h3 className="text-sm font-semibold text-foreground">
+                          {item.role}
+                        </h3>
+                        <span className="text-xs text-muted-foreground">
+                          · {item.company}
+                        </span>
+                      </div>
+                      {item.description && (
+                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed text-pretty">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </section>
           </div>

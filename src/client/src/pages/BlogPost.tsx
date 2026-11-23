@@ -3,17 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SEO } from '@/components/atoms/SEO';
 import { generateBlogPostSchema, generateBreadcrumbSchema } from '@/lib/structuredData';
 import { ArrowLeft, Calendar, Clock, ChevronRight, MonitorPlay, UserRound } from 'lucide-react';
-import type { BlogPost, ProfileInfo, SocialLink, Project } from '@shared/schema';
+import type { BlogPost, ProfileInfo } from '@shared/schema';
 import { fetchPost, fetchAllPosts, fetchProfile } from '@/lib/api';
 import { renderMarkdown, countWords } from '@/lib/markdown';
 import { CommentsSection } from '@/components/organisms/CommentsSection';
 
-// Auto-refresh in development mode
 const isDevelopment = import.meta.env.DEV;
 
 export default function BlogPostPage() {
@@ -44,12 +42,12 @@ export default function BlogPostPage() {
 
   if (isLoading) {
     return (
-      <article className="py-8 md:py-12 px-6 md:px-8">
-        <div className="max-w-3xl mx-auto">
+      <article className="py-10 md:py-14">
+        <div className="container-narrow max-w-3xl mx-auto px-4 sm:px-6">
           <Skeleton className="h-4 w-48 mb-8" />
-          <Skeleton className="h-6 w-24 mb-4" />
+          <Skeleton className="h-5 w-24 mb-4" />
           <Skeleton className="h-12 w-full mb-4" />
-          <Skeleton className="h-4 w-32 mb-8" />
+          <Skeleton className="h-4 w-40 mb-8" />
           <div className="space-y-4">
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-full" />
@@ -62,13 +60,13 @@ export default function BlogPostPage() {
 
   if (error || !post) {
     return (
-      <article className="py-8 md:py-12 px-6 md:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-2xl font-bold mb-4">{t('blog.postNotFound')}</h1>
+      <article className="py-16">
+        <div className="container-narrow max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <h1 className="text-2xl font-bold mb-3">{t('blog.postNotFound')}</h1>
           <p className="text-muted-foreground mb-6">
             {t('blog.postNotFoundDescription')}
           </p>
-          <Button asChild>
+          <Button asChild size="sm">
             <Link href="/blog">
               <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
               {t('blog.backToBlog')}
@@ -92,7 +90,7 @@ export default function BlogPostPage() {
   ];
 
   return (
-    <article className="py-8 md:py-12 px-6 md:px-8">
+    <article className="py-10 md:py-14">
       <SEO
         title={post.title}
         description={post.excerpt}
@@ -109,112 +107,119 @@ export default function BlogPostPage() {
           generateBreadcrumbSchema(breadcrumbItems),
         ]}
       />
-      <div className="max-w-3xl mx-auto">
-        <nav 
-          className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+      <div className="container-narrow max-w-3xl mx-auto px-4 sm:px-6">
+        <nav
+          className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground mb-8"
           aria-label="Breadcrumb"
         >
           <Link href="/" className="hover:text-foreground transition-colors">
             {t('nav.home')}
           </Link>
-          <ChevronRight className="h-4 w-4" aria-hidden="true" />
+          <ChevronRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
           <Link href="/blog" className="hover:text-foreground transition-colors">
             {t('nav.blog')}
           </Link>
-          <ChevronRight className="h-4 w-4" aria-hidden="true" />
+          <ChevronRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
           <span className="text-foreground truncate">{post.title}</span>
         </nav>
 
-        <header className="mb-8">
-          <Badge variant="outline" className="mb-4">{post.category}</Badge>
-          <h1 
-            className="text-4xl md:text-5xl font-bold tracking-tight text-balance mb-4"
+        <header className="mb-10 pb-8 border-b border-border/60">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground mb-4">
+            <span className="text-primary font-medium">{post.category}</span>
+            <span aria-hidden="true">·</span>
+            <span className="flex items-center gap-1">
+              <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+              {post.date}
+            </span>
+            <span aria-hidden="true">·</span>
+            <span className="flex items-center gap-1">
+              <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+              {post.readTime}
+            </span>
+            <span aria-hidden="true">·</span>
+            <span className="flex items-center gap-1">
+              <UserRound className="h-3.5 w-3.5" aria-hidden="true" />
+              {author}
+            </span>
+          </div>
+
+          <h1
+            className="text-h1 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-balance mb-4"
             data-testid="text-post-title"
           >
             {post.title}
           </h1>
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Calendar className="h-4 w-4" aria-hidden="true" />
-              {post.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock className="h-4 w-4" aria-hidden="true" />
-              {post.readTime}
-            </span>
-            <span className="flex items-center gap-1">
-              <UserRound className="h-4 w-4" aria-hidden="true" />
-              {author}
-            </span>
-          </div>
-        </header>
 
-        <div className="prose prose-neutral dark:prose-invert max-w-none text-pretty mb-12">
-          <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
+          <p className="text-body-lg text-base sm:text-lg text-muted-foreground leading-relaxed text-pretty max-w-[65ch]">
             {post.excerpt}
           </p>
-          
-          <Separator className="my-8" />
+        </header>
 
-          {post.presentationSlug && (
-            <div className="not-prose mb-8 border border-border bg-card p-5">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="font-medium">{t('presentation.articleCtaTitle')}</p>
-                  <p className="text-sm text-muted-foreground mt-1 text-pretty">
-                    {t('presentation.articleCtaDescription')}
-                  </p>
-                </div>
-                <Button asChild>
-                  <Link href={`/presentations/${post.presentationSlug}`}>
-                    <MonitorPlay className="h-4 w-4 mr-2" aria-hidden="true" />
-                    {t('presentation.viewPresentation')}
-                  </Link>
-                </Button>
+        {post.presentationSlug && (
+          <div className="mb-10 rounded-xl border border-border/70 bg-muted/30 p-5">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-medium">{t('presentation.articleCtaTitle')}</p>
+                <p className="text-xs text-muted-foreground mt-1 text-pretty">
+                  {t('presentation.articleCtaDescription')}
+                </p>
               </div>
+              <Button asChild size="sm" className="shrink-0">
+                <Link href={`/presentations/${post.presentationSlug}`}>
+                  <MonitorPlay className="h-3.5 w-3.5 mr-2" aria-hidden="true" />
+                  {t('presentation.viewPresentation')}
+                </Link>
+              </Button>
             </div>
-          )}
+          </div>
+        )}
 
+        <div className="prose prose-neutral dark:prose-invert prose-measure max-w-[68ch] text-pretty mb-12">
           <div
             dangerouslySetInnerHTML={{
-              __html: renderMarkdown(post.content)
+              __html: renderMarkdown(post.content),
             }}
           />
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-12">
-          {post.tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="font-mono text-xs">
-              #{tag}
-            </Badge>
-          ))}
-        </div>
+        {post.tags && post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 pb-10 border-b border-border/60">
+            {post.tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="font-mono text-xs font-normal">
+                #{tag}
+              </Badge>
+            ))}
+          </div>
+        )}
 
         {relatedPosts.length > 0 && (
-          <>
-            <Separator className="mb-12" />
-            <section className="defer-render">
-              <h2 className="text-2xl font-semibold text-balance mb-6">{t('blog.relatedPosts')}</h2>
-              <div className="grid gap-4 md:grid-cols-3">
-                {relatedPosts.map((relatedPost) => (
-                  <Link 
-                    key={relatedPost.slug} 
-                    href={`/blog/${relatedPost.slug}`}
-                    className="block p-4 rounded-lg border border-border hover-elevate"
-                    data-testid={`link-related-${relatedPost.slug}`}
-                  >
-                    <Badge variant="outline" className="mb-2 text-xs">
+          <section className="pt-10 defer-render">
+            <h2 className="text-lg font-semibold tracking-tight text-balance mb-4">
+              {t('blog.relatedPosts')}
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {relatedPosts.map((relatedPost) => (
+                <Link
+                  key={relatedPost.slug}
+                  href={`/blog/${relatedPost.slug}`}
+                  className="group flex flex-col justify-between p-4 rounded-xl border border-border/70 bg-card/50 transition-colors hover:border-foreground/25 hover:bg-card"
+                  data-testid={`link-related-${relatedPost.slug}`}
+                >
+                  <div>
+                    <span className="block font-mono text-[11px] text-primary mb-1.5">
                       {relatedPost.category}
-                    </Badge>
-                    <h3 className="font-medium line-clamp-2">{relatedPost.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {relatedPost.readTime}
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          </>
+                    </span>
+                    <h3 className="text-sm font-medium leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                      {relatedPost.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs font-mono text-muted-foreground mt-3">
+                    {relatedPost.readTime}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
 
         <CommentsSection slug={slug} />

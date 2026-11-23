@@ -17,15 +17,17 @@ export function NavLink({ href, icon: Icon, label, collapsed }: NavLinkProps) {
     <Link
       href={href}
       className={cn(
-        'flex items-center gap-3 px-3 py-2 rounded-md transition-colors hover-elevate',
-        isActive && 'bg-sidebar-accent text-sidebar-accent-foreground border-l-2 border-primary',
+        'flex items-center gap-2.5 px-3 py-1.5 rounded-md text-sm transition-colors hover-elevate',
+        isActive
+          ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
+          : 'text-muted-foreground hover:text-foreground',
         collapsed && 'justify-center px-2'
       )}
       data-testid={`link-nav-${label.toLowerCase().replace(/\s+/g, '-')}`}
       aria-current={isActive ? 'page' : undefined}
     >
-      <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-      {!collapsed && <span className="text-sm font-medium">{label}</span>}
+      <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+      {!collapsed && <span>{label}</span>}
     </Link>
   );
 }

@@ -78,7 +78,7 @@
     "title": "Ponerse en Contacto",
     "description": "¿Tienes una pregunta o quieres trabajar juntos? Me encantaría saber de ti.",
     "sendMessage": "Enviar Mensaje",
-    "formDisabled": "El formulario de contacto está actualmente deshabilitado. Por favor, contáctame por correo electrónico o redes sociales.",
+    "formIntro": "Completa el formulario a continuación y te responderé lo antes posible.",
     "name": "Nombre",
     "namePlaceholder": "Tu nombre",
     "email": "Correo Electrónico",
