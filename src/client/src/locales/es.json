@@ -11,6 +11,7 @@
   "nav": {
     "home": "Inicio",
     "blog": "Blog",
+    "kubecon": "KubeCon '26",
     "portfolio": "Portafolio",
     "about": "Acerca de",
     "contact": "Contacto"
@@ -36,6 +37,8 @@
   },
   "presentation": {
     "start": "Iniciar Presentación",
+    "launchDeck": "Iniciar Deck Interactivo (35 pasos)",
+    "openInteractiveReport": "Abrir Informe Interactivo",
     "readArticle": "Leer Artículo",
     "viewPresentation": "Ver Presentación",
     "articleCtaTitle": "Este artículo tiene una presentación complementaria",
@@ -46,8 +49,19 @@
   },
   "portfolio": {
     "title": "Portafolio",
-    "description": "Una colección de proyectos en los que he trabajado, desde experimentos personales hasta aplicaciones en producción. Cada proyecto representa un desafío único y una experiencia de aprendizaje.",
-    "failedToLoad": "Error al cargar los proyectos."
+    "description": "Una colección de sistemas en producción y discusiones de arquitectura de plataformas de IA. Desde aplicaciones prácticas hasta blueprints agentic AI zero-trust y multi-tenant.",
+    "failedToLoad": "Error al cargar los proyectos.",
+    "aiArchitectureBadge": "Discusiones de Arquitectura para IA",
+    "sections": {
+      "aiArchitecture": {
+        "title": "Discusiones de Arquitectura para IA",
+        "description": "Blueprints detallados, análisis de compromisos y exploradores interactivos de topología para plataformas agentic AI en producción."
+      },
+      "projects": {
+        "title": "Proyectos de Ingeniería Destacados",
+        "description": "Aplicaciones integrales y productos cloud-native construidos para confiabilidad y uso real."
+      }
+    }
   },
   "about": {
     "title": "Acerca de Mí",
@@ -103,6 +117,7 @@
   },
   "work": {
     "viewProject": "Ver Proyecto",
+    "exploreArchitecture": "Explorar Arquitectura",
     "viewCode": "Ver Código"
   },
   "comments": {

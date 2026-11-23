@@ -18,6 +18,8 @@ export interface PresentationContent {
   subtitle: string;
   kicker: string;
   articleSlug: string;
+  interactiveDeckPath?: string;
+  interactiveResearchPath?: string;
   metrics: PresentationMetric[];
   sections: PresentationSection[];
   actionTitle: string;
@@ -589,6 +591,153 @@ export const presentations: Presentation[] = [
         ],
         actionTitle: 'Haz de la entrega agentica un estandar operativo.',
         actionBody: 'El resultado de los 90 dias es un patron transferible: donde ejecutan los agentes, donde supervisan las personas y como el equipo sabe que la frontera avanza con seguridad.',
+      },
+    },
+  },
+  {
+    slug: 'kubecon-2026',
+    accent: 'blue',
+    translations: {
+      en: {
+        title: 'AI moved onto Kubernetes. Then it outgrew the pod.',
+        subtitle: 'Four shifts from 30 session folders at KubeCon NA 2026: scheduling, trust, cost, recovery. 458 claims checked against public sources, every number labelled.',
+        kicker: 'KubeCon NA 2026 · Salt Lake City',
+        articleSlug: 'kubecon-2026-na',
+        interactiveDeckPath: '/kubecon-2026#present',
+        interactiveResearchPath: '/kubecon-2026',
+        metrics: [
+          { label: 'Claims checked', value: '458', note: '108 verified as presented (24%), 99 updated/superseded, 251 unconfirmed across 30 session folders.' },
+          { label: 'Core promises', value: '4 + 1', note: 'Scheduling, Trust, Cost, Recovery — plus the Standards bridge across CNCF and AAIF.' },
+          { label: 'Inference on K8s', value: '66%', note: 'Of organisations hosting generative AI models run some or all inference on Kubernetes.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Scheduling & Trust',
+            title: 'AI outgrows the pod at both ends while sandboxes become a product category.',
+            body: 'Platforms now snapshot and pause idle agents in under a second while scheduling frontier jobs as pod groups (Kubernetes 1.37 Workload & PodGroup APIs). Meanwhile, the security exposure moves to default-allow "audit" modes and identity seams.',
+            points: [
+              'Plan capacity in active vs. paused agents and pod groups, not pods or Nodes.',
+              'Buy an agent sandbox with neutral governance and switch from audit to enforce.',
+              'Keep agents secret-less and inject credentials at an identity-scoped gateway.',
+            ],
+          },
+          {
+            eyebrow: '02 / Cost & Recovery',
+            title: 'Agent cost is architecture, and large systems fail by recovering.',
+            body: 'What agents resend and cache sets the bill: programmatic tool calling and prompt caching cut token consumption by 37–99% and 6x. At scale, recovery loops break control planes and stateless MCP streams replay 0 in-flight requests.',
+            points: [
+              'Meter every agent at one gateway and enable tool deferral, Code Mode, and prompt caching.',
+              'Bound control-plane restarts in waves and set a time-to-stable SLO.',
+              'Require an idempotency key on every side-effecting agent tool.',
+            ],
+          },
+          {
+            eyebrow: '03 / Standards & Contrarian Gate',
+            title: 'Two foundations write the rules while the human approval gate becomes an admin setting.',
+            body: 'CNCF hosts agent runtimes (Agent Substrate, kagent, llm-d) while the Agentic AI Foundation (AAIF) hosts protocols and gateways (MCP, A2A, Agent Router). Meanwhile, mainstream tools allow admins to turn off human approval gates.',
+            points: [
+              'Gate purchases on neutral foundation status and workload conformance.',
+              'Track both CNCF and AAIF, starting with MCP’s stateless July 2026 spec.',
+              'Design trust and rollback as if nobody reviews the action.',
+            ],
+          },
+        ],
+        actionTitle: 'Explore the full interactive research report & 35-step stage deck.',
+        actionBody: 'Inspect all 30 session folders, filter the 458-claim verification matrix, export the Monday checklist, or launch the full-screen 35-step presentation mode with speaker notes.',
+      },
+      pt: {
+        title: 'A IA migrou para o Kubernetes. Depois superou o pod.',
+        subtitle: 'Quatro mudanças de 30 pastas de sessões na KubeCon NA 2026: agendamento, confiança, custo e recuperação. 458 afirmações verificadas em fontes públicas.',
+        kicker: 'KubeCon NA 2026 · Salt Lake City',
+        articleSlug: 'kubecon-2026-na',
+        interactiveDeckPath: '/kubecon-2026#present',
+        interactiveResearchPath: '/kubecon-2026',
+        metrics: [
+          { label: 'Afirmações auditadas', value: '458', note: '108 confirmadas exatamente como apresentadas (24%), 99 atualizadas, 251 em aberto em 30 pastas.' },
+          { label: 'Promessas centrais', value: '4 + 1', note: 'Scheduling, Trust, Cost, Recovery — mais a ponte de Standards entre CNCF e AAIF.' },
+          { label: 'Inferência no K8s', value: '66%', note: 'Das organizações que hospedam modelos de IA generativa usam Kubernetes para inferência.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Scheduling & Trust',
+            title: 'A IA supera o pod nas duas pontas enquanto sandboxes viram categoria de produto.',
+            body: 'Plataformas pausam agentes ociosos em menos de um segundo e agendam jobs gigantes como grupos de pods (Workload e PodGroup APIs no K8s 1.37). O risco agora mora em padrões de "audit" que apenas registram em vez de bloquear.',
+            points: [
+              'Planeje capacidade em agentes ativos vs. pausados e em grupos de pods.',
+              'Adote um sandbox com governança neutra e mude de audit para enforce.',
+              'Mantenha agentes sem segredos e injete credenciais em um gateway com escopo de identidade.',
+            ],
+          },
+          {
+            eyebrow: '02 / Cost & Recovery',
+            title: 'Custo de agente é arquitetura, e sistemas em escala falham ao tentar se recuperar.',
+            body: 'Chamadas de ferramentas via código (Code Mode) e prompt caching reduzem tokens em 37–99% e o custo em 6x. Em falhas, o protocolo MCP stateless de julho de 2026 não faz replay de requisições interrompidas.',
+            points: [
+              'Meça cada agente em um único gateway com cache e tool deferral por padrão.',
+              'Limite reinicializações do control plane em ondas e defina um SLO de time-to-stable.',
+              'Exija chave de idempotência em toda ferramenta de agente com efeitos colaterais.',
+            ],
+          },
+          {
+            eyebrow: '03 / Standards & Gate Humano',
+            title: 'Duas fundações escrevem as regras enquanto a aprovação humana vira uma configuração.',
+            body: 'A CNCF hospeda runtimes de agentes enquanto a Agentic AI Foundation (AAIF) hospeda protocolos e gateways (MCP, A2A, Agent Router). Nas ferramentas modernas, um administrador pode desligar o gate de aprovação humana.',
+            points: [
+              'Exija governança neutra e conformidade em toda compra de infraestrutura de agentes.',
+              'Acompanhe a CNCF e a AAIF de perto, começando pela spec MCP de julho de 2026.',
+              'Projete confiança e rollback como se ninguém revisasse a ação.',
+            ],
+          },
+        ],
+        actionTitle: 'Explore o relatório interativo completo e o deck de 35 passos.',
+        actionBody: 'Inspecione as 30 pastas de sessões, filtre a matriz de 458 afirmações, exporte o checklist de segunda-feira ou inicie o modo apresentação com notas do apresentador.',
+      },
+      es: {
+        title: 'La IA se mudó a Kubernetes. Luego superó al pod.',
+        subtitle: 'Cuatro cambios de 30 carpetas de sesiones en KubeCon NA 2026: planificación, confianza, costo y recuperación. 458 afirmaciones verificadas con fuentes públicas.',
+        kicker: 'KubeCon NA 2026 · Salt Lake City',
+        articleSlug: 'kubecon-2026-na',
+        interactiveDeckPath: '/kubecon-2026#present',
+        interactiveResearchPath: '/kubecon-2026',
+        metrics: [
+          { label: 'Afirmaciones verificadas', value: '458', note: '108 confirmadas tal como se presentaron (24%), 99 actualizadas, 251 abiertas en 30 carpetas.' },
+          { label: 'Promesas centrales', value: '4 + 1', note: 'Scheduling, Trust, Cost, Recovery — más el puente de Standards entre CNCF y AAIF.' },
+          { label: 'Inferencia en K8s', value: '66%', note: 'De las organizaciones que alojan modelos de IA generativa usan Kubernetes para inferencia.' },
+        ],
+        sections: [
+          {
+            eyebrow: '01 / Scheduling & Trust',
+            title: 'La IA supera al pod en ambos extremos mientras los sandboxes se vuelven categoría de producto.',
+            body: 'Las plataformas pausan agentes inactivos en menos de un segundo y planifican trabajos masivos como grupos de pods (APIs Workload y PodGroup en K8s 1.37). El riesgo ahora está en modos "audit" que registran pero no bloquean.',
+            points: [
+              'Planifica capacidad en agentes activos vs. pausados y en grupos de pods.',
+              'Elige un sandbox con gobernanza neutral y pasa de audit a enforce.',
+              'Mantén a los agentes sin secretos e inyecta claves en un gateway con identidad acotada.',
+            ],
+          },
+          {
+            eyebrow: '02 / Cost & Recovery',
+            title: 'El costo de los agentes es arquitectura, y a escala los sistemas fallan al recuperarse.',
+            body: 'Ejecutar herramientas mediante código (Code Mode) y el caché de prompts reducen tokens un 37–99% y costos 6x. Bajo la especificación MCP sin estado de julio de 2026, un stream roto no reproduce la solicitud en vuelo.',
+            points: [
+              'Mide cada agente en un único gateway con caché y diferimiento de herramientas por defecto.',
+              'Acota los reinicios del plano de control en oleadas y define un SLO de time-to-stable.',
+              'Exige una clave de idempotencia en cada herramienta con efectos secundarios.',
+            ],
+          },
+          {
+            eyebrow: '03 / Standards & Gate Humano',
+            title: 'Dos fundaciones escriben las reglas mientras la aprobación humana se vuelve un ajuste.',
+            body: 'La CNCF aloja runtimes de agentes mientras la Agentic AI Foundation (AAIF) aloja protocolos y gateways (MCP, A2A, Agent Router). En herramientas actuales, un administrador puede desactivar la aprobación humana.',
+            points: [
+              'Condiciona las compras al estado en fundaciones neutrales y conformidad.',
+              'Sigue de cerca tanto a la CNCF como a la AAIF, empezando por MCP de julio de 2026.',
+              'Diseña la confianza y el rollback como si nadie revisara la acción.',
+            ],
+          },
+        ],
+        actionTitle: 'Explora el informe interactivo completo y la presentación de 35 pasos.',
+        actionBody: 'Inspecciona las 30 carpetas de sesiones, filtra la matriz de 458 afirmaciones, exporta la lista del lunes o lanza el modo presentación a pantalla completa.',
       },
     },
   },

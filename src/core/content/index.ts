@@ -143,6 +143,7 @@ function localizeProject(project: ProjectContent, language: SupportedLanguage): 
 
   return {
     id: project.id,
+    ...(project.category ? { category: project.category } : {}),
     title: translation?.title ?? project.title,
     description: translation?.description ?? project.description,
     techStack: project.techStack,

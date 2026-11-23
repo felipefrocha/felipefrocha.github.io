@@ -12,6 +12,8 @@ const pages = [
   { name: 'home', url: '/' },
   { name: 'blog', url: '/blog' },
   { name: 'blog-post', url: '/blog/agentic-sdlc' },
+  { name: 'kubecon2026', url: '/kubecon-2026' },
+  { name: 'kubecon2026-stage', url: '/kubecon-2026#step-3' },
   { name: 'portfolio', url: '/portfolio' },
   { name: 'about', url: '/about' },
   { name: 'contact', url: '/contact' },
@@ -53,6 +55,31 @@ test.describe('visual capture', () => {
             fullPage: true,
             animations: 'disabled',
           });
+          if (p.name === 'kubecon2026') {
+            await page.screenshot({
+              path: path.join(outDir, `kubecon2026-hero-${vp.name}-${theme}.png`),
+              fullPage: false,
+              animations: 'disabled',
+            });
+            await page.evaluate(() => {
+              document.getElementById('answer')?.scrollIntoView({ block: 'start', behavior: 'instant' });
+            });
+            await page.waitForTimeout(200);
+            await page.screenshot({
+              path: path.join(outDir, `kubecon2026-answer-${vp.name}-${theme}.png`),
+              fullPage: false,
+              animations: 'disabled',
+            });
+            await page.evaluate(() => {
+              document.getElementById('map')?.scrollIntoView({ block: 'start', behavior: 'instant' });
+            });
+            await page.waitForTimeout(200);
+            await page.screenshot({
+              path: path.join(outDir, `kubecon2026-matrix-${vp.name}-${theme}.png`),
+              fullPage: false,
+              animations: 'disabled',
+            });
+          }
         });
       }
     }

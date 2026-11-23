@@ -1,4 +1,4 @@
-import { Home, FileText, FolderKanban, User, Mail } from 'lucide-react';
+import { Home, FileText, FolderKanban, MonitorPlay, User, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   Sidebar,
@@ -35,6 +35,7 @@ export function AppSidebar({ profile, socialLinks }: AppSidebarProps) {
   const navItems = [
     { href: '/', icon: Home, label: t('nav.home') },
     { href: '/blog', icon: FileText, label: t('nav.blog') },
+    { href: '/kubecon-2026', icon: MonitorPlay, label: t('nav.kubecon') },
     { href: '/portfolio', icon: FolderKanban, label: t('nav.portfolio') },
     { href: '/about', icon: User, label: t('nav.about') },
     { href: '/contact', icon: Mail, label: t('nav.contact') },

@@ -16,9 +16,11 @@ import Home from "@/pages/Home";
 const Blog = lazy(() => import("@/pages/Blog"));
 const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const Portfolio = lazy(() => import("@/pages/Portfolio"));
+const ProjectAArchitecture = lazy(() => import("@/pages/ProjectAArchitecture"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const Presentation = lazy(() => import("@/pages/Presentation"));
+const KubeCon2026 = lazy(() => import("@/pages/KubeCon2026"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 import type { SocialLink } from '@shared/schema';
@@ -43,7 +45,9 @@ function Router() {
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/portfolio" component={Portfolio} />
+        <Route path="/portfolio/project-a-architecture" component={ProjectAArchitecture} />
         <Route path="/presentations/:slug" component={Presentation} />
+        <Route path="/kubecon-2026" component={KubeCon2026} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route component={NotFound} />

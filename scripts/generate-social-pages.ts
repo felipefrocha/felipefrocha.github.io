@@ -194,6 +194,17 @@ export function generateSocialPages(options: GenerateSocialPagesOptions = {}): n
       },
     },
     {
+      route: '/kubecon-2026',
+      metadata: {
+        title: 'AI moved onto Kubernetes. Then it outgrew the pod. | KubeCon NA 2026 trends',
+        description: 'Four shifts from 30 session folders at KubeCon NA 2026: scheduling, trust, cost, recovery. 458 claims checked against public sources, every number labelled.',
+        canonicalUrl: `${siteUrl}/kubecon-2026`,
+        imageUrl: absoluteUrl(siteUrl, '/assets/kubecon2026-og.png'),
+        imageAlt: 'AI moved onto Kubernetes. Then it outgrew the pod. Four shifts from KubeCon NA 2026.',
+        type: 'article',
+      },
+    },
+    {
       route: '/portfolio',
       metadata: {
         title: 'Portfolio | Felipe F. Rocha',
@@ -201,6 +212,17 @@ export function generateSocialPages(options: GenerateSocialPagesOptions = {}): n
         canonicalUrl: `${siteUrl}/portfolio`,
         imageUrl: defaultImage,
         imageAlt: 'Felipe F. Rocha - systems engineering portfolio',
+      },
+    },
+    {
+      route: '/portfolio/project-a-architecture',
+      metadata: {
+        title: 'ProjectA: Dual-Tier Agentic AI Workbench Architecture | Felipe F. Rocha',
+        description: 'Complementary Option A (Sovereign Clean-Room Project Cell) and Option B (Agile Multi-Tenant Project Namespace) built on Kagent 1.0 Agent Substrate, Code Mode, Stateless MCPs, and Zero-Trust AgentGateway.',
+        canonicalUrl: `${siteUrl}/portfolio/project-a-architecture`,
+        imageUrl: articleImage,
+        imageAlt: 'ProjectA Dual-Tier Agentic AI Workbench Architecture',
+        type: 'article',
       },
     },
     {

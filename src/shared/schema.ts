@@ -37,6 +37,7 @@ export type BlogPost = z.infer<typeof blogPostSchema>;
 
 export const projectSchema = z.object({
   id: z.string(),
+  category: z.enum(['project', 'ai-architecture']).optional(),
   title: z.string(),
   description: z.string(),
   techStack: z.array(z.string()),

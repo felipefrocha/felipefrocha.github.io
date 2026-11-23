@@ -1,6 +1,37 @@
 [
   {
+    "id": "project-a-ai-workbench",
+    "category": "ai-architecture",
+    "title": "ProjectA: Dual-Tier Agentic AI Workbench Architecture",
+    "description": "Complementary Option A (Sovereign Clean-Room Project Cell) and Option B (Agile Multi-Tenant Project Namespace) deployment architecture powered by Kagent 1.0 Agent Substrate (Code Mode), 100% Stateless MCP Tool Specs, Hub-and-Spoke AgentGateway, and Keycloak OIDC + RFC 8693 Token Exchange—automatically framed from Project Contracts via Legal API, AI Platform Capabilities, and Framing Agent (Solvere).",
+    "translations": {
+      "en": {
+        "title": "ProjectA: Dual-Tier Agentic AI Workbench Architecture",
+        "description": "Complementary Option A (Sovereign Clean-Room Project Cell) and Option B (Agile Multi-Tenant Project Namespace) deployment architecture powered by Kagent 1.0 Agent Substrate (Code Mode), 100% Stateless MCP Tool Specs, Hub-and-Spoke AgentGateway, and Keycloak OIDC + RFC 8693 Token Exchange—automatically framed from Project Contracts via Legal API, AI Platform Capabilities, and Framing Agent (Solvere)."
+      },
+      "pt": {
+        "title": "ProjectA: Arquitetura de Workbench de IA Agêntica em Duas Camadas",
+        "description": "Arquitetura complementar de implantação Option A (Célula Soberana Clean-Room) e Option B (Namespace Ágil Multi-Tenant) baseada em Kagent 1.0 Agent Substrate (Code Mode), servidores MCP 100% Stateless, AgentGateway Hub-and-Spoke e Keycloak OIDC + RFC 8693 Token Exchange—orquestrada a partir de Project Contracts via Legal API, AI Platform Capabilities e Framing Agent (Solvere)."
+      },
+      "es": {
+        "title": "ProjectA: Arquitectura de Workbench de IA Agéntica en Dos Niveles",
+        "description": "Arquitectura complementaria de despliegue Option A (Celda Soberana Clean-Room) y Option B (Namespace Ágil Multi-Tenant) impulsada por Kagent 1.0 Agent Substrate (Code Mode), servidores MCP 100% Stateless, AgentGateway Hub-and-Spoke y Keycloak OIDC + RFC 8693 Token Exchange—enmarcada automáticamente desde Project Contracts mediante Legal API, AI Platform Capabilities y Framing Agent (Solvere)."
+      }
+    },
+    "techStack": [
+      "Kagent 1.0 Substrate",
+      "AgentGateway",
+      "MCP (Code Mode)",
+      "Keycloak (RFC 8693)",
+      "CNPG pgvector",
+      "ArgoCD",
+      "Arize Phoenix"
+    ],
+    "link": "/portfolio/project-a-architecture"
+  },
+  {
     "id": "vidafire",
+    "category": "project",
     "title": "VidaFire",
     "description": "A personal finance and FIRE planning platform built to turn daily financial decisions into long-term independence scenarios. VidaFire combines authenticated budget tracking, transaction history, localized currency defaults, simulation paths, and cloud-native delivery so users can understand how today's habits affect tomorrow's optionality.",
     "translations": {
@@ -20,13 +51,5 @@
     "techStack": ["React", "TypeScript", "FastAPI", "PostgreSQL", "Keycloak", "Kubernetes"],
     "link": "https://vidafire.feliperocha.systems",
     "github": "https://github.com/usodussystems/vida-fire"
-  },
-  {
-    "id": "project-1",
-    "title": "WIP - Work in Progress",
-    "description": "This is a work in progress project. I will update it as I progress.",
-    "techStack": ["Terraform", "AWS", "CI/CD", "GitHub Actions"],
-    "link": "https://feliperocha.systems",
-    "github": "https://github.com/felipefrocha"
   }
 ]

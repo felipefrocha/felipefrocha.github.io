@@ -1,6 +1,23 @@
 [
   {
+    "id": "project-a-ai-workbench",
+    "category": "ai-architecture",
+    "title": "ProjectA: Arquitetura de Workbench de IA Agêntica em Duas Camadas",
+    "description": "Arquitetura complementar de implantação Option A (Célula Soberana Clean-Room) e Option B (Namespace Ágil Multi-Tenant) baseada em Kagent 1.0 Agent Substrate (Code Mode), servidores MCP 100% Stateless, AgentGateway Hub-and-Spoke e Keycloak OIDC + RFC 8693 Token Exchange—orquestrada a partir de Project Contracts via Legal API, AI Platform Capabilities e Framing Agent (Solvere).",
+    "techStack": [
+      "Kagent 1.0 Substrate",
+      "AgentGateway",
+      "MCP (Code Mode)",
+      "Keycloak (RFC 8693)",
+      "CNPG pgvector",
+      "ArgoCD",
+      "Arize Phoenix"
+    ],
+    "link": "/portfolio/project-a-architecture"
+  },
+  {
     "id": "vidafire",
+    "category": "project",
     "title": "VidaFire",
     "description": "Uma plataforma de finanças pessoais e planejamento FIRE criada para transformar decisões financeiras do dia a dia em cenários de independência de longo prazo. O VidaFire combina acompanhamento de orçamento autenticado, histórico de transações, moeda padrão localizada, simulações e entrega cloud-native para mostrar como os hábitos de hoje afetam a liberdade de escolha de amanhã.",
     "techStack": [
@@ -13,18 +30,5 @@
     ],
     "link": "https://vidafire.feliperocha.systems",
     "github": "https://github.com/usodussystems/vida-fire"
-  },
-  {
-    "id": "project-1",
-    "title": "WIP - Work in Progress",
-    "description": "This is a work in progress project. I will update it as I progress.",
-    "techStack": [
-      "Terraform",
-      "AWS",
-      "CI/CD",
-      "GitHub Actions"
-    ],
-    "link": "https://feliperocha.systems",
-    "github": "https://github.com/felipefrocha"
   }
 ]

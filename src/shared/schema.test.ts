@@ -35,6 +35,18 @@ describe('projectSchema', () => {
     const p = projectSchema.parse({ id: '1', title: 't', description: 'd', techStack: ['ts'] });
     expect(p.techStack).toEqual(['ts']);
   });
+
+  it('accepts optional category values', () => {
+    const p = projectSchema.parse({
+      id: 'arch-1',
+      category: 'ai-architecture',
+      title: 'ProjectA',
+      description: 'Desc',
+      techStack: ['Kagent 1.0'],
+      link: '/portfolio/project-a-architecture',
+    });
+    expect(p.category).toBe('ai-architecture');
+  });
 });
 
 describe('socialLinkSchema', () => {

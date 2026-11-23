@@ -11,6 +11,7 @@
   "nav": {
     "home": "Home",
     "blog": "Blog",
+    "kubecon": "KubeCon '26",
     "portfolio": "Portfolio",
     "about": "About",
     "contact": "Contact"
@@ -36,6 +37,8 @@
   },
   "presentation": {
     "start": "Start Presentation",
+    "launchDeck": "Launch Interactive Deck (35 steps)",
+    "openInteractiveReport": "Open Interactive Research Report",
     "readArticle": "Read Article",
     "viewPresentation": "View Presentation",
     "articleCtaTitle": "This article has a companion presentation",
@@ -46,8 +49,19 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "description": "A collection of projects I've worked on, from personal experiments to production applications. Each project represents a unique challenge and learning experience.",
-    "failedToLoad": "Failed to load projects."
+    "description": "A collection of production systems and AI platform architecture discussions. From hands-on applications to zero-trust, multi-tenant agentic AI blueprints.",
+    "failedToLoad": "Failed to load projects.",
+    "aiArchitectureBadge": "Architectural Discussions for AI",
+    "sections": {
+      "aiArchitecture": {
+        "title": "Architectural Discussions for AI",
+        "description": "Deep-dive system blueprints, trade-off analyses, and interactive topology explorers for production agentic AI platforms."
+      },
+      "projects": {
+        "title": "Featured Engineering Projects",
+        "description": "End-to-end applications and cloud-native products built for reliability and real-world use."
+      }
+    }
   },
   "about": {
     "title": "About Me",
@@ -103,6 +117,7 @@
   },
   "work": {
     "viewProject": "View Project",
+    "exploreArchitecture": "Explore Architecture",
     "viewCode": "View Code"
   },
   "comments": {

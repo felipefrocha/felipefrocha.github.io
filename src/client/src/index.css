@@ -189,6 +189,22 @@
     contain-intrinsic-size: auto 500px;
   }
 
+  @keyframes flowDash {
+    to {
+      stroke-dashoffset: -28;
+    }
+  }
+
+  .animate-flow-dash {
+    animation: flowDash 1.15s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-flow-dash {
+      animation: none;
+    }
+  }
+
   /* Fluid typography utilities */
   .text-display {
     font-size: var(--text-display);

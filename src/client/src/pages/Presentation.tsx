@@ -97,12 +97,29 @@ export default function PresentationPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-2.5 sm:flex-row lg:flex-col">
-                <Button asChild>
-                  <a href="#presentation-sections">
-                    <MonitorPlay className="h-4 w-4 mr-2" aria-hidden="true" />
-                    {t('presentation.start')}
-                  </a>
-                </Button>
+                {presentation.interactiveDeckPath ? (
+                  <Button asChild>
+                    <Link href={presentation.interactiveDeckPath}>
+                      <MonitorPlay className="h-4 w-4 mr-2" aria-hidden="true" />
+                      {t('presentation.launchDeck')}
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button asChild>
+                    <a href="#presentation-sections">
+                      <MonitorPlay className="h-4 w-4 mr-2" aria-hidden="true" />
+                      {t('presentation.start')}
+                    </a>
+                  </Button>
+                )}
+                {presentation.interactiveResearchPath && (
+                  <Button asChild variant="secondary">
+                    <Link href={presentation.interactiveResearchPath}>
+                      <MonitorPlay className="h-4 w-4 mr-2" aria-hidden="true" />
+                      {t('presentation.openInteractiveReport')}
+                    </Link>
+                  </Button>
+                )}
                 <Button asChild variant="outline">
                   <Link href={articlePath}>
                     <BookOpen className="h-4 w-4 mr-2" aria-hidden="true" />

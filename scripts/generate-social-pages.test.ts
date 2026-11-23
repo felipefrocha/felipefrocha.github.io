@@ -124,6 +124,7 @@ describe('social metadata generation', () => {
     expect(articleHtml).toContain('property="og:type" content="article"');
     expect(articleHtml).toContain('https://example.com/assets/social-card-article.png');
     expect(fs.existsSync(path.join(buildDir, 'portfolio.html'))).toBe(true);
+    expect(fs.existsSync(path.join(buildDir, 'portfolio/project-a-architecture.html'))).toBe(true);
     expect(fs.existsSync(path.join(buildDir, 'presentations/agentic-sdlc.html'))).toBe(true);
   });
 });

@@ -26,7 +26,24 @@
   ],
   "projects": [
     {
+      "id": "project-a-ai-workbench",
+      "category": "ai-architecture",
+      "title": "ProjectA: Arquitectura de Workbench de IA Agéntica en Dos Niveles",
+      "description": "Arquitectura complementaria de despliegue Option A (Celda Soberana Clean-Room) y Option B (Namespace Ágil Multi-Tenant) impulsada por Kagent 1.0 Agent Substrate (Code Mode), servidores MCP 100% Stateless, AgentGateway Hub-and-Spoke y Keycloak OIDC + RFC 8693 Token Exchange—enmarcada automáticamente desde Project Contracts mediante Legal API, AI Platform Capabilities y Framing Agent (Solvere).",
+      "techStack": [
+        "Kagent 1.0 Substrate",
+        "AgentGateway",
+        "MCP (Code Mode)",
+        "Keycloak (RFC 8693)",
+        "CNPG pgvector",
+        "ArgoCD",
+        "Arize Phoenix"
+      ],
+      "link": "/portfolio/project-a-architecture"
+    },
+    {
       "id": "vidafire",
+      "category": "project",
       "title": "VidaFire",
       "description": "Una plataforma de finanzas personales y planificación FIRE creada para convertir decisiones financieras diarias en escenarios de independencia a largo plazo. VidaFire combina seguimiento autenticado de presupuestos, historial de transacciones, moneda predeterminada localizada, simulaciones y entrega cloud-native para mostrar cómo los hábitos de hoy afectan la libertad de elección de mañana.",
       "techStack": [
@@ -39,19 +56,6 @@
       ],
       "link": "https://vidafire.feliperocha.systems",
       "github": "https://github.com/usodussystems/vida-fire"
-    },
-    {
-      "id": "project-1",
-      "title": "WIP - Work in Progress",
-      "description": "This is a work in progress project. I will update it as I progress.",
-      "techStack": [
-        "Terraform",
-        "AWS",
-        "CI/CD",
-        "GitHub Actions"
-      ],
-      "link": "https://feliperocha.systems",
-      "github": "https://github.com/felipefrocha"
     }
   ],
   "skills": [
@@ -123,6 +127,27 @@
   ],
   "featuredPosts": [
     {
+      "slug": "kubecon-2026-na",
+      "language": "es",
+      "title": "La IA se Mudó a Kubernetes. Luego Superó al Pod: Tendencias de KubeCon NA 2026",
+      "excerpt": "Cuatro cambios de 30 carpetas de sesiones en KubeCon NA 2026: planificación, confianza, costo y recuperación — con 458 afirmaciones verificadas en fuentes públicas.",
+      "content": "\n## Informe Interactivo de Investigación y Presentación de 35 Pasos\n\nEste artículo acompaña el informe interactivo completo de KubeCon + CloudNativeCon North America 2026 y su presentación integrada de 35 pasos:\n\n- **[Abrir el Informe Interactivo de KubeCon NA 2026](/kubecon-2026)** — Explora la matriz de 30 carpetas de sesiones, popovers de citas con 54 fuentes públicas fechadas, el árbol de decisión en pirámide y la lista exportable del lunes.\n- **[Iniciar el Modo Presentación de 35 Pasos a Pantalla Completa](/kubecon-2026#present)** — Presenta directamente desde el navegador con encuestas en vivo, transiciones de diff `From (−) / To (+)`, notas del orador (`N`), atajos de teclado (`?`) y cambio de tema (`T`).\n\n---\n\n## La Respuesta Central\n\nDos de cada tres organizaciones que alojan modelos de IA generativa ya ejecutan inferencia en Kubernetes (**66%** en la encuesta de la CNCF). Sin embargo, los dos extremos de la IA — **enjambres de agentes inactivos** y **trabajos a escala de frontera** — ya no caben en el contrato tradicional del pod.\n\nEl valor se traslada a **cuatro promesas por encima del pod**, gobernadas por **dos fundaciones**:\n\n1. **Scheduling — ¿Qué se ejecuta y a qué escala?**\n   - *De:* Un pod por carga de trabajo, un Node por máquina.\n   - *A:* Agentes pausados que se reanudan en `< 500 ms` (Agent Substrate, GKE Agent Sandbox, kagent 1.0), grupos de pods planificados en conjunto (APIs Workload y PodGroup en beta en Kubernetes `1.37`) y planos de control sin kubelet en la ruta crítica.\n2. **Trust — ¿Qué puede tocar?**\n   - *De:* Confiar en el modelo; dar secretos a cada aplicación.\n   - *A:* Sandboxes con `default-deny` (GKE, OpenShift 5, Akamai Wasm, Agent Substrate), agentes sin secretos y gateways con identidad acotada. El riesgo ahora reside en valores por defecto permisivos como el modo `audit` de NVIDIA OpenShell.\n3. **Cost — ¿Qué consume?**\n   - *De:* Precio por token multiplicado por solicitudes.\n   - *A:* Tokens multiplicados por arquitectura — ejecución de herramientas mediante código / Code Mode (`37–99%` menos tokens en pruebas de Anthropic; activado por defecto en OpenAI Codex `v0.169.0`), diferimiento de herramientas y caché de prompts (`$4.20 → $0.69` en una sesión de 20 turnos).\n4. **Recovery — ¿Cómo falla y se recupera?**\n   - *De:* Reiniciar al fallar; reintentar hasta que funcione.\n   - *A:* Reinicios escalonados en oleadas, lecturas acotadas en watch cache (etcd RangeStream beta en K8s `1.37`) y claves de idempotencia obligatorias en herramientas con efectos secundarios (dado que MCP sin estado de julio de 2026 reproduce `0` streams rotos).\n5. **Standards (El Puente) — ¿Quién escribe las reglas?**\n   - *De:* Una fundación, años desde Sandbox hasta graduación.\n   - *A:* Dos fundaciones — **CNCF** alojando runtimes y planificación (Agent Substrate, kagent, llm-d) y la **Agentic AI Foundation (AAIF)** alojando protocolos y gateways (MCP, A2A, Agent Router).\n\nExplora las 458 afirmaciones verificadas y el modo presentación completo en la **[Página Interactiva de KubeCon NA 2026](/kubecon-2026)**.\n",
+      "date": "Nov 16, 2026",
+      "readTime": "12 min read",
+      "category": "Cloud Native & AI",
+      "tags": [
+        "kubecon",
+        "kubernetes",
+        "ai-agents",
+        "mcp",
+        "platform-engineering",
+        "finops"
+      ],
+      "featured": true,
+      "image": "/assets/kubecon2026-og.png",
+      "presentationSlug": "kubecon-2026"
+    },
+    {
       "slug": "autonomous-adlc-workflow",
       "language": "es",
       "title": "ADLC Autónomo: Velocidad de Máquina con Control Humano",
@@ -159,23 +184,6 @@
       ],
       "featured": true,
       "presentationSlug": "agentic-sdlc"
-    },
-    {
-      "slug": "the-70-problem",
-      "language": "es",
-      "title": "El Problema del 70%: Por qué la mayoría de los pilotos de GenAI nunca llegan a producción",
-      "excerpt": "El último 30% del despliegue de GenAI expone la fragilidad subyacente de las arquitecturas corporativas y las cadenas de suministro de datos.",
-      "content": "\nLlegar al 70% de finalización en un proyecto de IA Generativa es sorprendentemente fácil. Llegar al 100%—y en producción de forma segura—es donde la mayoría de las iniciativas corporativas van a morir. A esto lo llamo **El Problema del 70%**.\n\n### La Trampa de la Demostración\n\nEl ciclo de vida corporativo moderno de GenAI a menudo se ve así:\n\n1.  **Semanas 1-2:** Un equipo pequeño y aislado crea un prototipo utilizando un modelo básico listo para usar. Responde a preguntas de manera brillante en un conjunto de datos pequeño y limpio. La demostración deslumbra a los ejecutivos. Se asegura la financiación.\n2.  **Semanas 3-6:** El equipo intenta conectar el prototipo a fuentes de datos corporativas en tiempo real. Comienzan a lidiar con la autorización, la recuperación de contexto y los límites de tokens. El progreso se ralentiza, pero llegan al \"70% del camino\".\n3.  **Mes 3 y más allá:** El proyecto se estanca. El modelo comienza a alucinar de formas impredecibles. Las auditorías de seguridad fallan. Los tiempos de respuesta inaceptables paralizan el sistema. El proyecto se retira silenciosamente al modo de \"prueba de concepto prolongada\" hasta que se agota el presupuesto.\n\n### ¿Por qué el último 30% es tan difícil?\n\nLa facilidad de la demostración enmascara la complejidad de la producción. GenAI no es solo otra llamada a la API; es una interfaz de procesamiento de lenguaje natural que se encuentra sobre su infraestructura empresarial. Si su infraestructura es frágil, GenAI expondrá cada fractura.\n\n#### 1. La Cadena de Suministro de Datos está Rota\n\nUn RAG (Generación Aumentada de Recuperación) es tan bueno como el contexto que puede recuperar. En una demostración, el contexto se selecciona a mano. En producción, debe extraerse de repositorios de SharePoint desorganizados, sistemas ERP heredados y bases de datos en silos. Si la arquitectura y la gobernanza de datos de su organización son un desastre, también lo será la salida de la IA.\n\n#### 2. Ausencia de Barandillas (Guardrails) Sistémicas\n\nLos sistemas deterministas fallan de formas deterministas. Los LLMs fallan a través de alucinaciones, inyección de prompts o pérdida de contexto. Diseñar \"barandillas\" no se trata de ajustar las indicaciones del sistema; requiere construir capas de validación programáticas estrictas alrededor de las respuestas del modelo antes de que lleguen al usuario. La mayoría de las arquitecturas carecen de estos enrutadores y validadores intermedios.\n\n#### 3. Control de Acceso Basado en Roles (RBAC) Implícito\n\nCuando un usuario consulta la base de conocimiento corporativa a través de una IA, la IA debe heredar y respetar el nivel de permisos de ese usuario en miles de documentos. Implementar la aplicación de RBAC de grano fino a nivel de búsqueda de similitud vectorial es un problema de ingeniería masivo, a menudo descubierto al final del ciclo de desarrollo.\n\n### Cruzando el Abismo\n\nPasar del 70% al 100% no requiere mejores LLMs. Requiere mejor ingeniería de sistemas tradicional.\n\n*   **Arregle los Datos Primero:** Antes de implementar sistemas RAG complejos, invierta en el mapeo, la limpieza y la unificación de sus fuentes de datos.\n*   **Adopte la Arquitectura Orientada a Agentes (AOA):** Diseñe la IA no como un monolito omnisciente, sino como un sistema de pequeños agentes especializados, acoplados de forma flexible, limitados por permisos y alcances estrictos.\n*   **Trate a la IA como Sistemas No Confiables:** Construya sus capas de API y microservicios asumiendo que los resultados del LLM son intrínsecamente sospechosos y deben validarse con esquemas estrictos (por ejemplo, usando bibliotecas como Pydantic y Zod) antes de su posterior procesamiento.\n\nEl Problema del 70% es un síntoma. La enfermedad es la deuda arquitectónica. Hasta que enfrentemos las realidades de ingeniería subyacentes, seguiremos siendo engañados por demostraciones asombrosas que nunca ven la luz en producción.\n",
-      "date": "Nov 29, 2025",
-      "readTime": "5 min read",
-      "category": "Architecture",
-      "tags": [
-        "genai",
-        "architecture",
-        "data-engineering",
-        "production"
-      ],
-      "featured": true
     }
   ]
 }
